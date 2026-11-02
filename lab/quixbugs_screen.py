@@ -6,6 +6,7 @@ fails it. Does not compare the EXP-003 probe-selection strategies.
 from __future__ import annotations
 
 import argparse
+from collections.abc import Iterator
 from contextlib import redirect_stdout
 from copy import deepcopy
 from io import StringIO
@@ -32,6 +33,8 @@ class Deadline(Exception):
 
 
 def canonical(value: Any) -> Any:
+    if isinstance(value, Iterator):
+        return [canonical(x) for x in value]
     if isinstance(value, (list, tuple)):
         return [canonical(x) for x in value]
     if isinstance(value, (set, frozenset)):

@@ -57,3 +57,5 @@ Produit `results/exp004a.json`, avec les détails par programme, cas validés pa
 **Attention :** l'EXP-004A ne teste pas encore nos trois politiques. Les tests fournis par QuixBugs sont choisis pour révéler leurs défauts : leur taux de réussite ne peut pas servir à mesurer un gain d'une méthode de sélection de tests. L'EXP-004B devra définir des générateurs indépendants et figer une grille équitable de budgets avant l'évaluation.
 
 Sources : https://github.com/jkoppel/QuixBugs (commit épinglé ci-dessus). Les fichiers tiers restent sous licence MIT et ne sont pas modifiés.
+
+**Contrôle qualité EXP-004A :** la CI vérifie explicitement la découverte d'au moins 16 tests ; l'ancienne CI exécutait 0 tests à l'insu du rapport de statut. Le code de comparaison normalise maintenant les générateurs Python (cas `flatten`).

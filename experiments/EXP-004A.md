@@ -19,3 +19,6 @@ Les fixtures QuixBugs sont conçues pour exposer les défauts connus ; leur pouv
 
 ### Suite EXP-004B
 Figurer au préalable des générateurs d'entrées valides et indépendants de l'emplacement du bogue, et comparer 12 tests aléatoires, 12 ciblés et 3 ciblés + 9 aléatoires sur ces 20 programmes. Mesurer chaque programme une seule fois pour la mesure principale, inclure les échecs et rapporter la variance entre programmes. Aucun ajustement de politique autorisé sur le lot final.
+
+### Correction de l'infrastructure
+Un contrôle GitHub a révélé que l'ancienne commande `python -m unittest discover -v` affichait un succès en exécutant **zéro test** (dossier de tests non reconnu). La CI utilise désormais `discover -s tests` et vérifie qu'au moins 16 cas ont été découverts. L'itérateur de référence `flatten` est converti en liste avant comparaison, conformément à la spécification du benchmark.

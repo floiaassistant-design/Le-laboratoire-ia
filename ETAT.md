@@ -24,3 +24,6 @@ Ne pas utiliser d'API payante, de planification récurrente, de déploiement pub
 - Intégration en cours : corpus externe QuixBugs, 20 défauts avec versions corrigées, fixtures et licence, au commit épinglé.
 - Exécuteur de calibration : comparaison par oracle, isolation par processus, délais par appel, et journal JSON.
 - Aucun résultat de politique hybride sur ce corpus : phase suivante EXP-004B, générateurs à concevoir et geler avant exécution.
+
+### Incident qualité vérifié
+Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, même si étape GitHub verte. Correction : `unittest discover -s tests` et assert >=16. La version corrigée de `flatten` retourne un générateur ; l'exécuteur doit épuiser ce générateur avant comparaison. Ces corrections doivent être confirmées par un nouveau run CI avant fusion.
