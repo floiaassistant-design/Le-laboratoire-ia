@@ -1,0 +1,29 @@
+{
+  "experiment": "EXP-003",
+  "date": "2026-11-02",
+  "seed": 20261102,
+  "runs": 200,
+  "budget_per_case": 12,
+  "training_cases": 11,
+  "holdout_cases": 6,
+  "selected_edges": 3,
+  "train": {
+    "0": 574,
+    "3": 1625,
+    "6": 1518,
+    "9": 1518,
+    "12": 1518
+  },
+  "train_total_per_policy": 2200,
+  "holdout": {
+    "0": 371,
+    "3": 846,
+    "12": 772
+  },
+  "holdout_total_per_policy": 1200,
+  "limits": [
+    "Synthetic mutants, not LLM",
+    "Holdout is not blind",
+    "Repeated trials share the same six underlying problems"
+  ]
+}
