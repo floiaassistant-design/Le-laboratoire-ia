@@ -1,0 +1,19 @@
+name: laboratory-checks
+on:
+  push:
+    branches: [main, exp003-hybrid-baseline]
+  pull_request:
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python -m unittest discover -v
+      - name: Reproduce EXP-003
+        run: python run_hybrid.py
