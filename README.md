@@ -59,3 +59,10 @@ Produit `results/exp004a.json`, avec les détails par programme, cas validés pa
 Sources : https://github.com/jkoppel/QuixBugs (commit épinglé ci-dessus). Les fichiers tiers restent sous licence MIT et ne sont pas modifiés.
 
 **Contrôle qualité EXP-004A :** la CI vérifie explicitement la découverte d'au moins 16 tests ; l'ancienne CI exécutait 0 tests à l'insu du rapport de statut. Le code de comparaison normalise maintenant les générateurs Python (cas `flatten`).
+
+### Résultat vérifié EXP-004A (CI #41538320018)
+- 20 programmes QuixBugs sélectionnés, 20 programmes évaluables, 20 défauts exposés par au moins une fixture canonique.
+- 153 fixtures chargées : 151 validées par l'oracle, 2 exclues (Levenshtein).
+- 107 fixtures valides exposent le défaut documenté.
+- 16 tests unitaires découverts et réussis. Données source : `results/exp004a.json`.
+- **Pas de comparaison de nos politiques, et pas de taux de réussite d'agent IA**. Les fixtures QuixBugs sont faites pour révéler les bogues connus.

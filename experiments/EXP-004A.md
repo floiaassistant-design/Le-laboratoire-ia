@@ -22,3 +22,10 @@ Figurer au préalable des générateurs d'entrées valides et indépendants de l
 
 ### Correction de l'infrastructure
 Un contrôle GitHub a révélé que l'ancienne commande `python -m unittest discover -v` affichait un succès en exécutant **zéro test** (dossier de tests non reconnu). La CI utilise désormais `discover -s tests` et vérifie qu'au moins 16 cas ont été découverts. L'itérateur de référence `flatten` est converti en liste avant comparaison, conformément à la spécification du benchmark.
+
+### Résultat vérifié EXP-004A (CI #41538320018)
+- 20 programmes QuixBugs sélectionnés, 20 programmes évaluables, 20 défauts exposés par au moins une fixture canonique.
+- 153 fixtures chargées : 151 validées par l'oracle, 2 exclues (Levenshtein).
+- 107 fixtures valides exposent le défaut documenté.
+- 16 tests unitaires découverts et réussis. Données source : `results/exp004a.json`.
+- **Pas de comparaison de nos politiques, et pas de taux de réussite d'agent IA**. Les fixtures QuixBugs sont faites pour révéler les bogues connus.

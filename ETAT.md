@@ -27,3 +27,10 @@ Ne pas utiliser d'API payante, de planification récurrente, de déploiement pub
 
 ### Incident qualité vérifié
 Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, même si étape GitHub verte. Correction : `unittest discover -s tests` et assert >=16. La version corrigée de `flatten` retourne un générateur ; l'exécuteur doit épuiser ce générateur avant comparaison. Ces corrections doivent être confirmées par un nouveau run CI avant fusion.
+
+### Journal de résultats vérifiés EXP-004A (CI #41538320018)
+- 20 programmes QuixBugs sélectionnés, 20 programmes évaluables, 20 défauts exposés par au moins une fixture canonique.
+- 153 fixtures chargées : 151 validées par l'oracle, 2 exclues (Levenshtein).
+- 107 fixtures valides exposent le défaut documenté.
+- 16 tests unitaires découverts et réussis. Données source : `results/exp004a.json`.
+- **Pas de comparaison de nos politiques, et pas de taux de réussite d'agent IA**. Les fixtures QuixBugs sont faites pour révéler les bogues connus.
