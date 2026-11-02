@@ -1,0 +1,245 @@
+{
+  "experiment": "EXP-004A",
+  "benchmark": "QuixBugs",
+  "source_commit": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "claim_scope": "Coverage calibration with benchmark-provided testcases only; not a comparison of testing policies or LLM agents",
+  "requested_programs": 20,
+  "evaluated_programs": 20,
+  "eligible_programs": 20,
+  "detectable_programs": 20,
+  "programs": [
+    {
+      "program": "bitcount",
+      "status": "evaluated",
+      "fixtures": 9,
+      "reference_valid": 9,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 9,
+      "bug_detected": true,
+      "buggy_timeouts": 9,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "bucketsort",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 7,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 6,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "find_first_in_sorted",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 7,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 3,
+      "bug_detected": true,
+      "buggy_timeouts": 2,
+      "buggy_exceptions": 1
+    },
+    {
+      "program": "find_in_sorted",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 7,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 2,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 2
+    },
+    {
+      "program": "flatten",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 7,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 6,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 6
+    },
+    {
+      "program": "gcd",
+      "status": "evaluated",
+      "fixtures": 6,
+      "reference_valid": 6,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 5,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 5
+    },
+    {
+      "program": "get_factors",
+      "status": "evaluated",
+      "fixtures": 11,
+      "reference_valid": 11,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 10,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "hanoi",
+      "status": "evaluated",
+      "fixtures": 8,
+      "reference_valid": 8,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 7,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "is_valid_parenthesization",
+      "status": "evaluated",
+      "fixtures": 3,
+      "reference_valid": 3,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 1,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "kth",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 7,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 4
+    },
+    {
+      "program": "lcs_length",
+      "status": "evaluated",
+      "fixtures": 9,
+      "reference_valid": 9,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 8,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "levenshtein",
+      "status": "evaluated",
+      "fixtures": 7,
+      "reference_valid": 5,
+      "reference_invalid": 2,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "lis",
+      "status": "evaluated",
+      "fixtures": 12,
+      "reference_valid": 12,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "longest_common_subsequence",
+      "status": "evaluated",
+      "fixtures": 10,
+      "reference_valid": 10,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 1,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "max_sublist_sum",
+      "status": "evaluated",
+      "fixtures": 6,
+      "reference_valid": 6,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "mergesort",
+      "status": "evaluated",
+      "fixtures": 14,
+      "reference_valid": 14,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 13,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 13
+    },
+    {
+      "program": "next_palindrome",
+      "status": "evaluated",
+      "fixtures": 5,
+      "reference_valid": 5,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 1,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "next_permutation",
+      "status": "evaluated",
+      "fixtures": 8,
+      "reference_valid": 8,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 8,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    },
+    {
+      "program": "pascal",
+      "status": "evaluated",
+      "fixtures": 5,
+      "reference_valid": 5,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 3
+    },
+    {
+      "program": "powerset",
+      "status": "evaluated",
+      "fixtures": 5,
+      "reference_valid": 5,
+      "reference_invalid": 0,
+      "bug_exposing_fixtures": 4,
+      "bug_detected": true,
+      "buggy_timeouts": 0,
+      "buggy_exceptions": 0
+    }
+  ],
+  "provenance": {
+    "ci_run_id": 41538320018,
+    "ci_job_id": 125595750736,
+    "code_commit": "c6ea835c4e62cd2b313bfe3242c465a78da71c06",
+    "python": "3.11",
+    "ci_status": "success"
+  },
+  "totals": {
+    "fixtures": 153,
+    "reference_valid": 151,
+    "reference_invalid": 2,
+    "bug_exposing_fixtures": 107
+  }
+}

@@ -1,7 +1,7 @@
 name: laboratory-checks
 on:
   push:
-    branches: [main, exp003-hybrid-baseline]
+    branches: [main]
   pull_request:
 jobs:
   offline-tests:
@@ -14,6 +14,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Unit tests
-        run: python -m unittest discover -v
+        run: |
+          python -m unittest discover -s tests -v
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 16, 'Unit tests not discovered'"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
+      - name: EXP-004A external corpus smoke test (offline)
+        run: python -m lab.quixbugs_screen
