@@ -129,8 +129,9 @@ def random_probe(name: str, rng: Random) -> tuple:
         return ([rng.randint(-10, 10) for _ in range(rng.randint(0, 12))],)
     if name == "next_palindrome":
         size = rng.randint(1, 6)
-        arr = [rng.randrange(10) for _ in range((size + 1) // 2)]
-        return (arr + arr[-(size // 2):][::-1],)
+        half = [rng.randrange(10) for _ in range((size + 1) // 2)]
+        mirror = half[:-1] if size % 2 else half
+        return (half + mirror[::-1],)
     if name == "next_permutation":
         return (rng.sample(range(1, 9), rng.randint(0, 6)),)
     if name == "pascal":
