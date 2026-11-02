@@ -1,7 +1,7 @@
 name: laboratory-checks
 on:
   push:
-    branches: [main, exp003-hybrid-baseline]
+    branches: [main]
   pull_request:
 jobs:
   offline-tests:
@@ -17,3 +17,5 @@ jobs:
         run: python -m unittest discover -v
       - name: Reproduce EXP-003
         run: python run_hybrid.py
+      - name: EXP-004A external corpus smoke test (offline)
+        run: python -m lab.quixbugs_screen

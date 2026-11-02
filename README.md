@@ -43,3 +43,17 @@ L'hybride retient **3 tests aux frontières et 9 tests aléatoires**, choisis su
 - `ETAT.md` : état et prochaine étape de travail.
 
 Aucune action n'est effectuée sur les autres dépôts. Aucun coût d'API. La maintenance et les expériences continuent uniquement lors d'une session déclenchée par l'utilisateur.
+
+## EXP-004A — calibration externe (QuixBugs)
+
+Avant de comparer à nouveau les stratégies, le laboratoire doit valider un exécuteur sur un corpus indépendant : 20 programmes du jeu de données QuixBugs, chacun avec sa version défectueuse, sa version corrigée et ses tests canoniques. Sources figées au commit `4257f44b0ff1181dedaedee6a447e133219fcebf`, licence MIT fournie sous `third_party/quixbugs/LICENSE`.
+
+```bash
+python -m lab.quixbugs_screen
+```
+
+Produit `results/exp004a.json`, avec les détails par programme, cas validés par l'oracle, cas exclus et erreurs détectées. Le banc d'essai protège les appels par des délais maximaux et exécute chaque programme dans un processus enfant distinct.
+
+**Attention :** l'EXP-004A ne teste pas encore nos trois politiques. Les tests fournis par QuixBugs sont choisis pour révéler leurs défauts : leur taux de réussite ne peut pas servir à mesurer un gain d'une méthode de sélection de tests. L'EXP-004B devra définir des générateurs indépendants et figer une grille équitable de budgets avant l'évaluation.
+
+Sources : https://github.com/jkoppel/QuixBugs (commit épinglé ci-dessus). Les fichiers tiers restent sous licence MIT et ne sont pas modifiés.

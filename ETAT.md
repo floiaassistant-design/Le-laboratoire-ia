@@ -19,3 +19,8 @@ EXP-004 : construire un corpus d'exercices indépendant, avec fautes réalistes 
 
 ## Contraintes
 Ne pas utiliser d'API payante, de planification récurrente, de déploiement public ni de modifications des autres dépôts sans demande séparée. Ne jamais fusionner une PR si la CI échoue.
+
+## Suite du 2 novembre 2026 — EXP-004A
+- Intégration en cours : corpus externe QuixBugs, 20 défauts avec versions corrigées, fixtures et licence, au commit épinglé.
+- Exécuteur de calibration : comparaison par oracle, isolation par processus, délais par appel, et journal JSON.
+- Aucun résultat de politique hybride sur ce corpus : phase suivante EXP-004B, générateurs à concevoir et geler avant exécution.
