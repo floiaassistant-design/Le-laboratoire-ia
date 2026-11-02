@@ -80,3 +80,7 @@ Sources : https://github.com/jkoppel/QuixBugs (commit épinglé ci-dessus). Les 
 | 12 | 160/160 | 160/160 | 160/160 |
 
 **Interprétation :** sur ce pilote, les deux politiques ciblées perdent fortement à budget 1, en raison du premier cas de frontière imposé. Dès le budget 3, le score de détection sature pour les trois politiques. Le banc d'essai ne démontre donc pas de gain général de l'hybride, et quatre défauts restent beaucoup trop peu pour généraliser. Les 40 répétitions ne sont pas des observations indépendantes. Aucun modèle IA n'a été appelé.
+
+## EXP-004B — 16 nouveaux programmes QuixBugs
+
+Les quatre programmes pilotes sont exclus. Trois politiques à budgets égaux (1, 3, 6, 12) sont comparées sur des entrées générées depuis les domaines d'entrée, sans usage des fixtures fournies. Le code et protocole se trouvent dans `lab/quixbugs_external.py` et `experiments/EXP-004B-EXTERNAL.md`. Ce n'est pas un benchmark aveugle et **aucune IA n'est appelée**. Résultats attendus dans les journaux GitHub Actions et l'artefact brut de la PR après exécution. Aucun résultat n'est revendiqué avant la CI.

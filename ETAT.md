@@ -50,3 +50,9 @@ Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, m
 **Interprétation :** sur ce pilote, les deux politiques ciblées perdent fortement à budget 1, en raison du premier cas de frontière imposé. Dès le budget 3, le score de détection sature pour les trois politiques. Le banc d'essai ne démontre donc pas de gain général de l'hybride, et quatre défauts restent beaucoup trop peu pour généraliser. Les 40 répétitions ne sont pas des observations indépendantes. Aucun modèle IA n'a été appelé.
 
 **Étape suivante :** élaborer les générateurs et oracles pour les 16 autres programmes, vérifier la validité des domaines, puis mener une comparaison à budget limité. L'étape doit signaler les biais liés aux bogues connus et distinguer les comparaisons de politiques des véritables agents IA.
+
+## EXP-004B évaluation 16 programmes — préparation
+- Politiques figées, 16 programmes distincts du pilote.
+- Budget 1/3/6/12 avec 10 répétitions par programme.
+- CI configurée pour tests unitaires (>=32) et archivage brut.
+- Pas d'ajustement des politiques après lecture du résultat : examiner les échecs et ouvrir EXP-005 pour analyses exploratoires si nécessaire.

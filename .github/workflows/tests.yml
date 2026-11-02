@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 24)
+      - name: Unit tests (must discover >= 32)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 24"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 32"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
       - name: EXP-004A external benchmark smoke test
@@ -29,5 +29,15 @@ jobs:
         with:
           name: exp004b-pilot-raw
           path: results/exp004b-pilot.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: EXP-004B 16-program external-policy comparison
+        run: python -m lab.quixbugs_external
+      - name: Archive external policy outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp004b-external-raw
+          path: results/exp004b-external.json
           if-no-files-found: warn
           retention-days: 30
