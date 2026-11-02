@@ -80,3 +80,25 @@ Sources : https://github.com/jkoppel/QuixBugs (commit épinglé ci-dessus). Les 
 | 12 | 160/160 | 160/160 | 160/160 |
 
 **Interprétation :** sur ce pilote, les deux politiques ciblées perdent fortement à budget 1, en raison du premier cas de frontière imposé. Dès le budget 3, le score de détection sature pour les trois politiques. Le banc d'essai ne démontre donc pas de gain général de l'hybride, et quatre défauts restent beaucoup trop peu pour généraliser. Les 40 répétitions ne sont pas des observations indépendantes. Aucun modèle IA n'a été appelé.
+
+## EXP-004B — 16 nouveaux programmes QuixBugs
+
+Les quatre programmes pilotes sont exclus. Trois politiques à budgets égaux (1, 3, 6, 12) sont comparées sur des entrées générées depuis les domaines d'entrée, sans usage des fixtures fournies. Le code et protocole se trouvent dans `lab/quixbugs_external.py` et `experiments/EXP-004B-EXTERNAL.md`. Ce n'est pas un benchmark aveugle et **aucune IA n'est appelée**. Résultats attendus dans les journaux GitHub Actions et l'artefact brut de la PR après exécution. Aucun résultat n'est revendiqué avant la CI.
+
+## EXP-004B — résultats externes, 16 programmes (CI #41540117757)
+
+| Budget maximal | Aléatoire | Ciblé | Hybride |
+|---:|---:|---:|---:|
+| 1 | 94/160 (58.75 %) | 0/160 (0.00 %) | 0/160 (0.00 %) |
+| 3 | 131/160 (81.88 %) | 110/160 (68.75 %) | 110/160 (68.75 %) |
+| 6 | 150/160 (93.75 %) | 120/160 (75.00 %) | 143/160 (89.38 %) |
+| 12 | 154/160 (96.25 %) | 160/160 (100.00 %) | 158/160 (98.75 %) |
+
+- Tous les 16 programmes ont été évalués ; aucun processus n'a échoué ; 0 entrée rejetée par l'oracle dans ces mesures.
+- **Programme distinct** : au budget 1, au moins une erreur a été détectée sur 16/16 programmes par les tirages aléatoires, contre 0/16 par les premiers tests ciblés. Au budget 12, au moins un essai détecte le défaut dans les 16 programmes pour chaque stratégie.
+- **Interprétation :** aucune politique n'est systématiquement supérieure. Les premiers tests ciblés sont peu informatifs et l'ordre figé pénalise particulièrement les budgets 1 et 3. À budget 12 le ciblé détecte 160/160 essais, l'hybride 158/160 et l'aléatoire 154/160.
+- 32 tests unitaires ont été découverts et réussis. Résumé JSON : `results/exp004b-external-summary.json`. Données brutes : artefact `exp004b-external-raw` dans la [run GitHub](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41540117757) (durée de conservation temporaire).
+- Les dix répétitions par programme sont corrélées ; seules 16 erreurs distinctes ont été étudiées. Les cas avaient été publiquement accessibles avant la conception des politiques : **ce n'est pas une évaluation aveugle**. Aucune IA/agent n'a été comparée.
+
+### Prochain objectif : EXP-005
+Évaluer séparément l'**ordre des tests ciblés**, en gardant un budget fixe et en effectuant des permutations sans retoucher les ensembles de cas. Analyser l'effet sur le premier test et sur les budgets 3/6, sur le même corpus comme *analyse exploratoire*. Puis concevoir un protocole réellement nouveau (ou des corpus aveugles) pour vérifier sa généralisation, sans utiliser ces résultats pour choisir une méthode et la valider sur ces mêmes défauts.
