@@ -1,0 +1,198 @@
+{
+  "experiment": "EXP-004B-PILOT",
+  "external_benchmark": "QuixBugs",
+  "upstream_commit": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "seed": 20261102,
+  "repeats_per_program": 40,
+  "budgets": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "pilot_programs": [
+    "bitcount",
+    "gcd",
+    "find_first_in_sorted",
+    "bucketsort"
+  ],
+  "reserved_programs": [
+    "find_in_sorted",
+    "flatten",
+    "get_factors",
+    "hanoi",
+    "is_valid_parenthesization",
+    "kth",
+    "lcs_length",
+    "levenshtein",
+    "lis",
+    "longest_common_subsequence",
+    "max_sublist_sum",
+    "mergesort",
+    "next_palindrome",
+    "next_permutation",
+    "pascal",
+    "powerset"
+  ],
+  "methods": [
+    "random",
+    "targeted",
+    "hybrid"
+  ],
+  "max_call_seconds": 0.03,
+  "scope": "Pilot feasibility only, NOT a blind independent policy validation",
+  "aggregate": [
+    {
+      "budget": 1,
+      "method": "random",
+      "detections": 151,
+      "trials": 160,
+      "detection_rate": 0.94375,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 160,
+      "invalid_calls": 0,
+      "timeouts": 62,
+      "exceptions": 50
+    },
+    {
+      "budget": 1,
+      "method": "targeted",
+      "detections": 40,
+      "trials": 160,
+      "detection_rate": 0.25,
+      "programs_detected_at_least_once": 1,
+      "calls_used": 160,
+      "invalid_calls": 0,
+      "timeouts": 0,
+      "exceptions": 40
+    },
+    {
+      "budget": 1,
+      "method": "hybrid",
+      "detections": 40,
+      "trials": 160,
+      "detection_rate": 0.25,
+      "programs_detected_at_least_once": 1,
+      "calls_used": 160,
+      "invalid_calls": 0,
+      "timeouts": 0,
+      "exceptions": 40
+    },
+    {
+      "budget": 3,
+      "method": "random",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 170,
+      "invalid_calls": 0,
+      "timeouts": 67,
+      "exceptions": 53
+    },
+    {
+      "budget": 3,
+      "method": "targeted",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    },
+    {
+      "budget": 3,
+      "method": "hybrid",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    },
+    {
+      "budget": 6,
+      "method": "random",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 170,
+      "invalid_calls": 0,
+      "timeouts": 67,
+      "exceptions": 53
+    },
+    {
+      "budget": 6,
+      "method": "targeted",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    },
+    {
+      "budget": 6,
+      "method": "hybrid",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    },
+    {
+      "budget": 12,
+      "method": "random",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 170,
+      "invalid_calls": 0,
+      "timeouts": 67,
+      "exceptions": 53
+    },
+    {
+      "budget": 12,
+      "method": "targeted",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    },
+    {
+      "budget": 12,
+      "method": "hybrid",
+      "detections": 160,
+      "trials": 160,
+      "detection_rate": 1,
+      "programs_detected_at_least_once": 4,
+      "calls_used": 280,
+      "invalid_calls": 0,
+      "timeouts": 40,
+      "exceptions": 80
+    }
+  ],
+  "provenance": {
+    "github_run": 41539090595,
+    "github_job": 125598360992,
+    "commit": "f0978424e745a00cab5488019392551a10e38fd8",
+    "tests_passed": 24,
+    "github_action_conclusion": "success"
+  },
+  "data_availability": "Full 40x4x4x3 trial record can be reproduced from committed generator, seed, and upstream source. Workflow additionally uploads raw observations as a downloadable GitHub Actions artifact."
+}

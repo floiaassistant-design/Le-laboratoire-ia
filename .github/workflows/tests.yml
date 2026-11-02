@@ -23,3 +23,11 @@ jobs:
         run: python -m lab.quixbugs_screen
       - name: EXP-004B isolated four-program pilot
         run: python -m lab.quixbugs_pilot
+      - name: Archive raw EXP-004B observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp004b-pilot-raw
+          path: results/exp004b-pilot.json
+          if-no-files-found: warn
+          retention-days: 30

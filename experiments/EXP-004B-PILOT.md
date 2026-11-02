@@ -24,3 +24,16 @@ Les quatre fonctions doivent fonctionner hors réseau et les tests unitaires doi
 Exécution : \`python -m lab.quixbugs_pilot\`. Sortie : \`results/exp004b-pilot.json\`.
 
 Aucun agent IA n'est invoqué. Ne pas assimiler ce pilote à une comparaison de modèles ou à une découverte algorithmique.
+
+## Résultats EXP-004B pilote (GitHub Actions #41539090595)
+
+**Pré-enregistré avant lecture des résultats.** Quatre programmes × 40 répétitions, trois méthodes et budgets 1, 3, 6, 12. Source officielle : `results/exp004b-pilot-summary.json`.
+
+| Maximum de tests | Aléatoire | Ciblée | Hybride |
+|---|---:|---:|---:|
+| 1 | 151/160 (94,375 %) | 40/160 (25 %) | 40/160 (25 %) |
+| 3 | 160/160 | 160/160 | 160/160 |
+| 6 | 160/160 | 160/160 | 160/160 |
+| 12 | 160/160 | 160/160 | 160/160 |
+
+**Interprétation :** sur ce pilote, les deux politiques ciblées perdent fortement à budget 1, en raison du premier cas de frontière imposé. Dès le budget 3, le score de détection sature pour les trois politiques. Le banc d'essai ne démontre donc pas de gain général de l'hybride, et quatre défauts restent beaucoup trop peu pour généraliser. Les 40 répétitions ne sont pas des observations indépendantes. Aucun modèle IA n'a été appelé.
