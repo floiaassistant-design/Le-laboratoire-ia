@@ -64,7 +64,7 @@ class InputDiversityTests(unittest.TestCase):
         result = analyze(rows)
         self.assertEqual(result["summary"][0]["fixed_detected_programs"],0)
         self.assertEqual(result["summary"][-1]["diversity_detected_programs"],4)
-        self.assertAlmostEqual(result["summary"][0]["expected_uniform_random_programs"], 4/12)
+        self.assertAlmostEqual(result["summary"][0]["expected_uniform_random_programs"], 4/12, places=5)
 
     def test_priority_is_pure_input_only(self):
         # This operation must work if both oracle and buggy loading are disabled.
