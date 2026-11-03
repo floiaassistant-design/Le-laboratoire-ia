@@ -1,0 +1,42 @@
+{
+  "experiment": "EXP-007A",
+  "phase": "static_test_inventory_pilot_on_laboratory_repository",
+  "status": "completed",
+  "date": "2026-11-03",
+  "source_commit": "75d944924e3d9fc6633e184e9027028ba5982d02",
+  "ci_run_id": 41607357594,
+  "ci_result": "success",
+  "jobs_succeeded": 3,
+  "python": "3.11.17",
+  "scan_scope": "tests",
+  "file_candidates": 11,
+  "files_parsed": 11,
+  "static_candidate_definitions": 90,
+  "discovered_unittest_tests": 90,
+  "parametrized_definitions_not_expanded": 0,
+  "inventory_error_count": 0,
+  "unit_tests_passed": 90,
+  "tests_added_in_pr": 16,
+  "scanned_code_executed": false,
+  "buggy_versions_read": false,
+  "oracle_consulted": false,
+  "bugs_scored": 0,
+  "test_policies_compared": 0,
+  "language_models_used": 0,
+  "raw_inventory_artifact_name": "exp007a-inventory-raw",
+  "raw_inventory_artifact_retention_days": 30,
+  "scientific_interpretation": "The static test-definition count equals the unittest discover count on the laboratory's own test suite. This is a count-only smoke test, not an identity-level guarantee of runtime test collection.",
+  "limitations": [
+    "Only first-party lab test suite was scanned. No third-party suite has been indexed.",
+    "Static candidate definitions do not guarantee executable tests.",
+    "Parametrized or dynamically generated tests cannot be counted by this inventory.",
+    "Inherited or plugin-created cases may be missed.",
+    "Several definitions may be collected differently by pytest/unittest configurations; count equality is not a proof of identity.",
+    "No bug finding or test-selection policy comparison performed."
+  ],
+  "next_steps": [
+    "Assess candidate-identity agreement with actual isolated test discovery, without using defect results to select tests.",
+    "Prepare pre-registered multi-project benchmark excluding known PySnooper/tqdm calibration bugs.",
+    "Freeze policies and resource budgets before any new external bug scoring."
+  ]
+}

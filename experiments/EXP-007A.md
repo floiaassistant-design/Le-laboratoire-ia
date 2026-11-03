@@ -30,3 +30,14 @@ python -m lab.real_test_inventory --root . --scan-dir tests --output results/exp
 ```
 
 La CI vérifie le nombre minimal de tests unitaires découverts et archive `results/exp007a-inventory.json`. **Aucun modèle supplémentaire, aucune API facturée, aucune tâche récurrente.**
+
+
+## EXP-007A — résultats du premier inventaire statique (CI #41607357594)
+
+Sur **nos propres fichiers `tests`**, le module a repéré **11 fichiers de tests Python**, lu les 11 avec succès, et relevé **90 définitions candidates**. Le contrôle parallèle `unittest discover` a exécuté **90 tests unitaires**, tous réussis. Aucun fichier erroné, aucune définition paramétrée non développée, aucun défaut logiciel noté, aucune politique de sélection évaluée.
+
+Les **trois jobs** CI de la [PR #16 — run #41607357594](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41607357594) ont réussi, y compris les calibrations historiques PySnooper et tqdm. La sortie complète est archivée dans l'artefact `exp007a-inventory-raw` ; cette synthèse est versionnée dans `results/exp007a-summary.json`.
+
+**Interprétation limitée :** 90 candidats statiques et 90 tests exécutés sur le laboratoire représentent une **égalité de compte**, pas la preuve que les 90 identifiants AST correspondent individuellement à toutes les unités de test collectées par des outils comme pytest. Le code n'a exécuté aucun fichier inspecté ; il ne couvre pas toutes les formes de paramétrisation, héritage ou génération dynamique. Le programme ne doit pas être présenté comme un agent IA ni comme un algorithme de découverte de bugs.
+
+**Suite :** validation de l'interface d'identifiants sur une collecte isolée et comparaisons réellement aveugles sur **de nouveaux bugs et projets**, en excluant les deux défauts historiques déjà connus.
