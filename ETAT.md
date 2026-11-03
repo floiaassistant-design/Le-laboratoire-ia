@@ -173,6 +173,15 @@ Résultat versionné : `results/exp006c-summary.json` ; détails : artefact `exp
 
 Le [premier run post-fusion #41604159224](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41604159224) a **échoué**, alors que la CI de la PR #13 était verte : les deux commits ont produit les indices `[0,1,2]`. Le résultat EXP-006C n'était donc pas encore suffisamment reproductible. Le code de calibration changeait de commit **dans le même dossier**, tout en exécutant le Python de chaque version dans le même chemin. Une **contamination par cache de bytecode** est l'explication plausible ; elle n'est pas prouvée comme cause unique.
 
-La correction crée désormais deux **worktrees Git physiquement distincts**, fait pointer `PYTHONPATH` vers chacun, désactive l'écriture et la lecture du bytecode Python (`-B` et `PYTHONDONTWRITEBYTECODE=1`) et répète le test de tqdm trois fois dans des répertoires temporaires frais. Elle applique la même isolation au test PySnooper. Un seul échec rend le workflow rouge ; aucun échec n'est ignoré.
+La correction crée désormais deux **worktrees Git physiquement distincts**, fait pointer `PYTHONPATH` vers chacun, désactive l’écriture de nouveaux fichiers .pyc et sépare les répertoires pour éviter de relire les caches de l’autre version (`-B` et `PYTHONDONTWRITEBYTECODE=1`) et répète le test de tqdm trois fois dans des répertoires temporaires frais. Elle applique la même isolation au test PySnooper. Un seul échec rend le workflow rouge ; aucun échec n'est ignoré.
 
 **Ces trois répétitions ne sont pas trois bugs indépendants.** Elles vérifient uniquement que la calibration de notre infrastructure est stable. Les deux projets restent des défauts historiques connus, impropres à une mesure indépendante de la performance de politiques de priorisation. Les conclusions doivent se fonder sur le run corrigé, pas sur la seule première CI verte.
+
+
+### EXP-006C : correction confirmée sur la PR #15
+
+Le [run #41604816339](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41604816339) a réussi : **74 tests unitaires**, les **trois jobs CI**, et **trois répétitions fraîches** de la calibration tqdm. À chacune, le commit défectueux produit `[0,1,2]` et le correctif `[42,43,44]`, avec les mêmes valeurs `["a","b","c"]`. La calibration PySnooper a également réussi avec ses worktrees séparés.
+
+L'échec post-fusion précédent est **conservé** dans le journal scientifique : il s'agissait d'une non-reproductibilité de notre procédure (probablement liée aux caches Python lors des changements de commit dans le même dossier), pas de la découverte d'un nouveau bug. Le changement corrige l'isolation et les trois répétitions réussies attestent un meilleur comportement dans la CI. **La cause exacte n'est pas démontrée isolément**. La reproductibilité devra rester surveillée sur `main`.
+
+Les répétitions ne comptent pas comme de nouveaux défauts, et la nouvelle méthode de sélection n'est toujours pas évaluée sur ces logiciels réels.

@@ -10,7 +10,9 @@
     "conclusion": "success",
     "jobs_passed": 3,
     "unit_tests_passed": 69,
-    "summary_source": "GitHub Actions logs, job 125808327919"
+    "summary_source": "GitHub Actions logs, job 125808327919",
+    "corrected_pr_run": 41604816339,
+    "corrected_unit_tests_passed": 74
   },
   "source_benchmark": {
     "name": "BugsInPy",
@@ -88,7 +90,12 @@
     ],
     "hypothesis": "stale shared Python bytecode cache during in-place commit checkout (not independently proven)",
     "correction": "separate git worktrees per revision, disable .pyc, run three fresh repetitions",
-    "resolved": false,
-    "scope": "No performance claims until corrected CI and postmerge run pass"
+    "resolved": true,
+    "scope": "No performance claims until corrected CI and postmerge run pass",
+    "corrected_pr_run": 41604816339,
+    "validation_repetitions": 3,
+    "validation_result": "All three fresh separate-worktree runs: buggy [0,1,2], fixed [42,43,44]",
+    "root_cause_confirmed": false,
+    "root_cause_note": "Shared Python bytecode cache was a plausible mechanism; mitigation worked, but root cause not isolated experimentally"
   }
 }
