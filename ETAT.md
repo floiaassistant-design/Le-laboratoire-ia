@@ -122,3 +122,10 @@ Les 256 permutations ne sont pas 256 bogues indépendants. Ce résultat montre l
 Les 48 tests unitaires sont réussis, quatre programmes ont été évalués, aucune entrée rejetée par l'oracle. Résultat complet par programme : `results/exp006a-summary.json`. Données brutes : artefact `exp006a-diversity-raw` du [run GitHub n° 41599592799](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41599592799).
 
 Limites : seulement 4 défauts indépendants, dans un corpus déjà connu ; pas de nouvelle méthode validée, pas d'agents IA évalués. **Il ne faut pas sélectionner de nouveaux paramètres sur ces quatre cas et déclarer ensuite une validation indépendante sur les mêmes bugs.** La prochaine étape est une étude de faisabilité d'un deuxième benchmark reproductible sur GitHub Actions, puis un protocole nouveau avec séparation claire développement/validation.
+
+## EXP-006B — préqualification des sources externes
+
+- Deux candidats PySnooper issus de BugsInPy, figés à leurs SHA de commits de 2019.
+- Vérification automatique en CI des liens parents fautif → correctif, test de régression fixé et licence historique MIT, **sans installer/exécuter le code tiers**.
+- Corpus BugsInPy et PyBugHive non redistribués car les droits d'ensemble restent à confirmer.
+- Prochaine étape après qualification : isoler Python 3.8.1 et les dépendances, reproduire au moins un FAIL/PASS, puis définir de nouvelles règles de comparaison avant scoring.
