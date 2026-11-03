@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 104)
+      - name: Unit tests (must discover >= 117)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 104"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 117"
       - name: EXP-007A non-executing static test inventory
         run: python -m lab.real_test_inventory --root . --scan-dir tests --output results/exp007a-inventory.json --require-tests
       - name: Archive EXP-007A inventory
@@ -152,4 +152,29 @@ jobs:
           name: exp006c-tqdm-realbug
           path: results/exp006c-tqdm-smoke-*.json
           if-no-files-found: warn
+          retention-days: 30
+
+  realbug-priority-pilot:
+    name: Two new real projects (non-blind exploratory scoring)
+    needs: offline-tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Compare policies on two pinned historical real-bug projects
+        run: python -m lab.real_bug_priority --output results/exp008a-real-priority.json
+      - name: Archive complete pilot observations (including blocked runs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp008a-real-bug-priority-raw
+          path: results/exp008a-real-priority.json
+          if-no-files-found: error
           retention-days: 30

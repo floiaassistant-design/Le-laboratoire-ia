@@ -218,3 +218,11 @@ Sur **notre suite de tests interne**, l'inventaire AST a produit **104 identifia
 Cette étape améliore la précédente : les identifiants **correspondent individuellement**, ce n'est plus seulement une égalité de nombre. Mais la vérification est limitée **à notre dépôt de confiance**. La collecte `unittest` a importé les modules de tests, pouvant exécuter du code de niveau module ou des hooks `load_tests` ; le programme comparateur n'a appelé **aucune méthode de test**. La CI, elle, exécute séparément les tests unitaires habituels.
 
 **0 défaut testé pour performance, 0 politique comparée, 0 agent IA évalué.** Les suites pytest, paramètres dynamiques, plugins et héritages ne sont pas encore qualifiés. Prochaine tâche : mettre en place l'isolation pour un vrai corpus tiers et comparer les inventaires dans cette isolation, *sans consulter les résultats de bugs*, avant toute étude de performance.
+
+## EXP-008A — première comparaison réelle (protocole figé)
+
+- Deux projets distincts encore inutilisés comme cas de calibration : `youtube-dl-1` et `tornado-1`, commits directs fautif → correctif figés.
+- Une même suite de tests **post-correctif** dans les deux versions ; tests importés/exécutés sous CI isolée, sans installation ni identifiants persistants.
+- Trois ordres préenregistrés : lexical, mélange aléatoire reproductible et diversité structurelle ; budgets 1/3/6/12, détection uniquement si FAIL assertion sur ancien et PASS sur corrigé.
+- 13 nouveaux tests unitaires de politique et protocole, minimum attendu **117**.
+- Après CI : publier tous les chiffres, **même nuls**, en rappelant que 2 bugs connus ne constituent pas une validation indépendante.
