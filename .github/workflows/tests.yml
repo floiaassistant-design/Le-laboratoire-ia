@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 39)
+      - name: Unit tests (must discover >= 48)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 39"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 48"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
       - name: EXP-004A external benchmark smoke test
@@ -49,5 +49,15 @@ jobs:
         with:
           name: exp005-order-raw
           path: results/exp005.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: EXP-006A input-only diversity pilot
+        run: python -m lab.quixbugs_diversity
+      - name: Archive EXP-006A raw observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp006a-diversity-raw
+          path: results/exp006a.json
           if-no-files-found: error
           retention-days: 30

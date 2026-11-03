@@ -122,3 +122,7 @@ La **même liste de 12 tests ciblés par programme** a été utilisée dans les 
 Les 256 permutations ne sont pas 256 bogues indépendants. Ce résultat montre l'importance de l'ordre de nos tests ciblés sur **ces défauts connus**, pas la supériorité d'une méthode intelligente de réorganisation ni l'efficacité d'agents IA. Les statistiques sont **exploratoires**. Le résultat complet et les comptes par programme sont dans `results/exp005-summary.json`. Les observations détaillées ont été enregistrées en artefact `exp005-order-raw` du run GitHub (conservation temporaire).
 
 **Prochaine question :** apprendre ou prédéfinir un ordre de test sans consulter les défauts à détecter, puis vérifier sur de nouveaux programmes réellement indépendants. Ne pas choisir un ordre ici et revendiquer ensuite une validation sur ces 16 mêmes programmes.
+
+## EXP-006A — pilote de priorisation sans modèle
+
+Un ordre fondé uniquement sur la **diversité structurelle des entrées** est comparé à l'ordre fixe et à l'ordre uniformément aléatoire sur les 4 programmes pilotes QuixBugs. Méthode gelée avant résultat ; détails dans `experiments/EXP-006A.md`. Aucun modèle IA n'est appelé, aucune connexion au PC et aucune API. Les cas ne sont pas indépendants du développement du projet ; ce sont des résultats exploratoires.
