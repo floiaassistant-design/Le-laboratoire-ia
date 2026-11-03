@@ -199,3 +199,18 @@ Le [run #41604816339](https://github.com/floiaassistant-design/Le-laboratoire-ia
 L'échec post-fusion précédent est **conservé** dans le journal scientifique : il s'agissait d'une non-reproductibilité de notre procédure (probablement liée aux caches Python lors des changements de commit dans le même dossier), pas de la découverte d'un nouveau bug. Le changement corrige l'isolation et les trois répétitions réussies attestent un meilleur comportement dans la CI. **La cause exacte n'est pas démontrée isolément**. La reproductibilité devra rester surveillée sur `main`.
 
 Les répétitions ne comptent pas comme de nouveaux défauts, et la nouvelle méthode de sélection n'est toujours pas évaluée sur ces logiciels réels.
+
+## EXP-007A — inventorier les tests réels sans les exécuter
+
+`lab.real_test_inventory` lit statiquement les définitions Python `test_*` via l'AST, génère des identifiants et des signatures structurelles, et signale les erreurs. La CI valide d'abord ce mécanisme sur les fichiers du laboratoire ; **aucun programme bugué n'est exécuté, aucune stratégie testée, aucun modèle IA requis**. Ce ne sont que des candidats de tests (pas une collecte pytest certifiée). Protocole : `experiments/EXP-007A.md`.
+
+
+## EXP-007A — résultats du premier inventaire statique (CI #41607357594)
+
+Sur **nos propres fichiers `tests`**, le module a repéré **11 fichiers de tests Python**, lu les 11 avec succès, et relevé **90 définitions candidates**. Le contrôle parallèle `unittest discover` a exécuté **90 tests unitaires**, tous réussis. Aucun fichier erroné, aucune définition paramétrée non développée, aucun défaut logiciel noté, aucune politique de sélection évaluée.
+
+Les **trois jobs** CI de la [PR #16 — run #41607357594](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41607357594) ont réussi, y compris les calibrations historiques PySnooper et tqdm. La sortie complète est archivée dans l'artefact `exp007a-inventory-raw` ; cette synthèse est versionnée dans `results/exp007a-summary.json`.
+
+**Interprétation limitée :** 90 candidats statiques et 90 tests exécutés sur le laboratoire représentent une **égalité de compte**, pas la preuve que les 90 identifiants AST correspondent individuellement à toutes les unités de test collectées par des outils comme pytest. Le code n'a exécuté aucun fichier inspecté ; il ne couvre pas toutes les formes de paramétrisation, héritage ou génération dynamique. Le programme ne doit pas être présenté comme un agent IA ni comme un algorithme de découverte de bugs.
+
+**Suite :** validation de l'interface d'identifiants sur une collecte isolée et comparaisons réellement aveugles sur **de nouveaux bugs et projets**, en excluant les deux défauts historiques déjà connus.
