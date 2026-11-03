@@ -1,0 +1,73 @@
+{
+  "experiment": "EXP-006B",
+  "stage": "metadata_preflight_plus_one_known_bug_smoke",
+  "date": "2026-11-03",
+  "verified_workflow": {
+    "run_id": 41601918091,
+    "conclusion": "success",
+    "commit": "b0ee79a4a3ad369f50a295ff6ec9e9e4937f266d",
+    "python_unit_tests": 61
+  },
+  "dataset": {
+    "name": "BugsInPy",
+    "repository": "soarsmu/BugsInPy",
+    "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "dataset_license_confirmed": false,
+    "copied_dataset_code": false
+  },
+  "alternative": {
+    "name": "PyBugHive",
+    "repository": "pybughive/pybughive",
+    "commit": "b62d56c19395c31eda9b9071ed6ad79cbf07f990",
+    "dataset_license_confirmed": false,
+    "performance_scored": false
+  },
+  "project": {
+    "repository": "cool-RR/PySnooper",
+    "license": "MIT"
+  },
+  "source_preflight": {
+    "candidates": [
+      "PySnooper-1",
+      "PySnooper-3"
+    ],
+    "validated_pairs": 2,
+    "commit_relation_verified": true,
+    "regression_tests_present_in_fixed": true,
+    "historical_mit_verified": true
+  },
+  "actual_reproduction": {
+    "confirmed": true,
+    "case_id": "PySnooper-1",
+    "buggy": "e21a31162f4c54be693d8ca8260e42393b39abd3",
+    "fixed": "56f22f8ffe1c6b2be4d2cf3ad1987fdb66113da2",
+    "python": "3.8.18",
+    "github_runner": "ubuntu-22.04",
+    "controlled_env": {
+      "LC_ALL": "C",
+      "PYTHONUTF8": "0",
+      "PYTHONCOERCECLOCALE": "0"
+    },
+    "test_kind": "custom minimal Unicode logging regression probe, informed by known bug, not BugsInPy official test",
+    "buggy_result": "nonzero exit with UnicodeEncodeError",
+    "fixed_result": "zero exit, Unicode trace preserved",
+    "paired_verdict": "buggy FAIL, fixed PASS",
+    "original_benchmark_suite_executed": false,
+    "source_or_project_dependencies_installed": false,
+    "github_artifact": "exp006b-realbug-smoke"
+  },
+  "policy_evaluation": {
+    "performed": false,
+    "distinct_new_bugs_scored": 0,
+    "models_evaluated": 0,
+    "agents_evaluated": 0
+  },
+  "limitations": [
+    "Single known historical defect from one project, not a generalization study.",
+    "Bug-specific probe selected after inspecting the published fix, cannot be held out.",
+    "ASCII locale forced to reproduce specific Unicode failure, not representative of defaults on every modern machine.",
+    "Second PySnooper metadata pair qualified but not reproduced.",
+    "Historical benchmark licenses and dependency compatibility need further review before general use.",
+    "No comparisons of random, targeted, hybrid or diversity policies on real bugs."
+  ]
+}

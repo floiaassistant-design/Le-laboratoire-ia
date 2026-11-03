@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 48)
+      - name: Unit tests (must discover >= 61)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 48"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 61"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
       - name: EXP-004A external benchmark smoke test
@@ -60,4 +60,40 @@ jobs:
           name: exp006a-diversity-raw
           path: results/exp006a.json
           if-no-files-found: error
+          retention-days: 30
+      - name: EXP-006B validate new-corpus manifest locally
+        run: python -m lab.external_corpus_preflight --offline
+      - name: EXP-006B verify upstream source metadata (no code execution)
+        run: python -m lab.external_corpus_preflight --online
+      - name: Archive EXP-006B qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp006b-corpus-preflight
+          path: results/exp006b-preflight.json
+          if-no-files-found: error
+          retention-days: 30
+
+  historical-reproduction:
+    name: Pinned historical Unicode bug (non-scoring smoke test)
+    needs: offline-tests
+    # Ubuntu 26.04 lacks the Python 3.8 toolcache; pin the legacy-compatible runner.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Reproduce one real defect with ASCII locale
+        run: python -m lab.pysnooper_unicode_smoke --online
+      - name: Archive historical source reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp006b-realbug-smoke
+          path: results/exp006b-realbug-smoke.json
+          if-no-files-found: warn
           retention-days: 30

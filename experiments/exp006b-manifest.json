@@ -1,0 +1,55 @@
+{
+  "experiment": "EXP-006B-METADATA-PREFLIGHT",
+  "dataset": {
+    "name": "BugsInPy",
+    "repository": "soarsmu/BugsInPy",
+    "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "license_status": "not_confirmed_no_root_license",
+    "redistribution_authorized": false
+  },
+  "benchmark_alternative": {
+    "name": "PyBugHive",
+    "repository": "pybughive/pybughive",
+    "commit": "b62d56c19395c31eda9b9071ed6ad79cbf07f990",
+    "license_status": "not_confirmed_no_root_license",
+    "purpose": "metadata research only; no redistributions or scoring"
+  },
+  "study": {
+    "selected_project": "cool-RR/PySnooper",
+    "project_license": "MIT",
+    "selection_reason": "two published BugsInPy cases with direct buggy/fixed commits; small MIT-licensed project",
+    "new_independent_project_count": 1,
+    "expected_python": "3.8.1",
+    "runner_python": "3.11",
+    "source_executed": false,
+    "benchmark_redistributed": false,
+    "performance_scored": false
+  },
+  "cases": [
+    {
+      "id": "PySnooper-1",
+      "buggy": "e21a31162f4c54be693d8ca8260e42393b39abd3",
+      "fixed": "56f22f8ffe1c6b2be4d2cf3ad1987fdb66113da2",
+      "test_path": "tests/test_chinese.py",
+      "test_name": "test_chinese",
+      "record_path": "projects/PySnooper/bugs/1/bug.info",
+      "requirements_notes": "historical test imports python_toolbox; original setup.py and dependencies must be reviewed before execution"
+    },
+    {
+      "id": "PySnooper-3",
+      "buggy": "6e3d797be3fa0a746fb5b1b7c7fea78eb926c208",
+      "fixed": "15555ed760000b049aff8fecc79d29339c1224c3",
+      "test_path": "tests/test_pysnooper.py",
+      "test_name": "test_file_output",
+      "record_path": "projects/PySnooper/bugs/3/bug.info",
+      "requirements_notes": "historical test imports python_toolbox; Python 3.8 interpreter and deps must be reproduced before execution"
+    }
+  ],
+  "unresolved": [
+    "BugsInPy repository has no clearly declared root LICENSE in inspected snapshot; do not redistribute dataset code",
+    "PyBugHive repository has no clearly declared root LICENSE in inspected snapshot",
+    "Historical environment Python 3.8.1 may be incompatible with runner Python 3.11",
+    "Original tests and setup are not yet executed; sources and parent commits alone do not prove a bug reproduces",
+    "Both candidates are from the same project, so no multi-project generalization"
+  ]
+}

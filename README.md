@@ -142,3 +142,20 @@ Un ordre fondé uniquement sur la **diversité structurelle des entrées** est c
 Les 48 tests unitaires sont réussis, quatre programmes ont été évalués, aucune entrée rejetée par l'oracle. Résultat complet par programme : `results/exp006a-summary.json`. Données brutes : artefact `exp006a-diversity-raw` du [run GitHub n° 41599592799](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41599592799).
 
 Limites : seulement 4 défauts indépendants, dans un corpus déjà connu ; pas de nouvelle méthode validée, pas d'agents IA évalués. **Il ne faut pas sélectionner de nouveaux paramètres sur ces quatre cas et déclarer ensuite une validation indépendante sur les mêmes bugs.** La prochaine étape est une étude de faisabilité d'un deuxième benchmark reproductible sur GitHub Actions, puis un protocole nouveau avec séparation claire développement/validation.
+
+## EXP-006B — qualification d'un nouveau corpus de bugs réels
+
+L'étape suivante examine [BugsInPy](https://github.com/soarsmu/BugsInPy) et [PyBugHive](https://github.com/pybughive/pybughive). La licence de ces dépôts **n'est pas confirmée** : leur contenu n'est pas recopié ici. Deux cas PySnooper (projet MIT) servent de candidats de **qualification de métadonnées seulement** : commits fautif/corrigé, filiation du correctif, présence des tests, licence du code source. Le script `python -m lab.external_corpus_preflight --online` ne lance aucune version bugguée, n'installe rien et ne produit aucun score de détection. Voir `experiments/EXP-006B.md` et `experiments/exp006b-manifest.json`. L'expérimentation réelle exige encore un environnement Python historique et des épreuves FAIL/PASS validées.
+
+
+## Résultat confirmé EXP-006B — source et premier bug réel
+
+La [CI de la PR n° 12, exécution n° 41601918091](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41601918091) est **entièrement réussie**, avec **61 tests unitaires**. Deux paires de commits PySnooper (issues de BugsInPy) ont été qualifiées par métadonnées : leur relation directe fautif → corrigé, les tests historiques présents dans le correctif et la licence MIT ont été vérifiés.
+
+**Une véritable reproduction** a ensuite été effectuée en Python **3.8.18** sur Ubuntu 22.04, sans `pip install` ni scripts setup tiers : sur PySnooper-1, sous une locale ASCII contrôlée, la version fautive `e21a3116...` provoque précisément un `UnicodeEncodeError`, tandis que le correctif `56f22f8f...` réussit à écrire les caractères Unicode. Un mini-test autonome basé sur le symptôme connu a servi à cette calibration : **ce n'est pas** le test officiel BugsInPy et **ce n'est pas** un test indépendant découvert par un agent.
+
+Résultat machine conservé dans `results/exp006b-summary.json`, détails du précontrôle et du bug dans les artefacts `exp006b-corpus-preflight` et `exp006b-realbug-smoke` de la CI. Le résultat couvre **un bug connu**, sur un projet, et ne démontre aucune amélioration de nos stratégies de priorisation. Le second cas est **seulement qualifié**, pas reproduit. Les licences des corpus BugsInPy et PyBugHive ne sont pas établies pour une éventuelle redistribution.
+
+### Suite scientifique
+
+Préparer une reproduction fiable d'un deuxième défaut dans un projet **distinct**, puis définir une interface de test homogène et un véritable lot de validation sans voir les résultats des bugs avant de geler les méthodes. Ne pas confondre test de calibration du bug déjà connu avec mesure de performance de la nouvelle politique.
