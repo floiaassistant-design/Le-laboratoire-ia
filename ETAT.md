@@ -81,3 +81,6 @@ Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, m
 - Aucun changement des entrées / générateurs d'EXP-004B : réemploi de `edge_probes`.
 - Comparaison de l'ordre initial et de 256 permutations, budgets 1/3/6/12, probabilité exacte calculée à partir des erreurs détectables pour chaque programme.
 - Conserver les résultats même s'ils invalident l'hypothèse, sans ajustement post hoc ; ne pas confondre permutations et défauts indépendants.
+
+### Correction technique dans la PR #8
+La première CI a exécuté les 39 tests mais un test utilisait une égalité stricte entre nombres flottants pour la probabilité `1/12`. Le calcul était correct ; l'assertion a été corrigée avec `assertAlmostEqual`, sans changer les données, les politiques ni les formules. Le run GitHub suivant doit confirmer cette correction avant toute fusion.
