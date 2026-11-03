@@ -1,0 +1,48 @@
+{
+  "experiment": "EXP-006C-TQDM-REALBUG-CALIBRATION",
+  "source_benchmark": {
+    "repository": "soarsmu/BugsInPy",
+    "commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "case_path": "projects/tqdm/bugs/1/bug.info",
+    "redistribute_benchmark_source": false,
+    "benchmark_license": "not_verified"
+  },
+  "upstream_project": {
+    "repository": "tqdm/tqdm",
+    "git_url": "https://github.com/tqdm/tqdm.git",
+    "license_path": "LICENCE",
+    "license_note": "Historical licence file describes MPLv2.0 and MIT terms; no source copied into laboratory"
+  },
+  "case": {
+    "id": "tqdm-1",
+    "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+    "fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+    "source_test": "tqdm/tests/tests_contrib.py::test_enumerate",
+    "historical_python": "3.6.9",
+    "ci_python": "3.8",
+    "input": [
+      "a",
+      "b",
+      "c"
+    ],
+    "start": 42,
+    "expected_indexes": [
+      42,
+      43,
+      44
+    ],
+    "buggy_indexes": [
+      0,
+      1,
+      2
+    ],
+    "bug_description": "tenumerate passes start to tqdm constructor rather than enumerate"
+  },
+  "interpretation": {
+    "known_bug_regression": true,
+    "new_bug_discovery": false,
+    "policy_comparison": false,
+    "independent_second_project": true,
+    "test_is_official_benchmark_test": false
+  }
+}

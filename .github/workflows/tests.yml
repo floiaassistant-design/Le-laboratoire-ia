@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 61)
+      - name: Unit tests (must discover >= 69)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 61"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 69"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
       - name: EXP-004A external benchmark smoke test
@@ -95,5 +95,32 @@ jobs:
         with:
           name: exp006b-realbug-smoke
           path: results/exp006b-realbug-smoke.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  independent-reproduction:
+    name: Second real project tqdm (known-bug non-scoring smoke)
+    needs: offline-tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Validate pinned real-bug manifest
+        run: python -m lab.tqdm_start_smoke --offline
+      - name: Reproduce tqdm tenumerate start-offset defect
+        run: python -m lab.tqdm_start_smoke --online
+      - name: Archive real-project reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp006c-tqdm-realbug
+          path: results/exp006c-tqdm-smoke.json
           if-no-files-found: warn
           retention-days: 30

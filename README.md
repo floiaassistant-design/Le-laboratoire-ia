@@ -159,3 +159,7 @@ Résultat machine conservé dans `results/exp006b-summary.json`, détails du pr�
 ### Suite scientifique
 
 Préparer une reproduction fiable d'un deuxième défaut dans un projet **distinct**, puis définir une interface de test homogène et un véritable lot de validation sans voir les résultats des bugs avant de geler les méthodes. Ne pas confondre test de calibration du bug déjà connu avec mesure de performance de la nouvelle politique.
+
+## EXP-006C — deuxième projet réel (tqdm)
+
+Reproduction technique d'un bug publié affectant `tqdm.contrib.tenumerate(start=42)`, sur deux commits upstream explicitement figés issus des métadonnées BugsInPy. Python 3.8 / GitHub Actions ; aucune dépendance installée et aucun code du benchmark recopié. Critère : ancienne version indexe `[0,1,2]` et corrigée `[42,43,44]`. **Calibration de bug connu**, pas découverte ni validation de stratégie. Voir `experiments/EXP-006C.md`. Résultat à insérer uniquement après CI.

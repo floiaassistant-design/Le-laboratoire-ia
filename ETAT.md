@@ -142,3 +142,10 @@ Résultat machine conservé dans `results/exp006b-summary.json`, détails du pr�
 ### Suite scientifique
 
 Préparer une reproduction fiable d'un deuxième défaut dans un projet **distinct**, puis définir une interface de test homogène et un véritable lot de validation sans voir les résultats des bugs avant de geler les méthodes. Ne pas confondre test de calibration du bug déjà connu avec mesure de performance de la nouvelle politique.
+
+## EXP-006C — qualification d'un deuxième projet réel
+
+- Candidat : tqdm bug n° 1 de BugsInPy (`tenumerate(start)`), commit fautif `8cc777fe...`, correctif direct `c0dcf39b...`.
+- Sélection sur bug connu et correctif lu : **test de calibration**, jamais démonstration d'une politique de test.
+- CI indépendante Python 3.8/Ubuntu 22.04, sans install ou scripts sources, dans un clone temporaire. Deux processus doivent rendre des indices attendus distincts ; échec d'import/setup ne compte jamais comme un bug.
+- Résultat à rapporter après CI, même si la reproduction échoue.
