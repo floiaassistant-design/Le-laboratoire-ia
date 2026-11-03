@@ -203,3 +203,9 @@ Les **trois jobs** CI de la [PR #16 — run #41607357594](https://github.com/flo
 **Interprétation limitée :** 90 candidats statiques et 90 tests exécutés sur le laboratoire représentent une **égalité de compte**, pas la preuve que les 90 identifiants AST correspondent individuellement à toutes les unités de test collectées par des outils comme pytest. Le code n'a exécuté aucun fichier inspecté ; il ne couvre pas toutes les formes de paramétrisation, héritage ou génération dynamique. Le programme ne doit pas être présenté comme un agent IA ni comme un algorithme de découverte de bugs.
 
 **Suite :** validation de l'interface d'identifiants sur une collecte isolée et comparaisons réellement aveugles sur **de nouveaux bugs et projets**, en excluant les deux défauts historiques déjà connus.
+
+## EXP-007B — audit d'identités des tests
+
+- Comparaison multiensemble AST versus `unittest discover` des identifiants complets, plutôt qu'égalité simple du nombre de tests.
+- Le collecteur **importe** les modules du laboratoire (donc peut exécuter du code de niveau module), mais **n'exécute aucune méthode de test**. Uniquement sur le checkout local de confiance, drapeau d'autorisation explicite.
+- 14 tests unitaires de contrôle supplémentaires ; seuil CI attendu 104. Résultats et éventuelles différences à publier tels quels après exécution.

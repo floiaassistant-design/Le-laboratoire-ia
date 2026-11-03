@@ -214,3 +214,7 @@ Les **trois jobs** CI de la [PR #16 — run #41607357594](https://github.com/flo
 **Interprétation limitée :** 90 candidats statiques et 90 tests exécutés sur le laboratoire représentent une **égalité de compte**, pas la preuve que les 90 identifiants AST correspondent individuellement à toutes les unités de test collectées par des outils comme pytest. Le code n'a exécuté aucun fichier inspecté ; il ne couvre pas toutes les formes de paramétrisation, héritage ou génération dynamique. Le programme ne doit pas être présenté comme un agent IA ni comme un algorithme de découverte de bugs.
 
 **Suite :** validation de l'interface d'identifiants sur une collecte isolée et comparaisons réellement aveugles sur **de nouveaux bugs et projets**, en excluant les deux défauts historiques déjà connus.
+
+## EXP-007B — comparaison des identifiants de tests
+
+Le script `lab.real_test_collector` compare les tests candidats identifiés statiquement aux **identifiants unittest réellement collectés**, y compris les différences et doublons. Le collecteur importe le code de test : utilisation volontairement limitée au dépôt de confiance, avec `--allow-imports`. Aucun test collecté n'est exécuté par cette comparaison, aucun bug évalué et aucun agent/modèle IA connecté. Protocole : `experiments/EXP-007B.md`.
