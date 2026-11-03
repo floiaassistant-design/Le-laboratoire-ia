@@ -163,3 +163,21 @@ Préparer une reproduction fiable d'un deuxième défaut dans un projet **distin
 ## EXP-006C — deuxième projet réel (tqdm)
 
 Reproduction technique d'un bug publié affectant `tqdm.contrib.tenumerate(start=42)`, sur deux commits upstream explicitement figés issus des métadonnées BugsInPy. Python 3.8 / GitHub Actions ; aucune dépendance installée et aucun code du benchmark recopié. Critère : ancienne version indexe `[0,1,2]` et corrigée `[42,43,44]`. **Calibration de bug connu**, pas découverte ni validation de stratégie. Voir `experiments/EXP-006C.md`. Résultat à insérer uniquement après CI.
+
+
+## EXP-006C — résultat confirmé (CI GitHub #41603652941)
+
+**Deuxième logiciel indépendant : `tqdm`**, sur le bug historique `tenumerate(start)` (BugsInPy bug n° 1). Dans un clone temporaire de code upstream, sous Python **3.8.18** (Ubuntu 22.04), notre probe de calibration a demandé l'énumération de trois valeurs en partant de `42` :
+
+| Version | Résultat de l'indice de départ | Verdict |
+|---|---|---|
+| Défectueuse `8cc777fe...` | `[0,1,2]` | Erreur de décalage reproduite |
+| Corrigée `c0dcf39b...` | `[42,43,44]` | Comportement attendu |
+
+Les valeurs `["a","b","c"]` ont été conservées ; **les deux programmes se sont exécutés**, et seule la sémantique d'indexation était incorrecte avant le correctif. Les **trois jobs CI** ont réussi, avec **69 tests unitaires** réellement découverts. La vérification des sources historiques PySnooper utilise désormais le jeton GitHub temporaire *read-only*, envoyé **uniquement** à l'API GitHub et jamais aux autres hôtes, pour éviter les limites d'accès anonymes. Les exécutions de code tiers ne conservent pas de jeton Git dans le checkout.
+
+Résultat versionné : `results/exp006c-summary.json` ; détails : artefact `exp006c-tqdm-realbug` du [run #41603652941](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41603652941).
+
+**Conclusion scientifique limitée :** le laboratoire peut désormais **reproduire deux bugs connus dans deux logiciels réels différents** (PySnooper et tqdm). Il n'a **pas** découvert de bug inconnu ni démontré la qualité des politiques aléatoire/ciblée/hybride/diversité sur un corpus de bugs réels. La version d'origine documentait Python 3.6.9, tandis que notre calibration utilise 3.8.18. Le probe utilise une classe de progression transparente et n'est pas le test officiel de BugsInPy.
+
+**Suite :** définir une méthode uniforme de sélection de tests réels, choisir et figer plusieurs bugs *avant d'examiner leurs résultats*, puis mesurer les comparaisons avec coûts et incertitudes groupés par défaut/projet. Ne pas réutiliser les deux calibrations connues comme preuves indépendantes.
