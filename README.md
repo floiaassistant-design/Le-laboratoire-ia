@@ -218,3 +218,12 @@ Les **trois jobs** CI de la [PR #16 — run #41607357594](https://github.com/flo
 ## EXP-007B — comparaison des identifiants de tests
 
 Le script `lab.real_test_collector` compare les tests candidats identifiés statiquement aux **identifiants unittest réellement collectés**, y compris les différences et doublons. Le collecteur importe le code de test : utilisation volontairement limitée au dépôt de confiance, avec `--allow-imports`. Aucun test collecté n'est exécuté par cette comparaison, aucun bug évalué et aucun agent/modèle IA connecté. Protocole : `experiments/EXP-007B.md`.
+
+
+## EXP-007B — résultat vérifié, identité des tests (CI #41650099193)
+
+Sur **notre suite de tests interne**, l'inventaire AST a produit **104 identifiants**, et `unittest discover` a réellement collecté **104 objets TestCase**. La comparaison des **multiensembles d'identifiants exacts** a donné **104/104 correspondances**, **0 candidat uniquement statique**, **0 test uniquement runtime**, **0 erreur d'import/collecte**. Les **104 tests unitaires ont réussi**, tout comme les trois jobs de GitHub Actions (y compris PySnooper et les trois répétitions tqdm). Résultat synthétique : `results/exp007b-summary.json` ; sortie complète de comparaison : artefact `exp007b-identity-raw` du [run #41650099193](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41650099193).
+
+Cette étape améliore la précédente : les identifiants **correspondent individuellement**, ce n'est plus seulement une égalité de nombre. Mais la vérification est limitée **à notre dépôt de confiance**. La collecte `unittest` a importé les modules de tests, pouvant exécuter du code de niveau module ou des hooks `load_tests` ; le programme comparateur n'a appelé **aucune méthode de test**. La CI, elle, exécute séparément les tests unitaires habituels.
+
+**0 défaut testé pour performance, 0 politique comparée, 0 agent IA évalué.** Les suites pytest, paramètres dynamiques, plugins et héritages ne sont pas encore qualifiés. Prochaine tâche : mettre en place l'isolation pour un vrai corpus tiers et comparer les inventaires dans cette isolation, *sans consulter les résultats de bugs*, avant toute étude de performance.
