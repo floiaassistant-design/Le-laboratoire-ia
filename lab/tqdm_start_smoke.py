@@ -18,6 +18,7 @@ import sys
 from tempfile import TemporaryDirectory
 
 from .quixbugs_screen import ROOT
+from .realbug_isolation import isolated_python_env, worktree_path
 
 MANIFEST_PATH = ROOT / "experiments" / "exp006c-manifest.json"
 SHA = re.compile(r"^[0-9a-f]{40}$")
@@ -146,6 +147,8 @@ def run() -> dict:
         "upstream_tests_executed": False,
         "upstream_dependencies_installed": False,
         "upstream_source_redistributed": False,
+        "revision_worktrees_isolated": True,
+        "python_bytecode_disabled": True,
         "runs": {},
         "bug_reproduced": False,
     }
@@ -164,18 +167,22 @@ def run() -> dict:
             return report
         report["fix_parent_verified"] = True
         for label, sha in (("buggy", case["buggy_commit"]), ("fixed", case["fixed_commit"])):
+            # Never swap files underneath the same Python __pycache__ directory.
+            # Same-size source files plus second-resolution mtimes can reuse a
+            # stale .pyc from the previously checked-out historical commit.
+            checkout = worktree_path(Path(folder), label)
+            checkout.parent.mkdir(parents=True, exist_ok=True)
             _command(["git", "-c", "core.hooksPath=/dev/null", "-C",
-                      str(source), "checkout", "--quiet", "--force",
-                      "--detach", sha])
-            licence = (source / manifest["upstream_project"]["license_path"]).read_text(
+                      str(source), "worktree", "add", "--quiet", "--detach",
+                      str(checkout), sha])
+            licence = (checkout / manifest["upstream_project"]["license_path"]).read_text(
                 encoding="utf-8")
             if "Mozilla Public Licence" not in licence or "MIT License" not in licence:
                 report["blocker"] = "Historical source licence not verified"
                 return report
-            env = os.environ.copy()
-            env.update({"PYTHONPATH": str(source), "PYTHONNOUSERSITE": "1"})
-            result = subprocess.run([sys.executable, "-s", "-c", PROBE],
-                                    cwd=source, env=env, capture_output=True,
+            env = isolated_python_env(checkout)
+            result = subprocess.run([sys.executable, "-B", "-s", "-c", PROBE],
+                                    cwd=checkout, env=env, capture_output=True,
                                     text=True, errors="replace", timeout=20)
             report["runs"][label] = {
                 "returncode": result.returncode,
