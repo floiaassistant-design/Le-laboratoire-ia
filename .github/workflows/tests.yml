@@ -77,7 +77,8 @@ jobs:
   historical-reproduction:
     name: Pinned historical Unicode bug (non-scoring smoke test)
     needs: offline-tests
-    runs-on: ubuntu-latest
+    # Ubuntu 26.04 lacks the Python 3.8 toolcache; pin the legacy-compatible runner.
+    runs-on: ubuntu-22.04
     timeout-minutes: 7
     permissions:
       contents: read
