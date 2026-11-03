@@ -1,0 +1,106 @@
+{
+  "experiment": "EXP-006A",
+  "status": "completed_pilot",
+  "source_commit": "15e99e37b4ab8aa2956abcbf577b20be786605fa",
+  "github_run_id": 41599592799,
+  "upstream_dataset": "QuixBugs SHA 4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "programs": [
+    "bitcount",
+    "gcd",
+    "find_first_in_sorted",
+    "bucketsort"
+  ],
+  "unit_tests": 48,
+  "oracle_invalid_inputs": 0,
+  "budget_results": [
+    {
+      "budget": 1,
+      "fixed": 1,
+      "diversity": 1,
+      "uniform_random_exact_expectation": 2.833333
+    },
+    {
+      "budget": 3,
+      "fixed": 4,
+      "diversity": 4,
+      "uniform_random_exact_expectation": 3.740909
+    },
+    {
+      "budget": 6,
+      "fixed": 4,
+      "diversity": 4,
+      "uniform_random_exact_expectation": 3.969697
+    },
+    {
+      "budget": 12,
+      "fixed": 4,
+      "diversity": 4,
+      "uniform_random_exact_expectation": 4
+    }
+  ],
+  "prioritized_indices": {
+    "bitcount": [
+      0,
+      7,
+      3,
+      1,
+      4,
+      6,
+      2,
+      5,
+      9,
+      8,
+      11,
+      10
+    ],
+    "gcd": [
+      0,
+      3,
+      6,
+      11,
+      8,
+      1,
+      2,
+      5,
+      4,
+      7,
+      10,
+      9
+    ],
+    "find_first_in_sorted": [
+      0,
+      7,
+      9,
+      2,
+      11,
+      10,
+      3,
+      6,
+      1,
+      8,
+      4,
+      5
+    ],
+    "bucketsort": [
+      11,
+      4,
+      1,
+      2,
+      9,
+      5,
+      0,
+      6,
+      10,
+      3,
+      7,
+      8
+    ]
+  },
+  "conclusion": "Diversity heuristic did not improve detection on the four existing pilot programs.",
+  "warnings": [
+    "Only four independent bug cases; do not treat budget evaluations as independent programs",
+    "Mean random baseline is exact expectation, not a sampled observed result",
+    "Known programs; not blind or an independent validation",
+    "No language model or agent evaluated"
+  ]
+}
