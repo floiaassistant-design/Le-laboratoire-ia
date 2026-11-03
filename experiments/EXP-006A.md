@@ -37,3 +37,19 @@ python -m lab.quixbugs_diversity
 ```
 
 Les résultats détaillés sont stockés dans `results/exp006a.json` et archivés en artefact GitHub Actions. Sans API, modèle local ou tâche planifiée.
+
+
+## EXP-006A — résultats du pilote (GitHub Actions n° 41599592799)
+
+| Budget | Ordre fixe, programmes détectés | Diversité, programmes détectés | Permutation uniforme, espérance exacte |
+|---:|---:|---:|---:|
+| 1 | 1/4 | 1/4 | 2,8333/4 |
+| 3 | 4/4 | 4/4 | 3,7409/4 |
+| 6 | 4/4 | 4/4 | 3,9697/4 |
+| 12 | 4/4 | 4/4 | 4/4 |
+
+**Conclusion du pilote :** la priorisation par diversité Jaccard/farthest-first n'améliore pas la couverture sur ces quatre cas connus. Avec un seul test, elle reste moins efficace en couverture que l'espérance théorique d'une permutation uniformément aléatoire de ces mêmes entrées. Le premier cas sélectionné n'est pas nécessairement le plus révélateur d'un défaut, malgré sa singularité structurelle.
+
+Les 48 tests unitaires sont réussis, quatre programmes ont été évalués, aucune entrée rejetée par l'oracle. Résultat complet par programme : `results/exp006a-summary.json`. Données brutes : artefact `exp006a-diversity-raw` du [run GitHub n° 41599592799](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41599592799).
+
+Limites : seulement 4 défauts indépendants, dans un corpus déjà connu ; pas de nouvelle méthode validée, pas d'agents IA évalués. **Il ne faut pas sélectionner de nouveaux paramètres sur ces quatre cas et déclarer ensuite une validation indépendante sur les mêmes bugs.** La prochaine étape est une étude de faisabilité d'un deuxième benchmark reproductible sur GitHub Actions, puis un protocole nouveau avec séparation claire développement/validation.
