@@ -1,0 +1,140 @@
+{
+  "experiment": "EXP-008A",
+  "status": "completed",
+  "date": "2026-11-03",
+  "study": "retrospective real-bug ordering comparison; two patched known bugs",
+  "source_head_sha": "e8865191f02a30256555334512b279857fd309cd",
+  "github_workflow_run_id": 41662325778,
+  "github_workflow_conclusion": "success",
+  "github_workflow_jobs_passed": 4,
+  "unit_tests_discovered_and_passed": 117,
+  "projects": 2,
+  "distinct_bug_fix_pairs": 2,
+  "models_evaluated": 0,
+  "agents_evaluated": 0,
+  "benchmarks": {
+    "name": "BugsInPy historical bug metadata; upstream source cloned only",
+    "metadata_commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "source_licensed_upstream_only": true,
+    "benchmark_source_copied": false
+  },
+  "common_design": {
+    "test_file_revision": "fixed version in both checkouts",
+    "risk": "Test file postdates bug fix and includes targeted regression test by original maintainers",
+    "python_runner": "3.8.x on Ubuntu 22.04, historical case metadata Python 3.7.0",
+    "method": "One unittest execution per source version; statuses reused in policy calculations",
+    "budgets": [
+      1,
+      3,
+      6,
+      12
+    ],
+    "policies": [
+      "lexical",
+      "seeded_random",
+      "structural_diversity"
+    ],
+    "random_seed": 20261103,
+    "detecting_test": "FAIL assertion in buggy and PASS in fixed",
+    "exception_counted_as_bug": false
+  },
+  "per_case": [
+    {
+      "case": "youtube-dl-1",
+      "repo": "ytdl-org/youtube-dl",
+      "buggy": "99036a1298089068dcf80c0985bfcc3f8c24f281",
+      "fixed": "1cc47c667419e0eadc0a6989256ab7b276852adf",
+      "test_module": "test.test_utils",
+      "total_tests": 79,
+      "fixed_statuses": {
+        "pass": 79
+      },
+      "buggy_statuses": {
+        "pass": 78,
+        "fail": 1
+      },
+      "revealing_test_ids": [
+        "test.test_utils.TestUtil.test_match_str"
+      ],
+      "revealing_count": 1,
+      "first_revealing_rank": {
+        "lexical": 33,
+        "seeded_random": 71,
+        "structural_diversity": 53
+      },
+      "changed_errors_not_counted": 0
+    },
+    {
+      "case": "tornado-1",
+      "repo": "tornadoweb/tornado",
+      "buggy": "6a5a0bfa370b6c0d3dbbf9589a560a98202d2baa",
+      "fixed": "4677c54cc18bbfbdf0f4dadf11610fab6203fd63",
+      "test_module": "tornado.test.websocket_test",
+      "total_tests": 47,
+      "fixed_statuses": {
+        "pass": 46,
+        "skip": 1
+      },
+      "buggy_statuses": {
+        "pass": 45,
+        "skip": 1,
+        "fail": 1
+      },
+      "revealing_test_ids": [
+        "tornado.test.websocket_test.WebSocketTest.test_nodelay"
+      ],
+      "revealing_count": 1,
+      "first_revealing_rank": {
+        "lexical": 31,
+        "seeded_random": 28,
+        "structural_diversity": 33
+      },
+      "changed_errors_not_counted": 0
+    }
+  ],
+  "by_budget": [
+    {
+      "budget": 1,
+      "lexical": 0,
+      "seeded_random": 0,
+      "structural_diversity": 0,
+      "expected_random_exact": 0.033934824
+    },
+    {
+      "budget": 3,
+      "lexical": 0,
+      "seeded_random": 0,
+      "structural_diversity": 0,
+      "expected_random_exact": 0.101804471
+    },
+    {
+      "budget": 6,
+      "lexical": 0,
+      "seeded_random": 0,
+      "structural_diversity": 0,
+      "expected_random_exact": 0.203608941
+    },
+    {
+      "budget": 12,
+      "lexical": 0,
+      "seeded_random": 0,
+      "structural_diversity": 0,
+      "expected_random_exact": 0.407217883
+    }
+  ],
+  "raw_evidence": {
+    "github_actions_artifact": "exp008a-real-bug-priority-raw",
+    "retention_days": 30,
+    "run_url": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41662325778"
+  },
+  "conclusion": "No policy found either known bug by budget 12; all three strategies failed equally under the preregistered budget. No relative superiority can be inferred. Test composition, access to a useful signal or more budget is a future question, not a demonstrated explanation.",
+  "limitations": [
+    "Only two previously patched faults from two projects; no generalization or independent discovery.",
+    "The source test banks are fixed-revision suites, potentially written to reveal the known faults.",
+    "Single fixed-seed random permutation is a sampled policy, not a representation of average random performance; exact expectation calculated separately.",
+    "The same suite is run once per version and budget scores are derived from those results; no test independence or state-free execution guaranteed.",
+    "Historical upstream Python 3.7.0 vs CI Python 3.8.x.",
+    "Test method errors are not counted as bug detections; conservative scoring can undercount.",
+    "CI jobs passed; this only validates protocol and historical reproduced results, not efficacy of strategies."
+  ]
+}

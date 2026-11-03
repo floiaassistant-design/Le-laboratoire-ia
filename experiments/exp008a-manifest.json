@@ -1,0 +1,59 @@
+{
+  "experiment": "EXP-008A",
+  "kind": "retrospective_known_bug_pilot",
+  "hypothesis": "A structure-based ordering of tests may reveal a historical fault earlier than native lexical order or a fixed-seed random permutation at equal budgets.",
+  "budgets": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "random_seed": 20261103,
+  "unit": "distinct_bug_fix_pair",
+  "test_bank_source": "fixed_revision_test_file_overlaid_on_both_buggy_and_fixed_sources",
+  "defect_detection_rule": "buggy unittest FAIL (assertion) and fixed PASS for the same test identifier; other errors and fixed failures do not count",
+  "policy_names": [
+    "lexical",
+    "seeded_random",
+    "structural_diversity"
+  ],
+  "source_selection": "Two first non-calibration small Python unittest-based BugsInPy cases from different upstream projects; chosen from public metadata without observing test outcomes",
+  "known_calibration_bugs_excluded": [
+    "PySnooper-1",
+    "tqdm-1"
+  ],
+  "benchmark_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+  "cases": [
+    {
+      "id": "youtube-dl-1",
+      "repo": "ytdl-org/youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "license": "Unlicense",
+      "license_file": "LICENSE",
+      "buggy": "99036a1298089068dcf80c0985bfcc3f8c24f281",
+      "fixed": "1cc47c667419e0eadc0a6989256ab7b276852adf",
+      "module": "test.test_utils",
+      "test_file": "test/test_utils.py",
+      "historical_python": "3.7.0"
+    },
+    {
+      "id": "tornado-1",
+      "repo": "tornadoweb/tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "buggy": "6a5a0bfa370b6c0d3dbbf9589a560a98202d2baa",
+      "fixed": "4677c54cc18bbfbdf0f4dadf11610fab6203fd63",
+      "module": "tornado.test.websocket_test",
+      "test_file": "tornado/test/websocket_test.py",
+      "historical_python": "3.7.0"
+    }
+  ],
+  "scientific_limits": [
+    "Two known patched bugs do not provide independent validation or credible estimates of generalized superiority",
+    "The common fixed-revision test file may contain a regression test crafted with bug knowledge",
+    "Only the ordering policies are outcome-blind; upstream regression test design is not blind",
+    "Test-suite order and shared process state may affect outcomes",
+    "Test outcomes measured once per revision; do not treat repeated budgets as independent bug cases"
+  ]
+}

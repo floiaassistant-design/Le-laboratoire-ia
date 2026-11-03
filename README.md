@@ -227,3 +227,27 @@ Sur **notre suite de tests interne**, l'inventaire AST a produit **104 identifia
 Cette étape améliore la précédente : les identifiants **correspondent individuellement**, ce n'est plus seulement une égalité de nombre. Mais la vérification est limitée **à notre dépôt de confiance**. La collecte `unittest` a importé les modules de tests, pouvant exécuter du code de niveau module ou des hooks `load_tests` ; le programme comparateur n'a appelé **aucune méthode de test**. La CI, elle, exécute séparément les tests unitaires habituels.
 
 **0 défaut testé pour performance, 0 politique comparée, 0 agent IA évalué.** Les suites pytest, paramètres dynamiques, plugins et héritages ne sont pas encore qualifiés. Prochaine tâche : mettre en place l'isolation pour un vrai corpus tiers et comparer les inventaires dans cette isolation, *sans consulter les résultats de bugs*, avant toute étude de performance.
+
+## EXP-008A — premier pilote comparatif sur deux nouveaux bugs réels
+
+Deux paires de versions historiques épinglées **youtube-dl** et **Tornado** (sources Unlicense/Apache-2.0) sont évaluées avec une même suite de tests post-correctif, contre trois politiques de sélection **lexicale / aléatoire / diversité AST** (budgets 1/3/6/12). Le banc de tests inclut potentiellement des régressions créées après découverte des bugs : il s'agit d'une **étude rétrospective exploratoire, non aveugle** ; aucun modèle IA n'est utilisé. Critère conservateur : fail d'assertion sur la version fautive et pass sur la corrigée. Les expériences sont exécutées en GitHub Actions Python 3.8, jamais sur l'ordinateur utilisateur. Protocole `experiments/EXP-008A.md`, paramètres épinglés `experiments/exp008a-manifest.json`. Résultats après CI.
+
+
+## EXP-008A — premier pilote comparatif sur deux vrais bugs (CI #41662325778)
+
+**Résultat : aucune des trois politiques préenregistrées n'a détecté l'un des deux défauts aux budgets 1, 3, 6 ou 12.** Les quatre jobs CI sont verts, avec **117 tests unitaires** et toutes les expériences historiques précédentes.
+
+| Sujet | Tests réellement exécutés par version | Tests révélateurs (ancien FAIL, corrigé PASS) | Rang du seul test révélateur — lexical / aléatoire / diversité |
+|---|---:|---:|---|
+| youtube-dl-1 | 79 | 1 : `test_match_str` | 33 / 71 / 53 |
+| tornado-1 | 47 | 1 : `test_nodelay` | 31 / 28 / 33 |
+
+Le banc de **youtube-dl** passe totalement en version corrigée (79 PASS) et possède 78 PASS + 1 FAIL en version fautive. **Tornado** compte 46 PASS + 1 SKIP sur le correctif, contre 45 PASS + 1 SKIP + 1 FAIL sur la version fautive. **Aucune erreur d'installation, aucun test exclus silencieusement.**
+
+L'espérance *exacte* d'un ordre uniformément aléatoire, calculée sur ces deux corpus de tailles 79 et 47 avec un test révélateur chacun, vaut **0,4072 bug détecté sur 2 au budget 12**, contre **0** pour la permutation particulière exécutée. Ce n'est pas une estimation de performance générale : seulement une probabilité combinatoire sur ces deux bancs connus.
+
+Résultat durable : `results/exp008a-summary.json`. Données par test et politique : artefact `exp008a-real-bug-priority-raw` du [run #41662325778](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41662325778).
+
+**Interprétation :** les tests qui révèlent les deux défauts n'ont pas été priorisés dans les 12 premiers. C'est un **résultat négatif**, pas une preuve que les trois approches ont les mêmes performances en général, ni que la diversité ne sert jamais. Les tests viennent de la révision *après le correctif* : le banc contient donc des régressions informées de la panne connue, même si nos politiques n'ont pas consulté leurs issues.
+
+**Prochaine question :** préenregistrer un *nouveau lot* de défauts sur **au moins trois projets** et comparer également une priorisation par coût, par couverture statique ou par chemin d'appel des tests, sans réutiliser ces deux cas comme validation indépendante. Il faudra mesurer la capacité à généraliser, et pas seulement fabriquer un nouvel ordre qui met `test_match_str` ou `test_nodelay` en premier.
