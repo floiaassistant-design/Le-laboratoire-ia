@@ -1,0 +1,170 @@
+{
+  "experiment": "EXP-008B",
+  "cohort_status": "preregistered_before_any_new_case_scoring",
+  "benchmark_source": {
+    "name": "BugsInPy",
+    "repo": "soarsmu/BugsInPy",
+    "sha": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "copy_benchmark_code": false
+  },
+  "purpose": "Retrospective comparison on eight fixed, known historical defects from three projects; no blind validation",
+  "budgets": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "seed": 20261103,
+  "policies": [
+    "lexical",
+    "seeded_random",
+    "structural_diversity"
+  ],
+  "policy_implementation": "lab.real_bug_priority.policy_orders + method_features unchanged from EXP-008A; same SHA of merged EXP-008A rules",
+  "test_source": "fixed revision test file overlaid into both pinned worktrees; historical fix-aware test bank",
+  "detection_rule": "same runtime test ID: buggy assertion FAIL, fixed PASS; do not count ERROR or setup errors as detections",
+  "constraints": {
+    "fixed_case_denominator": 8,
+    "eligible_minimum_test_count": 1,
+    "effective_budget": "min(requested budget, collected test count); report effective budget",
+    "missing_environment": "blocked with explicit failure, not scored as 0, never removed from denominator",
+    "timeout_child_seconds": 150,
+    "git_clone_seconds": 150,
+    "upstream_project_job_minutes": 15,
+    "python": "3.8",
+    "runner": "ubuntu-22.04",
+    "require_same_collected_ids": true,
+    "fixed_test_environment_errors": "case blocked, reported, no policy score",
+    "buggy_test_errors": "record separately and exclude from bug detection score",
+    "source_license_check": true,
+    "test_runtime_executes_upstream": true
+  },
+  "test_frameworks": {
+    "youtube-dl": "unittest",
+    "tornado": "unittest",
+    "cookiecutter": "pytest"
+  },
+  "cases": [
+    {
+      "id": "youtube-dl-2",
+      "project": "youtube-dl",
+      "repo": "ytdl-org/youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "buggy": "84f085d4bdb66ee025fb337bcd571eab7469da97",
+      "fixed": "9d6ac71c27b1dfb662c795ef598dbfd0286682da",
+      "test_file": "test/test_InfoExtractor.py",
+      "module": "test.test_InfoExtractor",
+      "framework": "unittest",
+      "license": "Unlicense",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "youtube-dl-3",
+      "project": "youtube-dl",
+      "repo": "ytdl-org/youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "buggy": "f5469da9e6e259c1690c7ef54f1da1c19f65036f",
+      "fixed": "95f3f7c20a05e7ac490e768b8470b20538ef8581",
+      "test_file": "test/test_utils.py",
+      "module": "test.test_utils",
+      "framework": "unittest",
+      "license": "Unlicense",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "youtube-dl-4",
+      "project": "youtube-dl",
+      "repo": "ytdl-org/youtube-dl",
+      "url": "https://github.com/ytdl-org/youtube-dl.git",
+      "buggy": "bc40b3a5ba44006c23daf7fe0ed872af5e33bdc5",
+      "fixed": "189935f15960300d316e8b07108b076ac6c2186a",
+      "test_file": "test/test_jsinterp.py",
+      "module": "test.test_jsinterp",
+      "framework": "unittest",
+      "license": "Unlicense",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "tornado-2",
+      "project": "tornado",
+      "repo": "tornadoweb/tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "buggy": "2ca8821d006f6693f920a4b183a3a7c985a5c8ad",
+      "fixed": "4f486a4aec746e9d66441600ee3b0743228b061c",
+      "test_file": "tornado/test/httpclient_test.py",
+      "module": "tornado.test.httpclient_test",
+      "framework": "unittest",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "tornado-3",
+      "project": "tornado",
+      "repo": "tornadoweb/tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "buggy": "940fd87fe9145d1154c8457221f86d56ea063c65",
+      "fixed": "aa622e724f80e0f7fcee369f75d69d1db13d72f2",
+      "test_file": "tornado/test/httpclient_test.py",
+      "module": "tornado.test.httpclient_test",
+      "framework": "unittest",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "tornado-4",
+      "project": "tornado",
+      "repo": "tornadoweb/tornado",
+      "url": "https://github.com/tornadoweb/tornado.git",
+      "buggy": "a8420fc681c5423d072978f00eab4d0645057d16",
+      "fixed": "db529031a1e1a6e951826aba0b7d0b18f05cd4c7",
+      "test_file": "tornado/test/web_test.py",
+      "module": "tornado.test.web_test",
+      "framework": "unittest",
+      "license": "Apache-2.0",
+      "license_path": "LICENSE",
+      "declared_python": "3.7.0"
+    },
+    {
+      "id": "cookiecutter-1",
+      "project": "cookiecutter",
+      "repo": "cookiecutter/cookiecutter",
+      "url": "https://github.com/cookiecutter/cookiecutter.git",
+      "buggy": "c15633745df6abdb24e02746b82aadb20b8cdf8c",
+      "fixed": "7f6804c4953a18386809f11faf4d86898570debc",
+      "test_file": "tests/test_generate_context.py",
+      "module": "tests/test_generate_context.py",
+      "framework": "pytest",
+      "license": "BSD-3-Clause",
+      "license_path": "LICENSE",
+      "declared_python": "3.6.9"
+    },
+    {
+      "id": "cookiecutter-2",
+      "project": "cookiecutter",
+      "repo": "cookiecutter/cookiecutter",
+      "url": "https://github.com/cookiecutter/cookiecutter.git",
+      "buggy": "d7e7b28811e474e14d1bed747115e47dcdd15ba3",
+      "fixed": "90434ff4ea4477941444f1e83313beb414838535",
+      "test_file": "tests/test_hooks.py",
+      "module": "tests/test_hooks.py",
+      "framework": "pytest",
+      "license": "BSD-3-Clause",
+      "license_path": "LICENSE",
+      "declared_python": "3.6.9"
+    }
+  ],
+  "interpretation": [
+    "Predeclared eight cases stay in denominator, including setup blockers",
+    "Run one suite per historical revision; derive budgets from statuses post hoc",
+    "Case selection is not influenced by observed EXP-008B outcomes",
+    "Policy code frozen at EXP-008A and cannot be changed in reaction to EXP-008B outcomes",
+    "Historical fixed-version tests are potentially bug-aware; never claim blind holdout",
+    "8 bugs from 3 projects are clustered; cannot treat individual tests or budgets as independent faults",
+    "No AI agent, language model or paid API evaluated"
+  ]
+}

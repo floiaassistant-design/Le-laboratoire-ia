@@ -1,0 +1,189 @@
+{
+  "experiment": "EXP-008B",
+  "status": "completed",
+  "study_design": "Retrospective known-bug test prioritization on eight predeclared bug/fix pairs; NOT blind",
+  "date": "2026-11-03",
+  "source_commit": "ec3f4a954871e58fc24911b08aefacd5a69a0cbc",
+  "github_actions_run_id": 41690471790,
+  "github_actions_run_conclusion": "success",
+  "jobs_total": 7,
+  "jobs_successful": 7,
+  "unit_tests_discovered": 135,
+  "unit_tests_passed": 135,
+  "source": "BugsInPy pinned metadata 11c5f1eea954a42132cfd06bf257766a7963e0fd; three licensed upstream repos cloned in throwaway CI",
+  "pre_registered_cases": 8,
+  "evaluated_cases": 8,
+  "blocked_cases": 0,
+  "distinct_upstream_projects": 3,
+  "test_identities_per_version_summed_across_cases": 402,
+  "cases_with_any_assertion_revealing_test": 4,
+  "cases_without_assertion_revealing_test_in_selected_suite": 4,
+  "policies_imported_unchanged_from": "lab.real_bug_priority.policy_orders and method_features (EXP-008A)",
+  "selected_test_bank": "Fixed commit test module copied to both versions (post-fix, potentially regression-informed)",
+  "detection_rule": "FAIL assertion on buggy with PASS on fixed for exact same collected runtime test id",
+  "python_version": "3.8.x (historical project metadata: 3.7.0 youtube-dl/Tornado; 3.6.9 Cookiecutter)",
+  "budgets": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "by_budget": [
+    {
+      "budget": 1,
+      "evaluated_defects": 8,
+      "lexical": 0,
+      "seeded_random": 0,
+      "structural_diversity": 0,
+      "uniform_random_exact_expectation": 0.335138571
+    },
+    {
+      "budget": 3,
+      "evaluated_defects": 8,
+      "lexical": 1,
+      "seeded_random": 1,
+      "structural_diversity": 0,
+      "uniform_random_exact_expectation": 0.938570857
+    },
+    {
+      "budget": 6,
+      "evaluated_defects": 8,
+      "lexical": 1,
+      "seeded_random": 1,
+      "structural_diversity": 0,
+      "uniform_random_exact_expectation": 1.676607145
+    },
+    {
+      "budget": 12,
+      "evaluated_defects": 8,
+      "lexical": 2,
+      "seeded_random": 2,
+      "structural_diversity": 2,
+      "uniform_random_exact_expectation": 2.284409348
+    }
+  ],
+  "cases": [
+    {
+      "id": "youtube-dl-2",
+      "project": "youtube-dl",
+      "case_status": "evaluated",
+      "runtime_test_count": 9,
+      "revealing_assertion_test_count": 1,
+      "first_revealing_rank": {
+        "lexical": 9,
+        "seeded_random": 7,
+        "structural_diversity": 9
+      },
+      "classification": "at_least_one_exposing_test"
+    },
+    {
+      "id": "youtube-dl-3",
+      "project": "youtube-dl",
+      "case_status": "evaluated",
+      "runtime_test_count": 76,
+      "revealing_assertion_test_count": 1,
+      "first_revealing_rank": {
+        "lexical": 63,
+        "seeded_random": 63,
+        "structural_diversity": 62
+      },
+      "classification": "at_least_one_exposing_test"
+    },
+    {
+      "id": "youtube-dl-4",
+      "project": "youtube-dl",
+      "case_status": "evaluated",
+      "runtime_test_count": 12,
+      "revealing_assertion_test_count": 0,
+      "first_revealing_rank": {
+        "lexical": null,
+        "seeded_random": null,
+        "structural_diversity": null
+      },
+      "classification": "no_matching_assertion_Fail_buggy_Pass_fixed_in_selected_fixed_test_file"
+    },
+    {
+      "id": "tornado-2",
+      "project": "tornado",
+      "case_status": "evaluated",
+      "runtime_test_count": 52,
+      "revealing_assertion_test_count": 0,
+      "first_revealing_rank": {
+        "lexical": null,
+        "seeded_random": null,
+        "structural_diversity": null
+      },
+      "classification": "no_matching_assertion_Fail_buggy_Pass_fixed_in_selected_fixed_test_file"
+    },
+    {
+      "id": "tornado-3",
+      "project": "tornado",
+      "case_status": "evaluated",
+      "runtime_test_count": 48,
+      "revealing_assertion_test_count": 0,
+      "first_revealing_rank": {
+        "lexical": null,
+        "seeded_random": null,
+        "structural_diversity": null
+      },
+      "classification": "no_matching_assertion_Fail_buggy_Pass_fixed_in_selected_fixed_test_file"
+    },
+    {
+      "id": "tornado-4",
+      "project": "tornado",
+      "case_status": "evaluated",
+      "runtime_test_count": 184,
+      "revealing_assertion_test_count": 2,
+      "first_revealing_rank": {
+        "lexical": 129,
+        "seeded_random": 78,
+        "structural_diversity": 19
+      },
+      "classification": "at_least_one_exposing_test"
+    },
+    {
+      "id": "cookiecutter-1",
+      "project": "cookiecutter",
+      "case_status": "evaluated",
+      "runtime_test_count": 11,
+      "revealing_assertion_test_count": 0,
+      "first_revealing_rank": {
+        "lexical": null,
+        "seeded_random": null,
+        "structural_diversity": null
+      },
+      "classification": "no_matching_assertion_Fail_buggy_Pass_fixed_in_selected_fixed_test_file"
+    },
+    {
+      "id": "cookiecutter-2",
+      "project": "cookiecutter",
+      "case_status": "evaluated",
+      "runtime_test_count": 10,
+      "revealing_assertion_test_count": 2,
+      "first_revealing_rank": {
+        "lexical": 2,
+        "seeded_random": 2,
+        "structural_diversity": 7
+      },
+      "classification": "at_least_one_exposing_test"
+    }
+  ],
+  "raw_artifacts": [
+    "exp008b-youtube-dl-raw",
+    "exp008b-tornado-raw",
+    "exp008b-cookiecutter-raw"
+  ],
+  "raw_artifact_retention_days": 30,
+  "scientific_conclusion": "At budget 12 all three fixed policies exposed exactly 2/8 known defects, and 2/4 of the defects with a confirming assertion in this test bank. At budgets 3 and 6 lexical and one fixed-seed random ordering found 1/8 while structural diversity found 0/8. No policy is shown generally superior with n=8 and three correlated projects.",
+  "limitations": [
+    "Four out of eight known defects are not detectable by ANY test of the selected corrected-revision test files according to the strict assertion PASS/FAIL primary rule; these are not environment blockers.",
+    "Many bugs rely on regression tests deliberately written knowing the fix; policy outputs do not know outcomes, but test bank is not blind.",
+    "Only three projects and eight defect pairs: defect outcomes are not statistically independent within each upstream project.",
+    "All methods use the same one-time test status observations; state and time effects are not directly estimated.",
+    "At budget 12 suites shorter than 12 tests are completely evaluated and effective budgets were clamped; results are correctly compared within each case but differing bank sizes limit cross-case inference.",
+    "The expected uniform-random counts are exact conditional expectations based on revealing tests, not a sample of 8 new defects or randomized repeated failures.",
+    "The first revealing ranks beyond budget 12 are diagnostics only and were NOT used to change predeclared budgets.",
+    "No new bug was discovered, no AI model or autonomous agent was evaluated, and no paid API was used."
+  ],
+  "next_step": "Audit why four cases have no strict assertion-revealing test; distinguish oracle adequacy vs error/skip/warning and prepare a separate preregistered study of static test relevance and a genuinely new holdout cohort; do not adapt these policies on this cohort then call it validation."
+}

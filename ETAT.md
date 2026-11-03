@@ -246,3 +246,46 @@ Résultat durable : `results/exp008a-summary.json`. Données par test et politiq
 **Interprétation :** les tests qui révèlent les deux défauts n'ont pas été priorisés dans les 12 premiers. C'est un **résultat négatif**, pas une preuve que les trois approches ont les mêmes performances en général, ni que la diversité ne sert jamais. Les tests viennent de la révision *après le correctif* : le banc contient donc des régressions informées de la panne connue, même si nos politiques n'ont pas consulté leurs issues.
 
 **Prochaine question :** préenregistrer un *nouveau lot* de défauts sur **au moins trois projets** et comparer également une priorisation par coût, par couverture statique ou par chemin d'appel des tests, sans réutiliser ces deux cas comme validation indépendante. Il faudra mesurer la capacité à généraliser, et pas seulement fabriquer un nouvel ordre qui met `test_match_str` ou `test_nodelay` en premier.
+
+## EXP-008B — lot de huit bugs fixé avant mesure
+
+- youtube-dl (2,3,4), Tornado (2,3,4), Cookiecutter (1,2), commits fautifs/corrigés tous confirmés de parenté directe.
+- Politiques d'EXP-008A réutilisées sans changement, budgets 1/3/6/12.
+- Déroulement rétrospectif sur les tests issus des correctifs : jamais une validation aveugle.
+- Un cas peut être évalué ou bloqué par son environnement, toujours enregistré dans le dénominateur de 8.
+- 18 nouveaux tests unitaires ; seuil de contrôle 135. Les jobs externes doivent être inspectés avant toute conclusion.
+
+
+## EXP-008B — résultats vérifiés (GitHub Actions #41690471790)
+
+**Les huit défauts préenregistrés ont été exécutés, sans cas bloqué** : trois youtube-dl, trois Tornado, deux Cookiecutter. CI intégralement verte (**7 jobs**, **135 tests unitaires** découverts et réussis). Les suites de test de la révision corrigée, rejouées sur les deux versions, totalisent **402 identifiants de test par version** sur l'ensemble des huit cas.
+
+| Défaut historique | Tests collectés | Tests révélateurs (ancien FAIL assertion / nouveau PASS) | Premier rang lexical / aléatoire fixe / diversité |
+|---|---:|---:|---|
+| youtube-dl-2 | 9 | 1 | 9 / 7 / 9 |
+| youtube-dl-3 | 76 | 1 | 63 / 63 / 62 |
+| youtube-dl-4 | 12 | 0 | — / — / — |
+| tornado-2 | 52 | 0 | — / — / — |
+| tornado-3 | 48 | 0 | — / — / — |
+| tornado-4 | 184 | 2 | 129 / 78 / 19 |
+| cookiecutter-1 | 11 | 0 | — / — / — |
+| cookiecutter-2 | 10 | 2 | 2 / 2 / 7 |
+
+**Détection aux budgets préenregistrés (sur 8 cas, dont 4 avec au moins un test strictement révélateur) :**
+
+| Budget | Lexical | Aléatoire (une graine fixe) | Diversité | Espérance d'un ordre uniformément aléatoire |
+|---:|---:|---:|---:|---:|
+| 1 | 0 | 0 | 0 | 0,335 |
+| 3 | 1 | 1 | 0 | 0,939 |
+| 6 | 1 | 1 | 0 | 1,677 |
+| 12 | 2 | 2 | 2 | 2,284 |
+
+L'espérance aléatoire est **une moyenne mathématique conditionnelle**, pas un résultat de répétitions indépendantes. Les suites de 9, 10 et 11 tests sont intégralement couvertes quand le budget demandé vaut 12. Les quatre défauts sans test révélateur ne sont **pas** des échecs de setup : seul notre critère de détection primaire ne montre pas de différence FAIL/PASS exploitable dans le fichier de tests sélectionné.
+
+**Conclusion négative nuancée :** à budget 12 aucune stratégie ne se distingue ; à budgets 3 et 6, l'ordre lexical et le tirage aléatoire fixé trouvent un bug, la diversité aucun. Mais **8 défauts corrélés par projet ne démontrent pas la supériorité** d'une méthode. Sur Tornado-4, la diversité classe son premier test révélateur en position 19 au lieu de 129 (lexical) ou 78 (aléatoire) : intéressant pour préparer une *autre* hypothèse, mais hors budget déclaré ; ne pas réinterpréter l'expérience après coup.
+
+Les trois rapports **intégraux par test et par version** sont archivés pour 30 jours en artefacts \`exp008b-youtube-dl-raw\`, \`exp008b-tornado-raw\`, \`exp008b-cookiecutter-raw\` du [run #41690471790](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41690471790). Résumé durable : \`results/exp008b-summary.json\`. Le code des politiques d'EXP-008A **n'a pas été modifié**.
+
+**Limite décisive :** ce sont des bugs **historiques et connus**, comparés avec des tests post-correctif. Il n'y a **aucune découverte de bug inédit**, ni validation aveugle, ni démonstration qu'une IA améliore la sélection. Aucune API facturée ni aucun modèle supplémentaire n'a été utilisé.
+
+**Prochaine étape :** auditer les quatre cas sans témoin d'assertion, puis construire un protocole séparé et figé sur de **nouveaux bugs** avec un oracle plus complet (sans transformer artificiellement les erreurs d'environnement en vrais défauts). Ne pas choisir un ordre à partir des rangs observés ici puis prétendre l'évaluer indépendamment sur ces huit cas.
