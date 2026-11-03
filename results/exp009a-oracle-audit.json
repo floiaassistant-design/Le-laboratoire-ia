@@ -1,0 +1,303 @@
+{
+  "experiment": "EXP-009A",
+  "status": "completed_read_only_audit_of_existing_exp008b_artifacts",
+  "date": "2026-11-03",
+  "source_experiment": "EXP-008B",
+  "source_pr": 20,
+  "source_github_actions_run_id": 41690471790,
+  "source_artifacts": [
+    {
+      "name": "exp008b-youtube-dl-raw",
+      "id": 13257003490
+    },
+    {
+      "name": "exp008b-tornado-raw",
+      "id": 13257512471
+    },
+    {
+      "name": "exp008b-cookiecutter-raw",
+      "id": 13256907777
+    }
+  ],
+  "source_immutable_context": "EXP-008B fixed test bank and policies were not changed",
+  "case_count": 8,
+  "projects": 3,
+  "test_identities_per_version_sum": 402,
+  "cases_with_primary_strict_assertion_revealer": 4,
+  "predeclared_nonrevealing_cases": 4,
+  "predeclared_nonrevealing_cases_with_error_to_pass": 3,
+  "predeclared_nonrevealing_cases_with_no_status_change": 1,
+  "predeclared_target_ids": [
+    "youtube-dl-4",
+    "tornado-2",
+    "tornado-3",
+    "cookiecutter-1"
+  ],
+  "candidate_signals_not_promoted_to_bugs": true,
+  "retroactive_rescoring": false,
+  "agents_evaluated": 0,
+  "cases": [
+    {
+      "case": "youtube-dl-2",
+      "project": "youtube-dl",
+      "runtime_test_count": 9,
+      "status_counts_buggy": {
+        "pass": 8,
+        "fail": 1
+      },
+      "status_counts_fixed": {
+        "pass": 9
+      },
+      "strict_assertion_fail_to_pass": 1,
+      "exception_error_to_pass_unattributed": 0,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "test.test_InfoExtractor.TestInfoExtractor.test_parse_mpd_formats",
+          "buggy": "fail",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "7d3fae63721b8563ab41ceec5327d7535eaa90ebfc5114d8d92be91e1c33243e",
+        "fixed": "54909e17551307f1e8e8c022a7c8511b83a3e022d5447623193464d8820cdbde"
+      },
+      "classification": "strict_assertion_witness_exists",
+      "predeclared_target": false
+    },
+    {
+      "case": "youtube-dl-3",
+      "project": "youtube-dl",
+      "runtime_test_count": 76,
+      "status_counts_buggy": {
+        "pass": 75,
+        "fail": 1
+      },
+      "status_counts_fixed": {
+        "pass": 76
+      },
+      "strict_assertion_fail_to_pass": 1,
+      "exception_error_to_pass_unattributed": 0,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "test.test_utils.TestUtil.test_unescape_html",
+          "buggy": "fail",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "66263668a37fb1d1bf2178202c54998acf6e4ab8cac8426d1d2cca5ff0d92b63",
+        "fixed": "19f2fb9df663dd25a4edfae3f1a0f29cc75f2639dc0f184b3f1bae1840a28b64"
+      },
+      "classification": "strict_assertion_witness_exists",
+      "predeclared_target": false
+    },
+    {
+      "case": "youtube-dl-4",
+      "project": "youtube-dl",
+      "runtime_test_count": 12,
+      "status_counts_buggy": {
+        "pass": 11,
+        "error": 1
+      },
+      "status_counts_fixed": {
+        "pass": 12
+      },
+      "strict_assertion_fail_to_pass": 0,
+      "exception_error_to_pass_unattributed": 1,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "test.test_jsinterp.TestJSInterpreter.test_call",
+          "buggy": "error",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "14df6fe00ebabcb3bd4306bf920b19c8e5259f2901edc1ddca82a7b5e1b602a4",
+        "fixed": "59c44c74163e19edd7cfee252f3baf86abbf1e0ed8bc7f583a4f90e50dead7b8"
+      },
+      "classification": "unattributed_exception_to_pass",
+      "predeclared_target": true
+    },
+    {
+      "case": "tornado-2",
+      "project": "tornado",
+      "runtime_test_count": 52,
+      "status_counts_buggy": {
+        "pass": 51,
+        "error": 1
+      },
+      "status_counts_fixed": {
+        "pass": 52
+      },
+      "strict_assertion_fail_to_pass": 0,
+      "exception_error_to_pass_unattributed": 1,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "tornado.test.httpclient_test.HTTPClientCommonTestCase.test_redirect_put_without_body",
+          "buggy": "error",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "25ac9d6152eb8d53af5f3803cdf35101120fbdb6b0673235287462a09b767d29",
+        "fixed": "a118e0fb225d177bcf3b625d5a1cb3b8e3a6acf1fc4d22c4ae50fa1071c250e0"
+      },
+      "classification": "unattributed_exception_to_pass",
+      "predeclared_target": true
+    },
+    {
+      "case": "tornado-3",
+      "project": "tornado",
+      "runtime_test_count": 48,
+      "status_counts_buggy": {
+        "pass": 48
+      },
+      "status_counts_fixed": {
+        "pass": 48
+      },
+      "strict_assertion_fail_to_pass": 0,
+      "exception_error_to_pass_unattributed": 0,
+      "other_changed_statuses": 0,
+      "changed_tests": [],
+      "status_map_sha256": {
+        "buggy": "b32dd2d592d4e6569e867ccf63fead40a03308a18bb6de58fd66d2b97309704a",
+        "fixed": "b32dd2d592d4e6569e867ccf63fead40a03308a18bb6de58fd66d2b97309704a"
+      },
+      "classification": "no_status_difference_in_chosen_test_file",
+      "predeclared_target": true
+    },
+    {
+      "case": "tornado-4",
+      "project": "tornado",
+      "runtime_test_count": 184,
+      "status_counts_buggy": {
+        "pass": 181,
+        "skip": 1,
+        "fail": 2
+      },
+      "status_counts_fixed": {
+        "pass": 183,
+        "skip": 1
+      },
+      "strict_assertion_fail_to_pass": 2,
+      "exception_error_to_pass_unattributed": 0,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "tornado.test.web_test.StaticFileTest.test_static_unsatisfiable_range_end_less_than_start",
+          "buggy": "fail",
+          "fixed": "pass"
+        },
+        {
+          "test_id": "tornado.test.web_test.StaticFileTest.test_static_with_range_neg_past_start",
+          "buggy": "fail",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "a96ddb32d9e4f20d5c8e1f3420aafe1191080294b88ca1ad5e5f88475b42cb49",
+        "fixed": "306543682c70cc2d48d67b7ac42aabd57ac2a141ebce7df01abc93d1996704b7"
+      },
+      "classification": "strict_assertion_witness_exists",
+      "predeclared_target": false
+    },
+    {
+      "case": "cookiecutter-1",
+      "project": "cookiecutter",
+      "runtime_test_count": 11,
+      "status_counts_buggy": {
+        "pass": 10,
+        "error": 1
+      },
+      "status_counts_fixed": {
+        "pass": 11
+      },
+      "strict_assertion_fail_to_pass": 0,
+      "exception_error_to_pass_unattributed": 1,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars",
+          "buggy": "error",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "8ab2a9f692b9556389e395053bb7bc5d748258ea58078867a9eee9790b2ab2d5",
+        "fixed": "58f6e821c78ef39c4037cf758c44e585bb37eaf7a03e35ba78f3c246e002fe41"
+      },
+      "classification": "unattributed_exception_to_pass",
+      "predeclared_target": true
+    },
+    {
+      "case": "cookiecutter-2",
+      "project": "cookiecutter",
+      "runtime_test_count": 10,
+      "status_counts_buggy": {
+        "pass": 8,
+        "fail": 2
+      },
+      "status_counts_fixed": {
+        "pass": 10
+      },
+      "strict_assertion_fail_to_pass": 2,
+      "exception_error_to_pass_unattributed": 0,
+      "other_changed_statuses": 0,
+      "changed_tests": [
+        {
+          "test_id": "tests/test_hooks.py::TestExternalHooks::test_run_hook",
+          "buggy": "fail",
+          "fixed": "pass"
+        },
+        {
+          "test_id": "tests/test_hooks.py::TestFindHooks::test_find_hook",
+          "buggy": "fail",
+          "fixed": "pass"
+        }
+      ],
+      "status_map_sha256": {
+        "buggy": "286670019177e215f59aa66e076f0f799d92b6bb47ef0060a2f2053100c63165",
+        "fixed": "2d58760038ba5c6055a09fde9985153e8fe504f3007fe446105991d62a902503"
+      },
+      "classification": "strict_assertion_witness_exists",
+      "predeclared_target": false
+    }
+  ],
+  "source_code_context": [
+    {
+      "case": "youtube-dl-4",
+      "upstream_fixed_commit": "189935f15960300d316e8b07108b076ac6c2186a",
+      "observation": "Upstream fix adds test_call for no-argument function calls; original run recorded ERROR on buggy and PASS on fixed",
+      "interpretation": "The ERROR is a differential symptom, but missing traceback means no formal assignment to the historical defect."
+    },
+    {
+      "case": "tornado-2",
+      "upstream_fixed_commit": "4f486a4aec746e9d66441600ee3b0743228b061c",
+      "observation": "Upstream fix adds redirect PUT with/without body tests; test_redirect_put_without_body ERROR on buggy / PASS on fixed",
+      "interpretation": "A differential exception, not counted under the frozen assertion-only primary rule."
+    },
+    {
+      "case": "tornado-3",
+      "upstream_fixed_commit": "aa622e724f80e0f7fcee369f75d69d1db13d72f2",
+      "observation": "Upstream adds subprocess destructor logging regression test; it was collected and PASS in both buggy and fixed under CI",
+      "interpretation": "A nondeterministic shutdown warning or Python/runtime conditions could account for absence of observed failure; not established."
+    },
+    {
+      "case": "cookiecutter-1",
+      "upstream_fixed_commit": "7f6804c4953a18386809f11faf4d86898570debc",
+      "observation": "Upstream explicitly fixes UTF-8 loading on Windows and adds non-ASCII regression; same test ERROR on buggy/PASS on fixed in Linux CI",
+      "interpretation": "The historical Windows qualifier is documented; error cause under this runner cannot be proven without sanitized traceback."
+    }
+  ],
+  "limits": [
+    "Only test result statuses were preserved in original raw artifact; no traceback types, exception messages or detailed logs for these specific tests.",
+    "Difference ERROR->PASS is not necessarily a source-bug witness; it can be caused by environment or fixture failures.",
+    "Tornado-3 being PASS in both versions under one run does not show the historical defect never existed, nor that no alternative oracle could reveal it.",
+    "All policies and detection scores from EXP-008B stay unchanged; this is an outcome-informed audit, not a new blind validation.",
+    "Artifacts retained for 30 days; this versioned summary records status counts, changed test IDs and SHA-256 of full original status maps, not third-party source code."
+  ]
+}
