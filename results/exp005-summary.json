@@ -1,0 +1,92 @@
+{
+  "experiment": "EXP-005",
+  "source": "GitHub Actions run 41598473940",
+  "source_commit": "0a1de7c8d3729509feb3baf643ae83e5122bae96",
+  "reference_benchmark": "QuixBugs, source SHA 4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "scope": "Exploratory ablation of input ordering on 16 known defects, not a blind benchmark",
+  "program_count": 16,
+  "oracle_invalid_inputs": 0,
+  "permutations_per_program": 256,
+  "budgets": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "unit_tests_passed": 39,
+  "summary": [
+    {
+      "budget": 1,
+      "fixed_order_detected_programs": 0,
+      "expected_random_order_detected_programs": 8.333333,
+      "random_order_sd_programs": 1.567907,
+      "sampled_mean_detected_programs": 8.277344,
+      "sampled_min_detected_programs": 3,
+      "sampled_max_detected_programs": 12,
+      "sampled_p10_detected_programs": 6,
+      "sampled_p90_detected_programs": 10,
+      "theoretical_max_detectable_programs": 16
+    },
+    {
+      "budget": 3,
+      "fixed_order_detected_programs": 11,
+      "expected_random_order_detected_programs": 12.459091,
+      "random_order_sd_programs": 1.347718,
+      "sampled_mean_detected_programs": 12.433594,
+      "sampled_min_detected_programs": 9,
+      "sampled_max_detected_programs": 16,
+      "sampled_p10_detected_programs": 11,
+      "sampled_p90_detected_programs": 14,
+      "theoretical_max_detectable_programs": 16
+    },
+    {
+      "budget": 6,
+      "fixed_order_detected_programs": 12,
+      "expected_random_order_detected_programs": 14.695887,
+      "random_order_sd_programs": 0.946298,
+      "sampled_mean_detected_programs": 14.660156,
+      "sampled_min_detected_programs": 12,
+      "sampled_max_detected_programs": 16,
+      "sampled_p10_detected_programs": 13,
+      "sampled_p90_detected_programs": 16,
+      "theoretical_max_detectable_programs": 16
+    },
+    {
+      "budget": 12,
+      "fixed_order_detected_programs": 16,
+      "expected_random_order_detected_programs": 16,
+      "random_order_sd_programs": 0,
+      "sampled_mean_detected_programs": 16,
+      "sampled_min_detected_programs": 16,
+      "sampled_max_detected_programs": 16,
+      "sampled_p10_detected_programs": 16,
+      "sampled_p90_detected_programs": 16,
+      "theoretical_max_detectable_programs": 16
+    }
+  ],
+  "detecting_inputs_by_program": {
+    "find_in_sorted": 2,
+    "flatten": 10,
+    "get_factors": 11,
+    "hanoi": 10,
+    "is_valid_parenthesization": 2,
+    "kth": 4,
+    "lcs_length": 4,
+    "levenshtein": 6,
+    "lis": 1,
+    "longest_common_subsequence": 2,
+    "max_sublist_sum": 4,
+    "mergesort": 11,
+    "next_palindrome": 4,
+    "next_permutation": 7,
+    "pascal": 11,
+    "powerset": 11
+  },
+  "limitations": [
+    "16 distinct programs; 256 repeated permutations are not 256 independent defects",
+    "Uniform random permutations of same pre-existing tests; expected detection computed exactly",
+    "All candidate statuses measured once, reused for order simulation; this assumes deterministic outcomes",
+    "Known corpus and manually selected targeted tests; not blind evaluation",
+    "No agent or language model evaluated"
+  ]
+}
