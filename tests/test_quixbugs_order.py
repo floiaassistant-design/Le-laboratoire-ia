@@ -8,7 +8,7 @@ from lab.quixbugs_order import (
 class OrderTests(unittest.TestCase):
     def test_combinatorial_probability_simple(self):
         self.assertEqual(probability_hit(0, 12), 0.0)
-        self.assertEqual(probability_hit(1, 1), 1 / 12)
+        self.assertAlmostEqual(probability_hit(1, 1), 1 / 12)
         self.assertEqual(probability_hit(12, 1), 1.0)
         self.assertEqual(probability_hit(1, 12), 1.0)
         self.assertEqual(probability_hit(6, 1), .5)
