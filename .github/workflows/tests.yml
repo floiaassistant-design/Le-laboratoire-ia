@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 117)
+      - name: Unit tests (must discover >= 135)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 117"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 135"
       - name: EXP-007A non-executing static test inventory
         run: python -m lab.real_test_inventory --root . --scan-dir tests --output results/exp007a-inventory.json --require-tests
       - name: Archive EXP-007A inventory
@@ -177,4 +177,46 @@ jobs:
           name: exp008a-real-bug-priority-raw
           path: results/exp008a-real-priority.json
           if-no-files-found: error
+          retention-days: 30
+
+  exp008b-three-projects:
+    name: EXP-008B ${{ matrix.project }} (predeclared real bugs)
+    needs: offline-tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [youtube-dl, tornado, cookiecutter]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Install pinned historical Cookiecutter test dependencies
+        if: matrix.project == 'cookiecutter'
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check \
+            pytest==7.4.4 pytest-mock==3.8.2 freezegun==1.2.2 \
+            binaryornot==0.4.4 Jinja2==2.11.3 click==7.1.2 \
+            poyo==0.5.0 jinja2-time==0.2.0 \
+            python-slugify==4.0.1 requests==2.25.1 \
+            MarkupSafe==1.1.1 PyYAML==5.4.1
+      - name: Evaluate exactly the predeclared cases and report every blocker
+        env:
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.real_bug_batch --project "$PROJECT"
+      - name: Archive results including blocked cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp008b-${{ matrix.project }}-raw
+          path: results/exp008b-${{ matrix.project }}-raw.json
+          if-no-files-found: warn
           retention-days: 30

@@ -246,3 +246,11 @@ Résultat durable : `results/exp008a-summary.json`. Données par test et politiq
 **Interprétation :** les tests qui révèlent les deux défauts n'ont pas été priorisés dans les 12 premiers. C'est un **résultat négatif**, pas une preuve que les trois approches ont les mêmes performances en général, ni que la diversité ne sert jamais. Les tests viennent de la révision *après le correctif* : le banc contient donc des régressions informées de la panne connue, même si nos politiques n'ont pas consulté leurs issues.
 
 **Prochaine question :** préenregistrer un *nouveau lot* de défauts sur **au moins trois projets** et comparer également une priorisation par coût, par couverture statique ou par chemin d'appel des tests, sans réutiliser ces deux cas comme validation indépendante. Il faudra mesurer la capacité à généraliser, et pas seulement fabriquer un nouvel ordre qui met `test_match_str` ou `test_nodelay` en premier.
+
+## EXP-008B — lot de huit bugs fixé avant mesure
+
+- youtube-dl (2,3,4), Tornado (2,3,4), Cookiecutter (1,2), commits fautifs/corrigés tous confirmés de parenté directe.
+- Politiques d'EXP-008A réutilisées sans changement, budgets 1/3/6/12.
+- Déroulement rétrospectif sur les tests issus des correctifs : jamais une validation aveugle.
+- Un cas peut être évalué ou bloqué par son environnement, toujours enregistré dans le dénominateur de 8.
+- 18 nouveaux tests unitaires ; seuil de contrôle 135. Les jobs externes doivent être inspectés avant toute conclusion.

@@ -251,3 +251,7 @@ Résultat durable : `results/exp008a-summary.json`. Données par test et politiq
 **Interprétation :** les tests qui révèlent les deux défauts n'ont pas été priorisés dans les 12 premiers. C'est un **résultat négatif**, pas une preuve que les trois approches ont les mêmes performances en général, ni que la diversité ne sert jamais. Les tests viennent de la révision *après le correctif* : le banc contient donc des régressions informées de la panne connue, même si nos politiques n'ont pas consulté leurs issues.
 
 **Prochaine question :** préenregistrer un *nouveau lot* de défauts sur **au moins trois projets** et comparer également une priorisation par coût, par couverture statique ou par chemin d'appel des tests, sans réutiliser ces deux cas comme validation indépendante. Il faudra mesurer la capacité à généraliser, et pas seulement fabriquer un nouvel ordre qui met `test_match_str` ou `test_nodelay` en premier.
+
+## EXP-008B — huit bugs historiques préenregistrés
+
+Huit paires de commits de youtube-dl, Tornado et Cookiecutter, mêmes politiques lexical/aléatoire/diversité que dans EXP-008A, budgets 1/3/6/12. Chaque projet s'exécute dans son propre job GitHub Actions ; chaque défaut est soit évalué soit déclaré bloqué, jamais effacé du total. Tests tirés des révisions après correctif : étude rétrospective, non aveugle. Aucun agent IA ni API facturée. Protocole : experiments/EXP-008B.md ; résultats à confirmer après exécution.
