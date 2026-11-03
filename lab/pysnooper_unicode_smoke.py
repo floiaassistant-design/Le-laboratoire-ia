@@ -17,6 +17,7 @@ import sys
 from tempfile import TemporaryDirectory
 
 from .external_corpus_preflight import load_manifest, ROOT
+from .realbug_isolation import isolated_python_env, worktree_path
 
 REPOSITORY = "https://github.com/cool-RR/PySnooper.git"
 SUCCESS_MARKER = "PYSNOOPER_UNICODE_OK"
@@ -78,6 +79,8 @@ def run_smoke() -> dict:
         "regression_probe": "Minimal custom Unicode trace assertion; not official BugsInPy test",
         "third_party_code_copied_into_repo": False,
         "third_party_setup_or_tests_executed": False,
+        "revision_worktrees_isolated": True,
+        "python_bytecode_disabled": True,
         "policies_compared": False,
         "outcomes": {},
         "bug_reproduced": False,
@@ -92,13 +95,16 @@ def run_smoke() -> dict:
               "--quiet", "--filter=blob:none", "--no-checkout", REPOSITORY,
               str(source)], timeout=TIMEOUT_SECONDS)
         for label, sha in (("buggy", case["buggy"]), ("fixed", case["fixed"])):
+            checkout = worktree_path(Path(folder), label)
+            checkout.parent.mkdir(parents=True, exist_ok=True)
             _run(["git", "-c", "core.hooksPath=/dev/null", "-C", str(source),
-                  "checkout", "--quiet", "--force", "--detach", sha], timeout=TIMEOUT_SECONDS)
-            env = os.environ.copy()
-            env.update({"PYTHONPATH": str(source), "LC_ALL": "C", "LANG": "C",
+                  "worktree", "add", "--quiet", "--detach", str(checkout), sha],
+                 timeout=TIMEOUT_SECONDS)
+            env = isolated_python_env(checkout)
+            env.update({"LC_ALL": "C", "LANG": "C",
                         "PYTHONUTF8": "0", "PYTHONCOERCECLOCALE": "0"})
-            completed = subprocess.run([sys.executable, "-c", PROBE],
-                                       cwd=source, env=env,
+            completed = subprocess.run([sys.executable, "-B", "-c", PROBE],
+                                       cwd=checkout, env=env,
                                        capture_output=True, text=True,
                                        timeout=15, errors="replace")
             result["outcomes"][label] = {

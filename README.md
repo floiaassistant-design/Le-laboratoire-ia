@@ -181,3 +181,12 @@ Résultat versionné : `results/exp006c-summary.json` ; détails : artefact `exp
 **Conclusion scientifique limitée :** le laboratoire peut désormais **reproduire deux bugs connus dans deux logiciels réels différents** (PySnooper et tqdm). Il n'a **pas** découvert de bug inconnu ni démontré la qualité des politiques aléatoire/ciblée/hybride/diversité sur un corpus de bugs réels. La version d'origine documentait Python 3.6.9, tandis que notre calibration utilise 3.8.18. Le probe utilise une classe de progression transparente et n'est pas le test officiel de BugsInPy.
 
 **Suite :** définir une méthode uniforme de sélection de tests réels, choisir et figer plusieurs bugs *avant d'examiner leurs résultats*, puis mesurer les comparaisons avec coûts et incertitudes groupés par défaut/projet. Ne pas réutiliser les deux calibrations connues comme preuves indépendantes.
+
+
+## Contrôle post-fusion du 3 novembre 2026 : instabilité détectée et correction
+
+Le [premier run post-fusion #41604159224](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41604159224) a **échoué**, alors que la CI de la PR #13 était verte : les deux commits ont produit les indices `[0,1,2]`. Le résultat EXP-006C n'était donc pas encore suffisamment reproductible. Le code de calibration changeait de commit **dans le même dossier**, tout en exécutant le Python de chaque version dans le même chemin. Une **contamination par cache de bytecode** est l'explication plausible ; elle n'est pas prouvée comme cause unique.
+
+La correction crée désormais deux **worktrees Git physiquement distincts**, fait pointer `PYTHONPATH` vers chacun, désactive l'écriture et la lecture du bytecode Python (`-B` et `PYTHONDONTWRITEBYTECODE=1`) et répète le test de tqdm trois fois dans des répertoires temporaires frais. Elle applique la même isolation au test PySnooper. Un seul échec rend le workflow rouge ; aucun échec n'est ignoré.
+
+**Ces trois répétitions ne sont pas trois bugs indépendants.** Elles vérifient uniquement que la calibration de notre infrastructure est stable. Les deux projets restent des défauts historiques connus, impropres à une mesure indépendante de la performance de politiques de priorisation. Les conclusions doivent se fonder sur le run corrigé, pas sur la seule première CI verte.

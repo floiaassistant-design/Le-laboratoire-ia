@@ -77,5 +77,18 @@
       "No original BugsInPy project test suite executed.",
       "No evidence yet that any test prioritization policy outperforms baselines on real software."
     ]
+  },
+  "quality_incident": {
+    "first_postmerge_run": 41604159224,
+    "conclusion": "failure",
+    "observed_indexes_on_both_versions": [
+      0,
+      1,
+      2
+    ],
+    "hypothesis": "stale shared Python bytecode cache during in-place commit checkout (not independently proven)",
+    "correction": "separate git worktrees per revision, disable .pyc, run three fresh repetitions",
+    "resolved": false,
+    "scope": "No performance claims until corrected CI and postmerge run pass"
   }
 }
