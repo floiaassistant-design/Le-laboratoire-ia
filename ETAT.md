@@ -74,3 +74,29 @@ Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, m
 
 ### Prochain objectif : EXP-005
 Évaluer séparément l'**ordre des tests ciblés**, en gardant un budget fixe et en effectuant des permutations sans retoucher les ensembles de cas. Analyser l'effet sur le premier test et sur les budgets 3/6, sur le même corpus comme *analyse exploratoire*. Puis concevoir un protocole réellement nouveau (ou des corpus aveugles) pour vérifier sa généralisation, sans utiliser ces résultats pour choisir une méthode et la valider sur ces mêmes défauts.
+
+## EXP-005 — protocole de travail
+
+- Statut : codage de l'analyse de permutations, vérification CI à réaliser.
+- Aucun changement des entrées / générateurs d'EXP-004B : réemploi de `edge_probes`.
+- Comparaison de l'ordre initial et de 256 permutations, budgets 1/3/6/12, probabilité exacte calculée à partir des erreurs détectables pour chaque programme.
+- Conserver les résultats même s'ils invalident l'hypothèse, sans ajustement post hoc ; ne pas confondre permutations et défauts indépendants.
+
+### Correction technique dans la PR #8
+La première CI a exécuté les 39 tests mais un test utilisait une égalité stricte entre nombres flottants pour la probabilité `1/12`. Le calcul était correct ; l'assertion a été corrigée avec `assertAlmostEqual`, sans changer les données, les politiques ni les formules. Le run GitHub suivant doit confirmer cette correction avant toute fusion.
+
+
+## Résultats vérifiés EXP-005 (CI n° 41598473940)
+
+| Budget | Ordre initial : programmes détectés | Ordre uniformément permuté : espérance exacte | 10e–90e centile empirique, 256 permutations |
+|---:|---:|---:|---:|
+| 1 | 0/16 | 8,33/16 | 6 à 10 |
+| 3 | 11/16 | 12,46/16 | 11 à 14 |
+| 6 | 12/16 | 14,70/16 | 13 à 16 |
+| 12 | 16/16 | 16/16 | 16 |
+
+La **même liste de 12 tests ciblés par programme** a été utilisée dans les deux conditions. Aucun nouveau cas n'a été ajouté. Les 16 programmes ont été évalués, aucun test de référence n'a été rejeté et les 39 tests unitaires ont réussi.
+
+Les 256 permutations ne sont pas 256 bogues indépendants. Ce résultat montre l'importance de l'ordre de nos tests ciblés sur **ces défauts connus**, pas la supériorité d'une méthode intelligente de réorganisation ni l'efficacité d'agents IA. Les statistiques sont **exploratoires**. Le résultat complet et les comptes par programme sont dans `results/exp005-summary.json`. Les observations détaillées ont été enregistrées en artefact `exp005-order-raw` du run GitHub (conservation temporaire).
+
+**Prochaine question :** apprendre ou prédéfinir un ordre de test sans consulter les défauts à détecter, puis vérifier sur de nouveaux programmes réellement indépendants. Ne pas choisir un ordre ici et revendiquer ensuite une validation sur ces 16 mêmes programmes.

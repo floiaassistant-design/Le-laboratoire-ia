@@ -102,3 +102,23 @@ Les quatre programmes pilotes sont exclus. Trois politiques à budgets égaux (1
 
 ### Prochain objectif : EXP-005
 Évaluer séparément l'**ordre des tests ciblés**, en gardant un budget fixe et en effectuant des permutations sans retoucher les ensembles de cas. Analyser l'effet sur le premier test et sur les budgets 3/6, sur le même corpus comme *analyse exploratoire*. Puis concevoir un protocole réellement nouveau (ou des corpus aveugles) pour vérifier sa généralisation, sans utiliser ces résultats pour choisir une méthode et la valider sur ces mêmes défauts.
+
+## EXP-005 — permutations des tests ciblés
+
+Même 16 programmes, mêmes 12 cas ciblés par programme que dans EXP-004B. L'hypothèse est que leur **ordre** pénalise les petits budgets. Script `python -m lab.quixbugs_order`, protocole `experiments/EXP-005.md`. Comparaison du préfixe initial et de permutations aléatoires avec probabilité combinatoire exacte. Il s'agit d'une analyse exploratoire, pas d'une validation sur un nouveau benchmark ni de l'exécution d'agents IA. Le résultat est à publier après vérification CI.
+
+
+## Résultats vérifiés EXP-005 (CI n° 41598473940)
+
+| Budget | Ordre initial : programmes détectés | Ordre uniformément permuté : espérance exacte | 10e–90e centile empirique, 256 permutations |
+|---:|---:|---:|---:|
+| 1 | 0/16 | 8,33/16 | 6 à 10 |
+| 3 | 11/16 | 12,46/16 | 11 à 14 |
+| 6 | 12/16 | 14,70/16 | 13 à 16 |
+| 12 | 16/16 | 16/16 | 16 |
+
+La **même liste de 12 tests ciblés par programme** a été utilisée dans les deux conditions. Aucun nouveau cas n'a été ajouté. Les 16 programmes ont été évalués, aucun test de référence n'a été rejeté et les 39 tests unitaires ont réussi.
+
+Les 256 permutations ne sont pas 256 bogues indépendants. Ce résultat montre l'importance de l'ordre de nos tests ciblés sur **ces défauts connus**, pas la supériorité d'une méthode intelligente de réorganisation ni l'efficacité d'agents IA. Les statistiques sont **exploratoires**. Le résultat complet et les comptes par programme sont dans `results/exp005-summary.json`. Les observations détaillées ont été enregistrées en artefact `exp005-order-raw` du run GitHub (conservation temporaire).
+
+**Prochaine question :** apprendre ou prédéfinir un ordre de test sans consulter les défauts à détecter, puis vérifier sur de nouveaux programmes réellement indépendants. Ne pas choisir un ordre ici et revendiquer ensuite une validation sur ces 16 mêmes programmes.
