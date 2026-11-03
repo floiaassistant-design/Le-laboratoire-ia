@@ -36,9 +36,16 @@ def _canonical_test_id(test: unittest.case.TestCase, root: Path) -> str:
     if "." in class_name:
         # Nested/dynamically-generated classes need a separate naming policy.
         raise ValueError("Nested/dynamically-generated unittest class not supported")
-    relative = Path(*module_name.split(".")).with_suffix(".py")
-    if not (root / relative).is_file():
-        raise ValueError("Runtime test module is not an existing source file")
+    # unittest's CLI (discover -s tests) imports 'test_file', while
+    # top_level_dir=root imports 'tests.test_file'. Both identify the
+    # same checked-out file. Reject ambiguity instead of guessing.
+    module_path = Path(*module_name.split(".")).with_suffix(".py")
+    candidate_paths = (module_path, Path("tests") / module_path)
+    present = [path for path in dict.fromkeys(candidate_paths)
+               if (root / path).is_file()]
+    if len(present) != 1:
+        raise ValueError("Runtime module does not map uniquely to source")
+    relative = present[0]
     return relative.as_posix() + "::" + class_name + "::" + method_name
 
 
