@@ -366,6 +366,12 @@ def main(argv=None):
         "failures":report["failures"],
         "per_case":[{"case":c["case"],"n":c["runtime_test_count"],
                      "detecting":c["detecting_assertion_test_count"],
+                     "detecting_test_ids":c["detecting_test_ids"],
+                     "first_detection_rank":{
+                         name:c["policies"][name]["earliest_detecting_position"]
+                         for name in ("lexical","seeded_random","structural_diversity")},
+                     "fixed_status_counts":c["fixed_status_counts"],
+                     "buggy_status_counts":c["buggy_status_counts"],
                      "changed_error":c["changed_error_not_counted"]}
                     for c in report["cases"]],
         "agents_evaluated":report["agents_evaluated"],
