@@ -1,0 +1,81 @@
+{
+  "experiment": "EXP-006C",
+  "stage": "known_defect_reproduction_in_second_independent_project",
+  "status": "confirmed",
+  "date": "2026-11-03",
+  "ci": {
+    "run_id": 41603652941,
+    "pr": 13,
+    "head_sha": "7b3d3ac9af7338185934474c1dd9943555f36613",
+    "conclusion": "success",
+    "jobs_passed": 3,
+    "unit_tests_passed": 69,
+    "summary_source": "GitHub Actions logs, job 125808327919"
+  },
+  "source_benchmark": {
+    "name": "BugsInPy",
+    "repository": "soarsmu/BugsInPy",
+    "pinned_commit": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+    "bug_number": 1,
+    "benchmark_code_copied": false,
+    "license_entire_benchmark_confirmed": false
+  },
+  "project": {
+    "repository": "tqdm/tqdm",
+    "separate_from_previous": "cool-RR/PySnooper",
+    "license_history": "LICENCE notes MPLv2.0 and MIT contributions",
+    "original_buggy_python": "3.6.9",
+    "runner_python": "3.8.18"
+  },
+  "bug": {
+    "known_problem": "tenumerate did not propagate start to enumerate",
+    "buggy_commit": "8cc777fe8401a05d07f2c97e65d15e4460feab88",
+    "fixed_commit": "c0dcf39b046d1b4ff6de14ac99ad9a1b10487512",
+    "fixed_parent_is_buggy": true,
+    "probe_kind": "custom known-symptom regression, not official benchmark test",
+    "input": [
+      "a",
+      "b",
+      "c"
+    ],
+    "start": 42,
+    "buggy_executed_successfully": true,
+    "buggy_observed_indexes": [
+      0,
+      1,
+      2
+    ],
+    "fixed_executed_successfully": true,
+    "fixed_observed_indexes": [
+      42,
+      43,
+      44
+    ],
+    "values_unchanged": true,
+    "reproduction_confirmed": true
+  },
+  "security": {
+    "job": "Ubuntu 22.04 isolated GitHub-hosted runner",
+    "repository_permissions": "contents:read",
+    "persistent_checkout_credentials": false,
+    "thirdparty_setup_scripts_run": false,
+    "thirdparty_dependencies_installed": false,
+    "source_cloned_to_temporary_directory": true,
+    "temporary_clone_committed": false,
+    "paid_apis": false
+  },
+  "interpretation": {
+    "second_independent_real_project": true,
+    "bugs_known_and_calibrated_across_two_projects": 2,
+    "bugs_newly_discovered": 0,
+    "testing_policies_compared": 0,
+    "llm_agents_evaluated": 0,
+    "limitations": [
+      "Two known and symptom-selected defects across distinct projects are not a held-out validation corpus.",
+      "Test helper uses transparent tqdm_class rather than upstream default progress renderer.",
+      "This 2020 defect originally documented on Python 3.6.9 was tested here on Python 3.8.18.",
+      "No original BugsInPy project test suite executed.",
+      "No evidence yet that any test prioritization policy outperforms baselines on real software."
+    ]
+  }
+}

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 from urllib.error import HTTPError, URLError
@@ -75,10 +76,17 @@ def load_manifest(path: Path = MANIFEST) -> dict:
 
 def _retrieve(url: str, *, binary: bool = False) -> bytes:
     """Small bounded read; URLs are only derived from validated fixed inputs."""
-    request = Request(url, headers={
+    headers = {
         "User-Agent": "laboratoire-ia-exp006b-metadata-preflight",
         "Accept": "application/vnd.github+json" if "api.github.com" in url else "text/plain",
-    })
+    }
+    # Attach the ephemeral read-only CI token ONLY to the GitHub API host.
+    # Never forward it to raw.githubusercontent.com or other hosts.
+    if url.startswith("https://api.github.com/"):
+        token = os.environ.get("GITHUB_TOKEN")
+        if token:
+            headers["Authorization"] = "Bearer " + token
+    request = Request(url, headers=headers)
     with urlopen(request, timeout=20) as response:
         if response.status != 200:
             raise ValueError(f"Non-OK source status: {response.status}")
@@ -106,7 +114,11 @@ def inspect_case(item: dict) -> dict:
         checks["regression_test_in_fixed_revision"] = bool(
             re.search(r"\bdef\s+" + re.escape(item["test_name"]) + r"\s*\(", test_text))
         checks["fixed_sha_matches_api"] = meta.get("sha") == item["fixed"]
-    except (HTTPError, URLError, TimeoutError, ValueError, UnicodeError, KeyError, OSError) as exc:
+    except HTTPError as exc:
+        return {"id": item["id"], "source_verified": False,
+                "checks": checks, "network_or_source_error": "HTTPError",
+                "http_status": exc.code}
+    except (URLError, TimeoutError, ValueError, UnicodeError, KeyError, OSError) as exc:
         return {"id": item["id"], "source_verified": False,
                 "checks": checks, "network_or_source_error": type(exc).__name__}
     return {"id": item["id"], "source_verified": all(checks.values()),
