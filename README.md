@@ -102,3 +102,7 @@ Les quatre programmes pilotes sont exclus. Trois politiques à budgets égaux (1
 
 ### Prochain objectif : EXP-005
 Évaluer séparément l'**ordre des tests ciblés**, en gardant un budget fixe et en effectuant des permutations sans retoucher les ensembles de cas. Analyser l'effet sur le premier test et sur les budgets 3/6, sur le même corpus comme *analyse exploratoire*. Puis concevoir un protocole réellement nouveau (ou des corpus aveugles) pour vérifier sa généralisation, sans utiliser ces résultats pour choisir une méthode et la valider sur ces mêmes défauts.
+
+## EXP-005 — permutations des tests ciblés
+
+Même 16 programmes, mêmes 12 cas ciblés par programme que dans EXP-004B. L'hypothèse est que leur **ordre** pénalise les petits budgets. Script `python -m lab.quixbugs_order`, protocole `experiments/EXP-005.md`. Comparaison du préfixe initial et de permutations aléatoires avec probabilité combinatoire exacte. Il s'agit d'une analyse exploratoire, pas d'une validation sur un nouveau benchmark ni de l'exécution d'agents IA. Le résultat est à publier après vérification CI.

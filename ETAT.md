@@ -74,3 +74,10 @@ Première exécution de la PR #3 : 0 tests unitaire effectivement découverts, m
 
 ### Prochain objectif : EXP-005
 Évaluer séparément l'**ordre des tests ciblés**, en gardant un budget fixe et en effectuant des permutations sans retoucher les ensembles de cas. Analyser l'effet sur le premier test et sur les budgets 3/6, sur le même corpus comme *analyse exploratoire*. Puis concevoir un protocole réellement nouveau (ou des corpus aveugles) pour vérifier sa généralisation, sans utiliser ces résultats pour choisir une méthode et la valider sur ces mêmes défauts.
+
+## EXP-005 — protocole de travail
+
+- Statut : codage de l'analyse de permutations, vérification CI à réaliser.
+- Aucun changement des entrées / générateurs d'EXP-004B : réemploi de `edge_probes`.
+- Comparaison de l'ordre initial et de 256 permutations, budgets 1/3/6/12, probabilité exacte calculée à partir des erreurs détectables pour chaque programme.
+- Conserver les résultats même s'ils invalident l'hypothèse, sans ajustement post hoc ; ne pas confondre permutations et défauts indépendants.
