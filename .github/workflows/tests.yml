@@ -64,6 +64,8 @@ jobs:
       - name: EXP-006B validate new-corpus manifest locally
         run: python -m lab.external_corpus_preflight --offline
       - name: EXP-006B verify upstream source metadata (no code execution)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python -m lab.external_corpus_preflight --online
       - name: Archive EXP-006B qualification evidence
         if: always()
