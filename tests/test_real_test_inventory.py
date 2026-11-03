@@ -92,8 +92,8 @@ def test_many(x):
         self.create("test_a.py", "def test_a(): pass")
         one, two = scan_directory(self.root), scan_directory(self.root)
         self.assertEqual(one, two)
-        self.assertEqual([x["function"] for x in one["test_candidates"]],
-                         ["test_a", "test_z"])
+        paths = [x["file"] for x in one["test_candidates"]]
+        self.assertEqual(paths, sorted(["tests/test_a.py", "tests/sub/test_z.py"]))
 
     def test_duplicate_methods_reported(self):
         self.create("test_dup.py", "def test_same(): pass\n"
