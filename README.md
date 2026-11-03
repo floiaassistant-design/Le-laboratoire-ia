@@ -290,3 +290,7 @@ Les trois rapports **intégraux par test et par version** sont archivés pour 30
 **Limite décisive :** ce sont des bugs **historiques et connus**, comparés avec des tests post-correctif. Il n'y a **aucune découverte de bug inédit**, ni validation aveugle, ni démonstration qu'une IA améliore la sélection. Aucune API facturée ni aucun modèle supplémentaire n'a été utilisé.
 
 **Prochaine étape :** auditer les quatre cas sans témoin d'assertion, puis construire un protocole séparé et figé sur de **nouveaux bugs** avec un oracle plus complet (sans transformer artificiellement les erreurs d'environnement en vrais défauts). Ne pas choisir un ordre à partir des rangs observés ici puis prétendre l'évaluer indépendamment sur ces huit cas.
+
+## EXP-009A — audit du banc d'oracles
+
+Trois des quatre cas sans témoin d'assertion dans EXP-008B présentent en fait une transition ERROR (ancien) -> PASS (corrigé) : youtube-dl-4, tornado-2 et cookiecutter-1. Le quatrième, tornado-3, conserve PASS des deux côtés. Ces ERROR sont des signaux non attribués, **pas des bugs automatiquement prouvés**. Les anciens scores restent inchangés. Protocole : experiments/EXP-009A.md ; résultat permanent : results/exp009a-oracle-audit.json ; vérificateur de statuts sans rescoring : lab.oracle_audit.
