@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 57)
+      - name: Unit tests (must discover >= 61)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 57"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 61"
       - name: Reproduce EXP-003
         run: python run_hybrid.py
       - name: EXP-004A external benchmark smoke test
@@ -72,4 +72,27 @@ jobs:
           name: exp006b-corpus-preflight
           path: results/exp006b-preflight.json
           if-no-files-found: error
+          retention-days: 30
+
+  historical-reproduction:
+    name: Pinned historical Unicode bug (non-scoring smoke test)
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Reproduce one real defect with ASCII locale
+        run: python -m lab.pysnooper_unicode_smoke --online
+      - name: Archive historical source reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp006b-realbug-smoke
+          path: results/exp006b-realbug-smoke.json
+          if-no-files-found: warn
           retention-days: 30

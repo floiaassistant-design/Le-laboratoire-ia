@@ -47,3 +47,12 @@ python -m lab.external_corpus_preflight --online
 ```
 
 L'exécution en ligne nécessite une connexion réseau publique et ne se fait automatiquement que sur PR/push. Aucun modèle local, aucune API commerciale et aucune automatisation planifiée.
+
+
+## Épreuve de reproductibilité réelle, séparée du scoring
+
+Un **deuxième job GitHub Actions** sur Python 3.8 tente de vérifier le bug Unicode PySnooper-1 : récupérer le projet PySnooper directement depuis son dépôt MIT, replacer successivement les deux commits figés, et exécuter **notre propre mini-probe**, sous une locale ASCII explicite. L'attente est un `UnicodeEncodeError` précis dans la version fautive et un passage réussi dans la version corrigée. Une erreur d'import, une panne réseau ou un échec commun aux deux commits **ne sont pas comptés comme reproduction**.
+
+Cette épreuve **ne réutilise pas** le test officiel de BugsInPy, ne copie pas le code source de PySnooper dans notre dépôt et n'installe pas les dépendances historiques. C'est une **calibration d'exécution sur un seul bogue connu**, pas une évaluation aveugle et encore moins une amélioration de nos politiques de sélection.
+
+La CI doit être entièrement verte ; si cette calibration échoue, publier et examiner la raison, sans fusionner une PR rouge.
