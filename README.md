@@ -199,3 +199,7 @@ Le [run #41604816339](https://github.com/floiaassistant-design/Le-laboratoire-ia
 L'échec post-fusion précédent est **conservé** dans le journal scientifique : il s'agissait d'une non-reproductibilité de notre procédure (probablement liée aux caches Python lors des changements de commit dans le même dossier), pas de la découverte d'un nouveau bug. Le changement corrige l'isolation et les trois répétitions réussies attestent un meilleur comportement dans la CI. **La cause exacte n'est pas démontrée isolément**. La reproductibilité devra rester surveillée sur `main`.
 
 Les répétitions ne comptent pas comme de nouveaux défauts, et la nouvelle méthode de sélection n'est toujours pas évaluée sur ces logiciels réels.
+
+## EXP-007A — inventorier les tests réels sans les exécuter
+
+`lab.real_test_inventory` lit statiquement les définitions Python `test_*` via l'AST, génère des identifiants et des signatures structurelles, et signale les erreurs. La CI valide d'abord ce mécanisme sur les fichiers du laboratoire ; **aucun programme bugué n'est exécuté, aucune stratégie testée, aucun modèle IA requis**. Ce ne sont que des candidats de tests (pas une collecte pytest certifiée). Protocole : `experiments/EXP-007A.md`.

@@ -185,3 +185,10 @@ Le [run #41604816339](https://github.com/floiaassistant-design/Le-laboratoire-ia
 L'échec post-fusion précédent est **conservé** dans le journal scientifique : il s'agissait d'une non-reproductibilité de notre procédure (probablement liée aux caches Python lors des changements de commit dans le même dossier), pas de la découverte d'un nouveau bug. Le changement corrige l'isolation et les trois répétitions réussies attestent un meilleur comportement dans la CI. **La cause exacte n'est pas démontrée isolément**. La reproductibilité devra rester surveillée sur `main`.
 
 Les répétitions ne comptent pas comme de nouveaux défauts, et la nouvelle méthode de sélection n'est toujours pas évaluée sur ces logiciels réels.
+
+## EXP-007A — phase d'inventaire statique
+
+- Création d'un inventaire de définitions de tests Python (AST pur), sans exécution, sans import ni lecture de résultats de bugs.
+- Validation sur la suite de tests du laboratoire ; identifiants, métriques de structure, paramétrisations non développées.
+- 16 tests unitaires spécifiques ajoutés ; seuil attendu de 90 tests ; chiffres réels à confirmer par la CI.
+- Étape suivante : vérifier l'inventaire contre une collecte réelle dans un environnement isolé, puis préparer un corpus non utilisé auparavant. Pas de scoring de politiques dans cette phase.
