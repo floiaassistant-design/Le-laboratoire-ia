@@ -1,5 +1,21 @@
 # État du laboratoire IA
 
+
+## EXP-010A — pilote de coordination adaptative (branche expérimentale)
+
+Une piste distincte des bugs historiques démarre sur la branche
+feat/exp010a-adaptive-agent-orchestrator : routeur Python **sans modèle**
+(single / parallel / review / blocked), 20 tests synthétiques
+supplémentaires, et trace hors ligne de six scénarios.
+Protocole : [EXP-010A](experiments/EXP-010A-ADAPTIVE-ROUTING.md).
+La CI de la branche doit découvrir au moins **291 tests** et archiver
+la trace de contrôle. **Aucun agent IA réel, aucun score de qualité,
+aucune découverte scientifique n'est revendiqué à cette étape.**
+Le travail EXP-009E et les issues #29 et #35 restent prioritaires
+pour la mesure sur les défauts historiques. Ne fusionner la nouvelle
+PR qu'après CI complète verte sur son dernier commit.
+
+
 ## REPRISE IMMÉDIATE — pour un autre agent (état vérifié le 4 novembre 2026)
 
 > **Cette section prime sur les anciennes rubriques « prochaine étape » ci-dessous**, qui constituent un journal historique. Ne pas supposer que les derniers messages d'une conversation sont plus récents que GitHub : vérifier l'état du dépôt avant toute action. Un agent ne possède pas automatiquement le contexte des chats précédents.

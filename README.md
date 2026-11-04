@@ -1,5 +1,14 @@
 # Laboratoire IA — recherche expérimentale
 
+
+**Piste d'architecture en cours (EXP-010A) :**
+[routeur adaptatif sans modèle](experiments/EXP-010A-ADAPTIVE-ROUTING.md),
+avec simulateurs de rôles, refus explicite en cas de blocage et
+comparateurs fixes. Il s'agit d'un **pilote de contrôle de flux**,
+pas d'une collaboration réelle entre LLM ni d'une mesure de supériorité.
+Les expérimentations sur bugs historiques restent régies par les issues #29/#35.
+
+
 Prototype indépendant consacré à l'évaluation rigoureuse de méthodes de vérification et, plus tard, de véritables architectures d'agents IA.
 
 **État actuel et consignes de reprise entre agents : [ETAT.md — REPRISE IMMÉDIATE](ETAT.md#reprise-immédiate--pour-un-autre-agent-état-vérifié-le-4-novembre-2026).** Le projet a progressé jusqu'à **EXP-009E**, inventaire AST des tests des 12 défauts historiques (448 occurrences statiques, **sans exécution de leurs tests ni score**). Les missions suivantes sont [#29 — environnements reproductibles](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/29) et [#35 — témoins métier et contraintes OS](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/35), à figer avant toute mesure. L'[issue #23](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23) conserve l'historique scientifique des phases précédentes. Les rubriques plus anciennes de ce README restent un historique des expériences. Aucune API de modèle facturée, aucune automatisation périodique.
