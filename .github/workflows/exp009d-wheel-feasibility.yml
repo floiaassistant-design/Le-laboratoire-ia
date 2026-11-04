@@ -1,0 +1,55 @@
+name: exp009d-wheel-feasibility
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009d-wheel-feasibility.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009d-wheel-feasibility.yml'
+jobs:
+  historical-binary-wheel-probe:
+    name: EXP-009D wheels ${{ matrix.project }} (Python ${{ matrix.python }})
+    runs-on: ubuntu-22.04
+    timeout-minutes: 9
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: black
+            python: '3.8'
+          - project: fastapi
+            python: '3.8'
+          - project: httpie
+            python: '3.7'
+          - project: thefuck
+            python: '3.7'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Validate frozen scope (offline; no test execution)
+        run: python -m lab.exp009d_wheels --project "${{ matrix.project }}" --offline
+      - name: Download selected binary wheels only (never install or import upstream)
+        env:
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.exp009d_wheels --project "$PROJECT"
+      - name: Archive resolved wheel metadata and all blockers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009d-wheels-${{ matrix.project }}
+          path: results/exp009d-wheels-${{ matrix.project }}.json
+          if-no-files-found: error
+          retention-days: 30

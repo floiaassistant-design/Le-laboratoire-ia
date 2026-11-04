@@ -1,0 +1,78 @@
+{
+  "experiment": "EXP-009D",
+  "phase": "initial_binary_wheel_feasibility",
+  "status": "first_observed_run_non_scoring",
+  "cohort": "12 historical candidates across 4 projects",
+  "workflow_run": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41804523888",
+  "checked_on": "2026-11-04",
+  "projects": [
+    {
+      "project": "black",
+      "cases": [
+        "black-1",
+        "black-2",
+        "black-3"
+      ],
+      "python_minor": "3.8",
+      "status": "wheels_downloaded_not_installed",
+      "wheel_count": 9,
+      "blocked": false
+    },
+    {
+      "project": "fastapi",
+      "cases": [
+        "fastapi-1",
+        "fastapi-2",
+        "fastapi-3"
+      ],
+      "python_minor": "3.8",
+      "status": "wheels_downloaded_not_installed",
+      "wheel_count": 9,
+      "blocked": false
+    },
+    {
+      "project": "httpie",
+      "cases": [
+        "httpie-1",
+        "httpie-2",
+        "httpie-3"
+      ],
+      "python_minor": "3.7",
+      "status": "wheels_downloaded_not_installed",
+      "wheel_count": 38,
+      "blocked": false
+    },
+    {
+      "project": "thefuck",
+      "cases": [
+        "thefuck-1",
+        "thefuck-2",
+        "thefuck-3"
+      ],
+      "python_minor": "3.7",
+      "status": "blocked",
+      "reason": "binary_only_resolution_failed",
+      "wheel_count": 0,
+      "blocked": true
+    }
+  ],
+  "project_counts": {
+    "wheel_resolution_success": 3,
+    "blocked": 1
+  },
+  "case_counts": {
+    "associated_with_downloaded_wheels": 9,
+    "associated_with_blocked_project": 3
+  },
+  "measurement_scope": "partial pinned direct requirements and transitives, binary-only resolution, no install or imports",
+  "historical_patch_exact": false,
+  "transitive_pins_frozen_before_run": false,
+  "full_environment_qualified": false,
+  "third_party_tests_executed": 0,
+  "bugs_newly_discovered": 0,
+  "model_calls": 0,
+  "policy_scores_generated": 0,
+  "historical_primary_scores_unchanged": true,
+  "next_step": "Post hoc diagnosis in separate experiment/PR to identify which TheFuck direct requirements have Linux Python 3.7 wheels; do not retroactively change the frozen first-pass 4-project plan.",
+  "limits": "Three successful downloads do not prove an installable or reproducible historical test suite."
+}
