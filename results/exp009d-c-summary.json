@@ -1,0 +1,54 @@
+{
+  "experiment": "EXP-009D-C",
+  "phase": "post_hoc_binary_alternative_feasibility",
+  "result_source": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41806310288",
+  "original_problem": "psutil==5.6.7 blocked in original first-pass wheel feasibility",
+  "original_outcome_preserved": true,
+  "cohort_case_ids": [
+    "thefuck-1",
+    "thefuck-2",
+    "thefuck-3"
+  ],
+  "ordering_decided_before_probe": [
+    "psutil==5.7.3",
+    "psutil==5.8.0",
+    "psutil==5.9.8"
+  ],
+  "observed": [
+    {
+      "requirement": "psutil==5.7.3",
+      "status": "blocked",
+      "reason": "binary_download_or_resolution_failed"
+    },
+    {
+      "requirement": "psutil==5.8.0",
+      "status": "wheels_downloaded_not_installed"
+    },
+    {
+      "requirement": "psutil==5.9.8",
+      "status": "wheels_downloaded_not_installed"
+    }
+  ],
+  "selection_rule": "first_available_in_predeclared_order",
+  "selected_alternative": "psutil==5.8.0",
+  "combined_requirements": [
+    "psutil==5.8.0",
+    "pyte==0.8.0",
+    "pytest==5.4.3",
+    "pexpect==4.8.0"
+  ],
+  "combined_wheel_resolution": "wheels_downloaded_not_installed",
+  "combined_wheel_count": 14,
+  "status": "partial_environment_artifacts_downloadable_not_reproduced",
+  "historical_equivalence": false,
+  "full_environment_installation_tested": false,
+  "tests_of_historical_bug_cases_executed": 0,
+  "bugs_discovered": 0,
+  "policy_scores_generated": 0,
+  "separate_post_hoc_result": true,
+  "remaining_work": [
+    "Check licensing, transitive and system dependencies for the substitute and any impact on historical behavior.",
+    "Freeze an isolated install/test plan, a per-case semantic oracle and exclusions before any bug outcome measurement.",
+    "Never present the newly chosen alternate psutil as the original historical psutil version."
+  ]
+}
