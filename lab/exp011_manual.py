@@ -53,8 +53,8 @@ def validate_plan(plan: dict) -> None:
         raise ValueError("EXP-011 pre-registration changed")
     routing = plan.get("routing_rule", {})
     if (routing.get("feature") != "question_word_count_only"
-            or routing.get("uncertainty_ge_65_words") != 2
-            or routing.get("uncertainty_below_65_words") != 0
+            or routing.get("uncertainty_ge_50_words") != 2
+            or routing.get("uncertainty_below_50_words") != 0
             or routing.get("parallelizable_ge_40_words") is not True
             or routing.get("parallelizable_below_40_words") is not False
             or routing.get("mandatory_review") is not False
@@ -110,7 +110,7 @@ def read_pinned_source(payload: bytes, plan: dict) -> list:
 def task_profile(question: str, identity: str) -> Task:
     words = len(question.split())
     # Predeclared input-only rule; it does not inspect solutions.
-    return Task(identity, 2 if words >= 65 else 0,
+    return Task(identity, 2 if words >= 50 else 0,
                 words >= 40, False, 2)
 
 
