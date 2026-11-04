@@ -37,3 +37,20 @@ les transitives/la résolution groupée, **sans preuve encore de causalité**.
 
 Les scores EXP-008B restent 2/8, aucun bug nouveau testé, aucune
 comparaison de stratégies modifiée et aucun modèle évalué.
+
+
+## Résultat du premier diagnostic
+
+Le [run #41805423888](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41805423888)
+a conservé les quatre sous-sondes sans blocage de collecte :
+\`psutil==5.6.7\` a échoué en téléchargement binaire direct
+\`binary_only_no_deps_download_failed\`, tandis que \`pyte==0.8.0\`,
+\`pytest==5.4.3\` et \`pexpect==4.8.0\` ont chacun fourni
+une roue. Résumé : \`results/exp009d-b-summary.json\`.
+
+**Interprétation limitée :** cela localise le blocage direct apparent
+sur la version sélectionnée de \`psutil\` dans cet environnement
+Linux/Python 3.7. Ce n'est ni une preuve d'incompatibilité intrinsèque
+sur toutes les machines ni un résultat sur les trois bugs TheFuck.
+Tout essai d'une autre version de \`psutil\` est une **nouvelle hypothèse
+post hoc**, à enregistrer dans un manifeste distinct avant exécution.
