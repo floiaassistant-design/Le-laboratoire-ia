@@ -17,8 +17,7 @@ def plan():
 
 def fixtures():
     p = plan()
-    rows = [{"question": "A safe public-like sample asks for an answer. "
-                         "This question is a synthetic testing placeholder.",
+    rows = [{"question": " ".join(["Synthetic"] * 44) + " answer?",
              "answer": "Compute a solution.\n#### 42"} for _ in range(1319)]
     return make_packet_data(rows, p, hashlib.sha256(PLAN.read_bytes()).hexdigest())
 
