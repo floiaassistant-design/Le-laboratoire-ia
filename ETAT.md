@@ -1,5 +1,23 @@
 # État du laboratoire IA
 
+## EXP-010B — comparaison mécanique de quatre politiques (en cours sur branche)
+
+Branche : feat/exp010b-synthetic-evaluation. Suite du routeur
+EXP-010A (PR #38, fusionnée au commit 343e04d34dbaa12f803caaa1ee88d9a430d24ff0).
+Comparaison sur **16 tâches inventées** et quatre politiques, soit
+64 évaluations, avec réponses symboliques prédéfinies. Contrôles des
+faux consensus, des critiques trompeuses, des blocages et budgets.
+20 tests unitaires ajoutés ; seuil CI requis **311 tests**.
+Protocole : [EXP-010B](experiments/EXP-010B-SYNTHETIC-EVALUATION.md).
+
+**Interprétation** : il s'agit d'un banc synthétique conçu à la main,
+et nullement d'une validation aveugle ou d'une comparaison de modèles
+IA réels. Le coût compte des appels fictifs, pas des tokens.
+La fusion doit attendre l'intégralité des contrôles verts sur le
+dernier SHA. Les questions #29/#35 sur les douze défauts historiques
+et le maintien des anciens scores restent inchangés.
+
+
 
 ## EXP-010A — pilote de coordination adaptative (branche expérimentale)
 
