@@ -178,8 +178,18 @@ def inspect_project(project, *, token=""):
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project", choices=PROJECTS, required=True)
+    parser.add_argument("--project", choices=PROJECTS)
+    parser.add_argument("--offline", action="store_true")
     args = parser.parse_args(argv)
+    if args.offline:
+        manifest = json.loads(CANDIDATES.read_text(encoding="utf-8"))
+        validate_manifest(manifest)
+        hypotheses = json.loads(HYPOTHESES.read_text(encoding="utf-8"))
+        print("EXP009E_FROZEN_PLAN=" + json.dumps(
+            validate_semantics(hypotheses, manifest), sort_keys=True))
+        return
+    if not args.project:
+        parser.error("Specify --project for upstream static inspection")
     r = inspect_project(args.project, token=os.getenv("GITHUB_TOKEN", ""))
     output = ROOT / "results" / ("exp009e-testbank-" + args.project + ".json")
     output.parent.mkdir(parents=True, exist_ok=True)
