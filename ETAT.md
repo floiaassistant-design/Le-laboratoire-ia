@@ -1,40 +1,47 @@
 # État du laboratoire IA
 
-## EXP-010B — comparaison mécanique de quatre politiques (en cours sur branche)
+## REPRISE À JOUR — 4 novembre 2026, EXP-011 en cours
 
-Branche : feat/exp010b-synthetic-evaluation. Suite du routeur
-EXP-010A (PR #38, fusionnée au commit 343e04d34dbaa12f803caaa1ee88d9a430d24ff0).
-Comparaison sur **16 tâches inventées** et quatre politiques, soit
-64 évaluations, avec réponses symboliques prédéfinies. Contrôles des
-faux consensus, des critiques trompeuses, des blocages et budgets.
-20 tests unitaires ajoutés ; seuil CI requis **311 tests**.
-Protocole : [EXP-010B](experiments/EXP-010B-SYNTHETIC-EVALUATION.md).
+**Projet** : floiaassistant-design/Le-laboratoire-ia, branche officielle main.
+**Dernier main fusionné vérifié** : 7e78451bed72a9d0b7dc7741dc6b0edf1b477abd
+(PR #39). Les **7 workflows post-fusion de la PR #39 ont tous réussi** ;
+le dépôt comptait **311 tests** avant EXP-011.
 
-**Interprétation** : il s'agit d'un banc synthétique conçu à la main,
-et nullement d'une validation aveugle ou d'une comparaison de modèles
-IA réels. Le coût compte des appels fictifs, pas des tokens.
-La fusion doit attendre l'intégralité des contrôles verts sur le
-dernier SHA. Les questions #29/#35 sur les douze défauts historiques
-et le maintien des anciens scores restent inchangés.
+**Travail terminé**
+- PR #38, EXP-010A : routeur déterministe sans modèle,
+  trois rôles possibles et contrôle des blocages ; 20 tests nouveaux.
+- PR #39, EXP-010B : 16 cas symboliques, quatre politiques,
+  64 évaluations simulées, critique parfois trompeur ; 20 tests nouveaux.
+  Aucun modèle réel n'a été interrogé et aucun gain scientifique prouvé.
+- EXP-009E : inventaire statique des 12 défauts historiques ; 448
+  occurrences de définitions, **pas 448 tests observés** ni de nouveau score.
 
+**Travail en cours** : branche feat/exp011-manual-real-task-protocol,
+issue #40. Préenregistrement de 16 tâches GSM8K publiques (4 de
+calibration / 12 d'évaluation), source et empreinte figées, puis
+préparateur de questions sans réponses et évaluateur de sessions
+manuellement consignées. Protocole :
+[EXP-011](experiments/EXP-011-MANUAL-REAL-TASKS.md).
+**Ce travail est un outil d'étude**, pas une exécution de modèle :
+0 appel LLM, 0 résultat mesuré, 0 revendication de supériorité.
+La nouvelle CI exigera au moins 350 tests ; fusion seulement après tous
+les contrôles verts sur le dernier SHA, suivis des contrôles post-fusion.
 
+**Priorités parallèles toujours ouvertes** : les issues #29 et #35
+(qualification des environnements et témoins métier de 12 vrais bugs).
+Aucun des 12 nouveaux défauts n'est exécuté ou noté ; EXP-008B reste
+2/8 à budget 12 pour les trois politiques. Ne pas fusionner des résultats
+mathématiques GSM8K avec les scores des bugs.
 
-## EXP-010A — pilote de coordination adaptative (branche expérimentale)
+**À la prochaine reprise** : vérifier PRs, branche main, runs GitHub
+Actions ; lire cette section, l'issue #40, le manifeste
+experiments/exp011-gsm8k-plan.json et les limitations EXP-011.
+Pour faire réellement collaborer des modèles, il faudra des sessions
+isolées et un relevé manuel ou un connecteur modèle explicitement
+disponible : GitHub Actions seul n'appelle aucun modèle.
 
-Une piste distincte des bugs historiques démarre sur la branche
-feat/exp010a-adaptive-agent-orchestrator : routeur Python **sans modèle**
-(single / parallel / review / blocked), 20 tests synthétiques
-supplémentaires, et trace hors ligne de six scénarios.
-Protocole : [EXP-010A](experiments/EXP-010A-ADAPTIVE-ROUTING.md).
-La CI de la branche doit découvrir au moins **291 tests** et archiver
-la trace de contrôle. **Aucun agent IA réel, aucun score de qualité,
-aucune découverte scientifique n'est revendiqué à cette étape.**
-Le travail EXP-009E et les issues #29 et #35 restent prioritaires
-pour la mesure sur les défauts historiques. Ne fusionner la nouvelle
-PR qu'après CI complète verte sur son dernier commit.
-
-
-## REPRISE IMMÉDIATE — pour un autre agent (état vérifié le 4 novembre 2026)
+---
+## JOURNAL ANTÉRIEUR — reprise historique avant EXP-010
 
 > **Cette section prime sur les anciennes rubriques « prochaine étape » ci-dessous**, qui constituent un journal historique. Ne pas supposer que les derniers messages d'une conversation sont plus récents que GitHub : vérifier l'état du dépôt avant toute action. Un agent ne possède pas automatiquement le contexte des chats précédents.
 
