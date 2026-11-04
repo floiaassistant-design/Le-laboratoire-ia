@@ -1,0 +1,41 @@
+name: exp009d-psutil-alternatives
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009d-psutil-alternatives.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009d-psutil-alternatives.yml'
+jobs:
+  psutil-wheel-calibration:
+    name: EXP-009D-C post hoc alternative psutil wheels (no code execution)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.7'
+      - name: Validate immutable alternative selection rule (no download)
+        run: python -m lab.exp009d_psutil_alternatives --offline
+      - name: Probe 3 psutil alternatives and one first-available complete wheel set
+        run: python -m lab.exp009d_psutil_alternatives
+      - name: Archive all versions and all blockers, never raw pip logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009d-c-psutil-alternatives
+          path: results/exp009d-c-psutil-alternatives.json
+          if-no-files-found: error
+          retention-days: 30
