@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Unit tests (must discover >= 291)
+      - name: Unit tests (must discover >= 311)
         run: |
           python -m unittest discover -s tests -v
-          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 291"
+          python -c "import unittest; n=unittest.TestLoader().discover('tests').countTestCases(); print('Discovered tests:', n); assert n >= 311"
       - name: EXP-010A model-free adaptive agent routing smoke
         run: python -m lab.exp010a_adaptive --output results/exp010a-smoke.json
       - name: Archive EXP-010A synthetic orchestration trace
@@ -27,6 +27,16 @@ jobs:
         with:
           name: exp010a-model-free-smoke
           path: results/exp010a-smoke.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: EXP-010B compare synthetic agent policies (no models)
+        run: python -m lab.exp010b_benchmark --output results/exp010b-synthetic-report.json
+      - name: Archive EXP-010B full synthetic comparison (all 64 cells)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp010b-synthetic-report
+          path: results/exp010b-synthetic-report.json
           if-no-files-found: error
           retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)

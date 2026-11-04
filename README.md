@@ -1,5 +1,12 @@
 # Laboratoire IA — recherche expérimentale
 
+**EXP-010B en préparation :** [comparaison de quatre politiques
+de routage sur 16 cas artificiels](experiments/EXP-010B-SYNTHETIC-EVALUATION.md).
+Il s'agit d'une évaluation mécanique hors ligne, avec réponses
+inventées et sans appel de modèle IA, **sans conclusion scientifique
+de supériorité**. Les expériences réelles sur les bugs restent distinctes.
+
+
 
 **Piste d'architecture en cours (EXP-010A) :**
 [routeur adaptatif sans modèle](experiments/EXP-010A-ADAPTIVE-ROUTING.md),
