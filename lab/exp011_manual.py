@@ -168,6 +168,14 @@ def make_packet_data(rows: list, plan: dict, plan_sha256: str) -> tuple:
     return packets, key, records
 
 
+def verify_prepared_files(rows: list, plan: dict, packets: dict, key: dict) -> None:
+    """Enforce that scored questions and key still match the pinned source."""
+    plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
+    expected_pack, expected_key, _ = make_packet_data(rows, plan, plan_sha)
+    if packets != expected_pack or key != expected_key:
+        raise ValueError("Manual study packet or gold key differs from pinned corpus")
+
+
 def _optional_metric(record, name, *, integral=False):
     value = record[name]
     if value is None:
@@ -188,6 +196,9 @@ def score(packets: dict, key: dict, responses: dict) -> dict:
             or len({x.get("plan_sha256") for x in (packets, key, responses)}) != 1
             or key.get("source_blob_sha") != packets.get("source_blob_sha")):
         raise ValueError("Unmatched or untrusted manual evaluation files")
+    plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
+    if packets.get("plan_sha256") != plan_sha or packets.get("source_blob_sha") != SOURCE_BLOB:
+        raise ValueError("Unregistered source or plan fingerprint")
     tasks = packets["tasks"]
     if (len(tasks) != 16 or [t["row_index"] for t in tasks]
             != list(CALIBRATION) + list(EVALUATION)):
@@ -232,8 +243,17 @@ def score(packets: dict, key: dict, responses: dict) -> dict:
     outcomes = []
     labels = set()
     for t in tasks:
-        profile = Task(t["task_id"], t["uncertainty"], t["parallelizable"],
-                       t["mandatory_review"], t["budget"])
+        if (t["task_id"] != "gsm8k-test-" + str(t["row_index"]).zfill(4)
+                or t["split"] != ("calibration" if t["row_index"] in CALIBRATION else "evaluation")
+                or not isinstance(t.get("question"), str)
+                or t.get("input_word_count") != len(t["question"].split())):
+            raise ValueError("Task identity or question metadata changed")
+        profile = task_profile(t["question"], t["task_id"])
+        if (profile.uncertainty != t["uncertainty"]
+                or profile.parallelizable != t["parallelizable"]
+                or profile.mandatory_review != t["mandatory_review"]
+                or profile.budget != t["budget"]):
+            raise ValueError("Input-only routing profile was manipulated")
         if {p: choose(profile, p) for p in POLICIES} != t["routes"]:
             raise ValueError("Task routes were manipulated")
         for policy in POLICIES:
@@ -343,6 +363,7 @@ def main(argv=None):
     prepare.add_argument("--source", required=True, help="Pinned upstream test.jsonl file")
     prepare.add_argument("--out-dir", required=True)
     grading = commands.add_parser("score")
+    grading.add_argument("--source", required=True, help="Same pinned upstream test.jsonl file")
     grading.add_argument("--out-dir", required=True)
     grading.add_argument("--report", required=True)
     args = parser.parse_args(argv)
@@ -383,9 +404,12 @@ def main(argv=None):
         print("EXP011_PREPARED_NO_MODEL_CALLS=16 tasks; separate local key")
     else:
         out = Path(args.out_dir)
-        report = score(load_json(out / "questions.json"),
-                       load_json(out / "ANSWER-KEY-PRIVATE.json"),
-                       load_json(out / "responses.json"))
+        plan = load_json(PLAN)
+        rows = read_pinned_source(Path(args.source).read_bytes(), plan)
+        packets = load_json(out / "questions.json")
+        key = load_json(out / "ANSWER-KEY-PRIVATE.json")
+        verify_prepared_files(rows, plan, packets, key)
+        report = score(packets, key, load_json(out / "responses.json"))
         save_json(Path(args.report), report)
         print("EXP011_RECORDED_OBSERVATIONS=" + str(report["real_model_results_recorded"]))
 
