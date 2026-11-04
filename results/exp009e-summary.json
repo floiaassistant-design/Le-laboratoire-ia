@@ -1,0 +1,44 @@
+{
+  "experiment": "EXP-009E",
+  "phase": "static_fixed_revision_testbank",
+  "source_ci": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41807828816",
+  "source_manifest": "experiments/exp009b-candidates.json",
+  "semantic_plan": "experiments/exp009e-semantic-hypotheses.json",
+  "projects": 4,
+  "cases": 12,
+  "blocked": 0,
+  "per_project": [
+    {
+      "name": "black",
+      "cases": 3,
+      "static_definition_occurrences": 372
+    },
+    {
+      "name": "fastapi",
+      "cases": 3,
+      "static_definition_occurrences": 24
+    },
+    {
+      "name": "httpie",
+      "cases": 3,
+      "static_definition_occurrences": 19
+    },
+    {
+      "name": "thefuck",
+      "cases": 3,
+      "static_definition_occurrences": 33
+    }
+  ],
+  "total_static_definition_occurrences": 448,
+  "exact_distinct_runtime_test_count": "not_measured",
+  "definitions_may_repeat_between_versions": true,
+  "runtime_parameterized_test_expansion": "not_measured",
+  "hidden_dynamic_test_definitions": "not_measured",
+  "downstream_risk": "Project test-file sizes vary substantially; compare by bug/project, do not treat static definition count as observed independent tests.",
+  "historical_upstream_code_executed": false,
+  "historical_bug_test_runs": 0,
+  "policy_scores_generated": 0,
+  "models_evaluated": 0,
+  "secondary_semantic_oracles_enabled": 0,
+  "next_step": "Freeze exact test IDs and per-case inputs/output witnesses after environment qualification but before any buggy/fixed test outcomes. Keep Windows PATH and fish shell prerequisites explicit."
+}
