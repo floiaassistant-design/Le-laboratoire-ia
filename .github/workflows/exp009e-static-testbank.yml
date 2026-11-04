@@ -1,0 +1,48 @@
+name: exp009e-static-testbank
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009e-static-testbank.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009e-static-testbank.yml'
+jobs:
+  historical-test-source-inventory:
+    name: EXP-009E test AST ${{ matrix.project }} (never execute test)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [black, fastapi, httpie, thefuck]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Freeze all 12 semantic hypotheses and disabled secondary oracles
+        run: python -m lab.exp009e_testbank --offline
+      - name: Inspect 3 pinned fixed-revision test sources as AST only
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.exp009e_testbank --project "$PROJECT"
+      - name: Archive every candidate test-bank record and blocker
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009e-static-testbank-${{ matrix.project }}
+          path: results/exp009e-testbank-${{ matrix.project }}.json
+          if-no-files-found: error
+          retention-days: 30
