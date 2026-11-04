@@ -93,8 +93,8 @@ class PreregisteredManualTrialTests(unittest.TestCase):
         self.assertTrue(t.parallelizable)
         self.assertEqual(t.uncertainty, 0)
 
-    def test_word_threshold_65_enables_review(self):
-        t = task_profile("a " * 65, "review")
+    def test_word_threshold_50_enables_review(self):
+        t = task_profile("a " * 50, "review")
         self.assertTrue(t.parallelizable)
         self.assertEqual(t.uncertainty, 2)
 
