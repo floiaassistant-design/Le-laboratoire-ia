@@ -1,0 +1,82 @@
+{
+  "experiment": "EXP-011",
+  "phase": "preregistered_real_task_manual_model_protocol",
+  "status": "prepared_no_model_execution_no_measured_outcomes",
+  "dataset": {
+    "name": "GSM8K",
+    "upstream_repo": "openai/grade-school-math",
+    "revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+    "relative_path": "grade_school_math/data/test.jsonl",
+    "git_blob_sha": "e4c2ff4942b9a78bd74f04141224c11e28d12dc9",
+    "source_lines": 1319,
+    "license": "MIT",
+    "source_url": "https://github.com/openai/grade-school-math",
+    "answer_rule": "last line #### <number>, no chain-of-thought"
+  },
+  "benchmark_limits": {
+    "public_known_dataset": true,
+    "possible_training_contamination": true,
+    "independent_holdout_claim": false,
+    "sample_is_small_and_nonrepresentative": true,
+    "no_unreviewed_claims": true
+  },
+  "calibration_indices": [
+    13,
+    37,
+    59,
+    81
+  ],
+  "evaluation_indices": [
+    103,
+    158,
+    202,
+    271,
+    349,
+    418,
+    503,
+    611,
+    704,
+    826,
+    943,
+    1159
+  ],
+  "indices_base": 0,
+  "policies": [
+    "adaptive",
+    "always_single",
+    "always_parallel",
+    "always_review"
+  ],
+  "routing_rule": {
+    "feature": "question_word_count_only",
+    "uncertainty_ge_65_words": 2,
+    "uncertainty_below_65_words": 0,
+    "parallelizable_ge_40_words": true,
+    "parallelizable_below_40_words": false,
+    "mandatory_review": false,
+    "budget_per_case": 2,
+    "routing_is_not_learned": true
+  },
+  "roles": {
+    "single": "solver",
+    "parallel": [
+      "solver",
+      "independent"
+    ],
+    "review": [
+      "solver",
+      "critic"
+    ],
+    "independent_requires_fresh_context": true,
+    "critic_must_see_solver_final_not_gold": true
+  },
+  "output_protocol": {
+    "solver_and_independent": "FINAL: <integer or decimal>",
+    "critic": "VERDICT: APPROVE or VERDICT: REJECT",
+    "answers_oracles_never_sent_to_agents": true,
+    "token_and_latency_metrics_optional_null_when_unavailable": true
+  },
+  "model_executions": 0,
+  "results_committed": 0,
+  "selected_before_outcomes": true
+}
