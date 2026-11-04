@@ -107,8 +107,11 @@ def run_project(name, *, python_minor=None, runner=None):
         return result
     with TemporaryDirectory(prefix="exp009d-wheels-") as folder:
         dest = Path(folder)
-        env = {k: v for k, v in os.environ.items()
-               if not k.upper().startswith(("PIP_", "PYTHONPATH", "PYTHONHOME"))}
+        # Never forward GITHUB_TOKEN, Actions secrets or arbitrary user vars to pip.
+        env = {k: os.environ[k] for k in
+               ("PATH", "LANG", "LC_ALL", "TZ", "SSL_CERT_FILE")
+               if k in os.environ}
+        env["HOME"] = str(dest)
         env.update({
             "PIP_CONFIG_FILE": os.devnull, "PIP_NO_INPUT": "1",
             "PIP_DISABLE_PIP_VERSION_CHECK": "1", "PYTHONNOUSERSITE": "1",
