@@ -1,0 +1,42 @@
+{
+  "experiment": "EXP-009D-B",
+  "phase": "post_hoc_direct_wheel_isolation",
+  "original_blocked_experiment": "EXP-009D",
+  "original_source_run": "41804523888",
+  "diagnostic_run": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41805423888",
+  "project": "thefuck",
+  "python": "3.7",
+  "candidate_ids": [
+    "thefuck-1",
+    "thefuck-2",
+    "thefuck-3"
+  ],
+  "observations": [
+    {
+      "requirement": "psutil==5.6.7",
+      "status": "blocked",
+      "reason": "binary_only_no_deps_download_failed"
+    },
+    {
+      "requirement": "pyte==0.8.0",
+      "status": "single_wheel_downloaded"
+    },
+    {
+      "requirement": "pytest==5.4.3",
+      "status": "single_wheel_downloaded"
+    },
+    {
+      "requirement": "pexpect==4.8.0",
+      "status": "single_wheel_downloaded"
+    }
+  ],
+  "classification": "psutil_direct_binary_download_blocked_under_selected_runner",
+  "inference_limit": "Could be wheel availability/compatibility or transient resolver/index issue; repeat or inspect PyPI metadata before treating as definitive.",
+  "diagnostics_only": true,
+  "original_probe_retained": true,
+  "change_to_original_manifest": false,
+  "new_bug_detections": 0,
+  "upstream_tests_executed": 0,
+  "models_evaluated": 0,
+  "next_step": "Investigate a documented Linux CPython 3.7-compatible psutil wheel or isolate a source build in restricted CI; any change is a new post hoc plan, never rescored into original pre-registration."
+}
