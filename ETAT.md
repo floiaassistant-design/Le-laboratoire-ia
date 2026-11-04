@@ -19,6 +19,8 @@ La [PR #31](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/31) 
 
 Un incident GitHub Actions post-fusion de la PR #30 sur `main` (run [#41801511926](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41801511926)) provenait d'un `ECONNRESET` lors d'un téléversement d'artefact, entraînant un arrêt en cascade ; **les 7 jobs ont réussi lors de la relance de cet run**. Ne pas confondre ce problème d'infrastructure avec les résultats expérimentaux.
 
+Première exécution du [run #41804523888](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41804523888) : **3 sondes de roues réussies** (Black 9, FastAPI 9, HTTPie 38 roues), **1 bloquée** (TheFuck `binary_only_resolution_failed`) ; le dénominateur de 12 cas est maintenu, aucun de ces logiciels exécuté. Résumé versionné : `results/exp009d-wheel-summary.json`. **L'analyse du paquet TheFuck fautif est une étape post hoc distincte ; ne pas retoucher rétroactivement les choix et les comptes de cette sonde.**
+
 **Avant toute fusion** : lire les quatre rapports de roues `exp009d-wheels-{project}.json`, y compris les cas bloqués, vérifier que la CI est entièrement verte sur le SHA final de la PR, puis vérifier `main`. **Ne pas exécuter les 12 suites historiques ni calculer de scores dans cette phase.** Ensuite verrouiller les dépendances transitives et définir un oracle métier par cas avant comparaison. L'[issue #29](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/29) reste active.
 
 ### Situation actuelle et reprise — 4 novembre 2026
