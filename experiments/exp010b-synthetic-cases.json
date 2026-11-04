@@ -1,0 +1,197 @@
+{
+  "experiment": "EXP-010B",
+  "phase": "synthetic_architecture_characterization_pre_model",
+  "status": "predeclared_fixtures_not_blind_no_real_model",
+  "source": "hand_authored_offline_synthetic_cases",
+  "model_calls": 0,
+  "policies": [
+    "adaptive",
+    "always_single",
+    "always_parallel",
+    "always_review"
+  ],
+  "cost_unit": "abstract_role_invocation_only",
+  "answer_alphabet": [
+    "A",
+    "B",
+    "C"
+  ],
+  "cases": [
+    {
+      "id": "simple_01",
+      "uncertainty": 0,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "A",
+      "solver": "A",
+      "independent": "A",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "simple_02",
+      "uncertainty": 0,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "B",
+      "solver": "A",
+      "independent": "B",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "simple_03",
+      "uncertainty": 1,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "C",
+      "solver": "C",
+      "independent": "C",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "simple_04",
+      "uncertainty": 1,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "B",
+      "solver": "B",
+      "independent": "B",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "parallel_01",
+      "uncertainty": 0,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "A",
+      "solver": "A",
+      "independent": "A",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "parallel_02",
+      "uncertainty": 1,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "B",
+      "solver": "A",
+      "independent": "B",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "parallel_03",
+      "uncertainty": 0,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "C",
+      "solver": "B",
+      "independent": "B",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "parallel_04",
+      "uncertainty": 1,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "A",
+      "solver": "A",
+      "independent": "C",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "uncertain_01",
+      "uncertainty": 2,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "B",
+      "solver": "A",
+      "independent": "B",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "uncertain_02",
+      "uncertainty": 3,
+      "parallelizable": false,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "A",
+      "solver": "A",
+      "independent": "A",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "uncertain_03",
+      "uncertainty": 2,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "C",
+      "solver": "B",
+      "independent": "C",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "uncertain_04",
+      "uncertainty": 3,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 2,
+      "expected": "B",
+      "solver": "B",
+      "independent": "B",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "mandatory_01",
+      "uncertainty": 0,
+      "parallelizable": false,
+      "mandatory_review": true,
+      "budget": 2,
+      "expected": "A",
+      "solver": "A",
+      "independent": "A",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "mandatory_02",
+      "uncertainty": 1,
+      "parallelizable": true,
+      "mandatory_review": true,
+      "budget": 2,
+      "expected": "C",
+      "solver": "B",
+      "independent": "C",
+      "critic_verdict": "reject"
+    },
+    {
+      "id": "limited_01",
+      "uncertainty": 2,
+      "parallelizable": true,
+      "mandatory_review": false,
+      "budget": 1,
+      "expected": "B",
+      "solver": "B",
+      "independent": "B",
+      "critic_verdict": "approve"
+    },
+    {
+      "id": "limited_02",
+      "uncertainty": 3,
+      "parallelizable": false,
+      "mandatory_review": true,
+      "budget": 1,
+      "expected": "C",
+      "solver": "C",
+      "independent": "C",
+      "critic_verdict": "approve"
+    }
+  ]
+}
