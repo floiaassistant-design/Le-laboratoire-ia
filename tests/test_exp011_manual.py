@@ -7,7 +7,7 @@ import unittest
 from lab.exp011_manual import (
     CALIBRATION, EVALUATION, PLAN, SOURCE_BLOB, git_blob_sha,
     make_packet_data, normalized_number, read_pinned_source,
-    score, task_profile, validate_plan,
+    score, task_profile, validate_plan, verify_prepared_files,
 )
 
 
@@ -235,6 +235,41 @@ class PreregisteredManualTrialTests(unittest.TestCase):
         recs["records"][0]["input_tokens"] = True
         with self.assertRaises(ValueError):
             score(p, key, recs)
+
+    def test_prepared_files_match_pinned_rows(self):
+        rows = [{"question": " ".join(["Synthetic"] * 44) + " answer?",
+                 "answer": "Compute a solution.\n#### 42"} for _ in range(1319)]
+        packets, key, _ = fixtures()
+        verify_prepared_files(rows, plan(), packets, key)
+
+    def test_mutated_local_question_is_rejected(self):
+        rows = [{"question": " ".join(["Synthetic"] * 44) + " answer?",
+                 "answer": "Compute a solution.\n#### 42"} for _ in range(1319)]
+        packets, key, _ = fixtures()
+        packets["tasks"][0]["question"] = "What is two plus two?"
+        with self.assertRaises(ValueError):
+            verify_prepared_files(rows, plan(), packets, key)
+
+    def test_mutated_local_key_is_rejected(self):
+        rows = [{"question": " ".join(["Synthetic"] * 44) + " answer?",
+                 "answer": "Compute a solution.\n#### 42"} for _ in range(1319)]
+        packets, key, _ = fixtures()
+        key["answers"][next(iter(key["answers"]))] = "999"
+        with self.assertRaises(ValueError):
+            verify_prepared_files(rows, plan(), packets, key)
+
+    def test_question_profile_cannot_be_changed_posthoc(self):
+        packets, key, response = fixtures()
+        packets["tasks"][0]["uncertainty"] = 3
+        packets["tasks"][0]["routes"]["adaptive"] = "review"
+        with self.assertRaises(ValueError):
+            score(packets, key, response)
+
+    def test_wrong_question_length_count_is_rejected(self):
+        packets, key, response = fixtures()
+        packets["tasks"][0]["input_word_count"] = 0
+        with self.assertRaises(ValueError):
+            score(packets, key, response)
 
     def test_model_label_mixture_is_reported(self):
         p, key, recs = fixtures()
