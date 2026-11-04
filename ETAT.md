@@ -24,7 +24,7 @@ manuellement consignées. Protocole :
 [EXP-011](experiments/EXP-011-MANUAL-REAL-TASKS.md).
 **Ce travail est un outil d'étude**, pas une exécution de modèle :
 0 appel LLM, 0 résultat mesuré, 0 revendication de supériorité.
-La nouvelle CI exigera au moins 345 tests ; fusion seulement après tous
+La nouvelle CI exigera au moins 350 tests ; fusion seulement après tous
 les contrôles verts sur le dernier SHA, suivis des contrôles post-fusion.
 
 **Priorités parallèles toujours ouvertes** : les issues #29 et #35
