@@ -69,3 +69,31 @@ L'issue [#35](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/
 porte la suite, notamment le gel des témoins métier précis et des
 conditions OS. La qualification des dépendances et environnements
 reste suivie dans l'issue #29.
+
+
+## Première observation statique, aucun résultat de test
+
+La première inspection automatisée par GitHub Actions
+[run #41807828816](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41807828816)
+a classé **12 fichiers/cas inspectés et 0 bloqué**. Comptes de
+définitions \`test_*\` au niveau module/classe :
+
+| Projet | Trois cas cumulés |
+| --- | ---: |
+| Black | 372 |
+| FastAPI | 24 |
+| HTTPie | 19 |
+| TheFuck | 33 |
+| **Total** | **448 occurrences de définitions statiques** |
+
+Ces totaux **comptent les occurrences par cas**, y compris des fichiers
+de test qui peuvent être similaires ou identiques entre révisions.
+Ce ne sont ni 448 ID d'exécution distincts, ni 448 bugs, ni
+448 observations statistiques indépendantes. Ils indiquent aussi une
+forte hétérogénéité de taille des bancs de tests : avant de comparer les
+politiques, rapporter les dénominateurs effectifs par défaut/projet.
+Le résumé permanent est \`results/exp009e-summary.json\`, les empreintes
+de tests par cas sont dans les quatre artefacts CI.
+
+**Aucune conclusion ne peut encore être tirée sur les performances des
+politiques ou la capacité de ces tests à révéler les bugs.**
