@@ -218,6 +218,14 @@ def main(argv=None):
         "classifications": [c.get("classification", c.get("reason"))
                             for c in result["cases"]],
         "rescore": False,
+        "safe_exception_summary": [
+            {"case": item["case"],
+             "exception_type": item["exception"]["exception_type"],
+             "phase": item["exception"]["phase"],
+             "source_frame_seen": item["source_code_frame_present"],
+             "historical_counts_match": item["historical_status_counts_match"]}
+            for item in result["cases"] if item.get("exception")
+        ],
     }, sort_keys=True))
     if result["case_count"] != result["expected_case_count"]:
         raise SystemExit("Missing preregistered historic case")
