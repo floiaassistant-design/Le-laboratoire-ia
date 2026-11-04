@@ -2,7 +2,7 @@
 
 Prototype indépendant consacré à l'évaluation rigoureuse de méthodes de vérification et, plus tard, de véritables architectures d'agents IA.
 
-**État actuel et consignes de reprise entre agents : [ETAT.md — REPRISE IMMÉDIATE](ETAT.md#reprise-immédiate--pour-un-autre-agent-état-vérifié-le-4-novembre-2026).** Le projet a progressé jusqu'à EXP-009A ; la prochaine mission déclarée est [EXP-009B, issue #23](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23). Les rubriques plus anciennes de ce README restent un historique des expériences. Aucune API de modèle facturée, aucune automatisation périodique.
+**État actuel et consignes de reprise entre agents : [ETAT.md — REPRISE IMMÉDIATE](ETAT.md#reprise-immédiate--pour-un-autre-agent-état-vérifié-le-4-novembre-2026).** Le projet a progressé jusqu'à l'inventaire statique EXP-009C (12 candidats et leurs dépendances, **sans nouvelle exécution de tests ni score**) ; la prochaine mission est [EXP-009D, issue #29](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/29) : figer les environnements et les oracles avant toute mesure. L'[issue #23](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23) conserve l'historique scientifique des phases précédentes. Les rubriques plus anciennes de ce README restent un historique des expériences. Aucune API de modèle facturée, aucune automatisation périodique.
 
 ## Reproduire (Python 3.10+ ; dépendances externes : aucune)
 
