@@ -77,6 +77,10 @@ def run_child(worktree: Path, case_id: str) -> dict:
 def assess(case: dict, old_audit: dict, buggy: dict, fixed: dict) -> dict:
     """Classification is exploratory: no source bug is confirmed by type alone."""
     target = CASES[case["id"]]
+    if target is not None and (target not in buggy["focus"]
+                               or target not in fixed["focus"]):
+        return {"case": case["id"], "project": case["project"],
+                "status": "blocked", "reason": "declared_test_id_not_collected"}
     match = (buggy["counts"] == old_audit["status_counts_buggy"]
              and fixed["counts"] == old_audit["status_counts_fixed"])
     if target is None:
