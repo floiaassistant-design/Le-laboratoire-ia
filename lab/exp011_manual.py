@@ -337,6 +337,8 @@ def save_json(path: Path, data: dict) -> None:
 def main(argv=None):
     parser = argparse.ArgumentParser()
     commands = parser.add_subparsers(dest="command", required=True)
+    preflight = commands.add_parser("preflight")
+    preflight.add_argument("--output", default="results/exp011-protocol-preflight.json")
     prepare = commands.add_parser("prepare")
     prepare.add_argument("--source", required=True, help="Pinned upstream test.jsonl file")
     prepare.add_argument("--out-dir", required=True)
@@ -344,7 +346,26 @@ def main(argv=None):
     grading.add_argument("--out-dir", required=True)
     grading.add_argument("--report", required=True)
     args = parser.parse_args(argv)
-    if args.command == "prepare":
+    if args.command == "preflight":
+        plan_raw = PLAN.read_bytes()
+        plan = json.loads(plan_raw)
+        validate_plan(plan)
+        save_json(Path(args.output), {
+            "experiment": "EXP-011",
+            "phase": "preregistration_offline_validation_only",
+            "source_revision": SOURCE_COMMIT,
+            "source_blob_sha": SOURCE_BLOB,
+            "plan_sha256": hashlib.sha256(plan_raw).hexdigest(),
+            "calibration_tasks_selected": len(CALIBRATION),
+            "evaluation_tasks_selected": len(EVALUATION),
+            "policies": list(POLICIES),
+            "model_calls": 0,
+            "model_scores": 0,
+            "upstream_dataset_downloaded": False,
+            "real_model_evaluation_performed": False,
+        })
+        print("EXP011_PREFLIGHT_NO_MODEL_RUNS=16 tasks preregistered")
+    elif args.command == "prepare":
         plan_raw = PLAN.read_bytes()
         plan = json.loads(plan_raw)
         validate_plan(plan)
