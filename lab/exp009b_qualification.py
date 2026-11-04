@@ -229,6 +229,10 @@ def main(argv=None):
     }, sort_keys=True))
     if result["case_count"] != result["expected_case_count"]:
         raise SystemExit("Missing preregistered historic case")
+    if result["blocked_count"] or any(
+            r.get("historical_status_counts_match") is False
+            for r in result["cases"]):
+        raise SystemExit("EXP-009B historical diagnosis blocked or diverged; inspect report")
 
 
 if __name__ == "__main__":
