@@ -41,3 +41,24 @@ ne valide aucun nouvel algorithme ou agent et ne fournit aucun
 holdout aveugle. Les résultats négatifs ne seront pas retirés.
 Les critères et l'ordre figurent dans
 \`experiments/exp009d-c-psutil-candidates.json\`.
+
+
+## Résultat initial de l'étude alternative
+
+La première CI [#41806310288](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41806310288)
+a produit les observations suivantes sur Python 3.7 :
+
+- \`psutil==5.7.3\` : téléchargement de roue impossible ;
+- \`psutil==5.8.0\` : roue disponible ;
+- \`psutil==5.9.8\` : roue disponible ;
+- **règle de choix appliquée** : première version disponible dans
+  l'ordre déclaré, soit **5.8.0** ;
+- résolution des roues avec \`psutil==5.8.0\` et les trois pins
+  inchangées : **14 roues binaires téléchargées**.
+
+Résumé permanent : \`results/exp009d-c-summary.json\`.
+Les SHA256 des roues et les blocages sont dans les artefacts CI.
+Cette première réussite de téléchargement **n'est toujours pas
+une preuve d'installation ou de reproduction historique**, encore
+moins un résultat sur les trois bugs TheFuck. L'original \`psutil==5.6.7\`
+reste **bloqué dans EXP-009D**.
