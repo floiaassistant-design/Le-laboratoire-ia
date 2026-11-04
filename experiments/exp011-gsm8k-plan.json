@@ -49,13 +49,13 @@
   ],
   "routing_rule": {
     "feature": "question_word_count_only",
-    "uncertainty_ge_65_words": 2,
-    "uncertainty_below_65_words": 0,
     "parallelizable_ge_40_words": true,
     "parallelizable_below_40_words": false,
     "mandatory_review": false,
     "budget_per_case": 2,
-    "routing_is_not_learned": true
+    "routing_is_not_learned": true,
+    "uncertainty_ge_50_words": 2,
+    "uncertainty_below_50_words": 0
   },
   "roles": {
     "single": "solver",
@@ -78,5 +78,14 @@
   },
   "model_executions": 0,
   "results_committed": 0,
-  "selected_before_outcomes": true
+  "selected_before_outcomes": true,
+  "preregistration_amendment": {
+    "status": "input_only_feasibility_amendment_before_any_model_outcome",
+    "previous_uncertainty_threshold_words": 65,
+    "current_uncertainty_threshold_words": 50,
+    "reason": "Selected GSM8K question lengths were all below 65 words; 50 preserves all three adaptive routes (single/parallel/review), without using expected answers or model outcomes.",
+    "source_inspection": "question length and answer-format presence only; no model tested",
+    "biased_by_selected_input_lengths": true,
+    "claimed_blind": false
+  }
 }
