@@ -1,0 +1,53 @@
+{
+  "experiment": "EXP-009B",
+  "stage": "first exploratory historical exception qualification; no rescoring",
+  "status": "diagnostic_observed_before_final_full_CI",
+  "source_manifest": "experiments/exp008b-manifest.json",
+  "source_audit": "results/exp009a-oracle-audit.json",
+  "reproducible_ci_run": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41795995590",
+  "cases_expected": 4,
+  "cases_executed": 4,
+  "cases_blocked": 0,
+  "exception_changes": 3,
+  "historical_status_counts_matched": 4,
+  "cases": [
+    {
+      "case": "youtube-dl-4",
+      "buggy": "error",
+      "fixed": "pass",
+      "exception_type": "ExtractorError",
+      "phase": "call",
+      "source_project_frame_present": true,
+      "causality": "unattributed"
+    },
+    {
+      "case": "tornado-2",
+      "buggy": "error",
+      "fixed": "pass",
+      "exception_type": "TimeoutError",
+      "phase": "call",
+      "source_project_frame_present": true,
+      "causality": "unattributed"
+    },
+    {
+      "case": "tornado-3",
+      "historical_status": "pass on both versions",
+      "classification": "no_confirmed_witness_in_selected_suite",
+      "causality": "not established"
+    },
+    {
+      "case": "cookiecutter-1",
+      "buggy": "error",
+      "fixed": "pass",
+      "exception_type": "FileNotFoundError",
+      "phase": "call",
+      "source_project_frame_present": true,
+      "causality": "unattributed"
+    }
+  ],
+  "claim": "No exception proves a bug cause alone. Statuses can differ because of environment or fixtures.",
+  "original_primary_score_unchanged": "EXP-008B budget 12: 2/8 for lexical, seeded_random, structural_diversity",
+  "new_bugs_discovered": 0,
+  "ai_models_evaluated": 0,
+  "future_new_corpus": "At least 12 pinned faults on at least 4 previously unused upstream projects; not yet selected or scored"
+}
