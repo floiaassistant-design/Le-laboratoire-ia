@@ -65,3 +65,27 @@ secondaire n'est activé par cette sonde.
 Pas de modèle IA, pas d'API payante, pas de test tiers sur la machine
 personnelle, pas d'automatisation récurrente. L'expérience reste
 historique, rétrospective et non aveugle.
+
+
+## Première observation — sans retoucher les choix initiaux
+
+Le premier run GitHub Actions [#41804523888](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41804523888) a obtenu :
+
+| Groupe | Statut | Roues binaires obtenues |
+| --- | --- | ---: |
+| Black | Téléchargement réussi | 9 |
+| FastAPI | Téléchargement réussi | 9 |
+| HTTPie | Téléchargement réussi | 38 |
+| TheFuck | **Bloqué** (\`binary_only_resolution_failed\`) | 0 |
+
+**La cohorte complète de 12 cas reste dénombrée** : 9 cas sont associés
+à trois sondes de roues réussies et 3 cas à une sonde bloquée. Le résultat
+est versionné dans \`results/exp009d-wheel-summary.json\`. Les quatre
+artefacts détaillés de ce run contiennent les noms et SHA256 des roues ;
+ils ne sont pas remplacés par ce résumé.
+
+Le paquet responsable du blocage TheFuck n'est pas encore identifié.
+Un éventuel diagnostic par dépendance constitue une étape post hoc
+séparée, dont les résultats ne doivent pas modifier rétrospectivement
+le rapport de cette première sonde. Il reste **0 test tiers exécuté,
+0 score, 0 détection et 0 environnement complet qualifié**.
