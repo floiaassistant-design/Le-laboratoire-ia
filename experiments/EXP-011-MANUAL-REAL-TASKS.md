@@ -95,8 +95,9 @@ que ces métriques ne sont pas disponibles.
 
 4. Une fois les données récoltées, lancer :
 
-       python -m lab.exp011_manual score --out-dir .lab-private/exp011 --report .lab-private/exp011/score.json
+       python -m lab.exp011_manual score --source test.jsonl --out-dir .lab-private/exp011 --report .lab-private/exp011/score.json
 
+   Avant de noter quoi que ce soit, le programme revérifie le fichier GSM8K source complet contre son empreinte Git, puis compare les questions et la clé locales au corpus officiel figé : toute modification est refusée.
    Le programme distingue correct, incorrect, abstention, blocage
    de politique, session non indépendante, réponse malformée et
    essai non réalisé. Les résultats d'essais incomplets **restent
