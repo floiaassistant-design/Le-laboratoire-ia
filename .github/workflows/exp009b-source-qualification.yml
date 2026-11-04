@@ -74,3 +74,34 @@ jobs:
           path: results/exp009b-python-${{ matrix.python }}.json
           if-no-files-found: error
           retention-days: 30
+
+  static-dependency-inventory:
+    name: EXP-009C dependency metadata ${{ matrix.project }} (no import)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [black, fastapi, httpie, thefuck]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inspect fixed-revision dependency descriptors as DATA only
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.exp009c_dependencies --project "$PROJECT"
+      - name: Archive dependency metadata and all blockers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009c-dependencies-${{ matrix.project }}
+          path: results/exp009c-deps-${{ matrix.project }}.json
+          if-no-files-found: error
+          retention-days: 30
