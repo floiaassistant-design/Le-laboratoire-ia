@@ -1,6 +1,45 @@
 # État du laboratoire IA
 
-**Date : 2 novembre 2026** — V0.2, dépôt GitHub dédié.
+## REPRISE IMMÉDIATE — pour un autre agent (état vérifié le 4 novembre 2026)
+
+> **Cette section prime sur les anciennes rubriques « prochaine étape » ci-dessous**, qui constituent un journal historique. Ne pas supposer que les derniers messages d'une conversation sont plus récents que GitHub : vérifier l'état du dépôt avant toute action. Un agent ne possède pas automatiquement le contexte des chats précédents.
+
+**Projet unique :** [\`floiaassistant-design/Le-laboratoire-ia\`](https://github.com/floiaassistant-design/Le-laboratoire-ia). Branche officielle : \`main\`. Dernier commit technique vérifié lors de cette rédaction : \`4ba1854d1fa8236e78553106eb3055371be267fe\` (PR #22, EXP-009A). **Cette empreinte n'est pas une branche à imposer : relire \`main\` au moment de la reprise.** Au contrôle du 4 novembre : **aucune PR ouverte** et [dernier run sur \`main\` #41719295541](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41719295541) entièrement vert.
+
+### Travail accompli, à ne pas refaire
+
+- **EXP-008A** : 2 paires de vrais bugs historiques dans 2 projets (youtube-dl et Tornado) ; à budget de 12 tests, **0/2** pour les trois ordres. Résumé : [\`results/exp008a-summary.json\`](results/exp008a-summary.json).
+- **EXP-008B** : **8 paires de défauts réels historiques, 3 projets** (youtube-dl, Tornado, Cookiecutter), **8 évaluées / 0 bloquée** ; comparaison inchangée des ordres lexical, aléatoire à graine fixe et diversité de structure aux budgets 1/3/6/12. Au budget 12 : **2/8** pour chaque ordre ; seuls **4/8** cas ont au moins un test confirmant **FAIL assertion sur buggy / PASS sur fixed**. Résumé : [\`results/exp008b-summary.json\`](results/exp008b-summary.json), protocole : [\`experiments/EXP-008B.md\`](experiments/EXP-008B.md), PR #20.
+- **EXP-009A terminée** (PR #22, [issue #21](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/21) clôturée). Audit **sans rescoring** des fichiers bruts d'EXP-008B : parmi 4 cas sans test strictement révélateur, **3 montrent ERROR sur buggy → PASS sur fixed** (\`youtube-dl-4\`, \`tornado-2\`, \`cookiecutter-1\`), et **1 reste PASS des deux côtés** (\`tornado-3\`). Les types/causes de ces exceptions ne sont pas encore attribués. Les chiffres d'EXP-008B restent **2/8** : ne pas transformer rétroactivement ERROR en FAIL. Résultat durable : [\`results/exp009a-oracle-audit.json\`](results/exp009a-oracle-audit.json), protocole : [\`experiments/EXP-009A.md\`](experiments/EXP-009A.md).
+- **Infrastructure actuelle** : Python 3.11 pour les tests du laboratoire et Python 3.8 sur runners Ubuntu 22.04 pour les anciens programmes. Seuil CI : **152 tests unitaires** ; le [workflow \`laboratory-checks\`](.github/workflows/tests.yml) exécute les tests, reproductions historiques et expériences externes. Les suites tierces s'exécutent en jobs isolés, pas sur le poste utilisateur.
+
+### Première mission à reprendre — **EXP-009B, issue #23 ouverte**
+
+Consulter [**issue #23 — qualifier les exceptions et préparer un oracle secondaire**](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23) et en suivre les critères. À la date de cette note, **aucune PR EXP-009B n'est ouverte**. Objectifs concrets :
+
+1. Définir un diagnostic d'exception **borné et expurgé** : type d'exception, phase \`setup/call/teardown\`, trames de code projet seulement, pas de trace brute, chemins locaux, URL, identifiants ou secrets ; le tester d'abord sur **fixtures internes synthétiques**.
+2. Qualifier **sans nouveau score primaire** les trois transitions ERROR→PASS et le comportement inchangé \`tornado-3\`. Une exception de type connu n'est **pas** automatiquement la preuve d'un défaut logiciel.
+3. **Préenregistrer séparément** un oracle secondaire et la sélection d'un **nouveau lot de 12+ bugs sur 4+ projets**, avec commits, licences, règles d'exclusion, environnements et budgets fixés **avant de consulter leurs résultats**. Les exemples historiques des EXP-006/008/009 ne sont pas des holdouts vierges.
+4. Publier les observations et les **résultats négatifs** sans sélectionner les seuls cas réussis. Ne pas modifier les ordres historiques pour améliorer rétrospectivement leur score.
+
+**Important :** cette mission est **prévue, pas déjà réalisée**. Relire la liste des issues et PR au moment de la reprise : si #23 est terminée, prendre l'issue suivante plutôt que relancer EXP-009B.
+
+### Procédure sûre et reproductible de reprise
+
+1. **Vérifier la source de vérité** : \`main\`, [PR ouvertes](https://github.com/floiaassistant-design/Le-laboratoire-ia/pulls), [issues ouvertes](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues), [derniers runs GitHub Actions](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions). Ne pas confondre une CI réussie sur une ancienne PR avec la CI de son dernier commit.
+2. **Lire dans cet ordre** : cette section, \`README.md\`, l'issue active (#23 à ce jour), le protocole \`experiments/EXP-009A.md\`, les synthèses \`results/exp009a-oracle-audit.json\` et \`results/exp008b-summary.json\`, puis les scripts/tests concernés. Ne jamais inventer des résultats absents des fichiers.
+3. **Travailler sur une branche**, documenter l'hypothèse **avant exécution**, les différences de méthode, les limites, les sources et chaque cas invalidé. Mettre à jour **cette section, les protocoles, les synthèses \`results/\` et l'issue** à chaque reprise ; ne pas effacer le journal historique. Si la mission dépasse la portée des outils, consigner le blocage.
+4. **Contrôles locaux (sur code du laboratoire uniquement)** : \`python -m unittest discover -s tests -v\` et \`python -m lab.real_test_inventory --root . --scan-dir tests --require-tests\`. Les expériences externes peuvent importer/exécuter du code tiers : les lancer **exclusivement** sur GitHub Actions isolées, sans credentials persistants ni secrets ; éviter de les faire tourner sur le PC.
+5. **PR puis CI** : vérifier tous les jobs du workflow, y compris ceux des trois projets, les nombres de tests effectivement découverts et les artefacts; **ne fusionner que si chaque contrôle requis est terminé et vert** sur le SHA exact de la tête de PR, puis contrôler encore \`main\` après fusion. En cas d'échec, corriger et relancer plutôt que fusionner.
+6. **Transmettre à l'agent suivant** : indiquer dans \`ETAT.md\` **PR/issue**, **SHA courant**, **actions réalisées**, **résultats chiffrés**, **écarts/blocages**, **CI finale**, **prochaine étape**, et **points nécessitant un accord utilisateur**. Ne pas prétendre avoir fusionné ou terminé avant confirmation sur GitHub.
+
+### Limites à préserver
+
+Ce laboratoire teste **actuellement des politiques Python déterministes**, pas un système d'agents IA, et **n'a découvert aucun nouveau bug inconnu**. Les bugs des cohortes historiques étaient déjà documentés/corrigés ; les tests sont souvent issus de versions post-correctif, donc les résultats **ne sont pas une validation aveugle**. Ne jamais appeler des répétitions ou des budgets de tests « défauts indépendants ». Aucune API de modèle payante, aucun modèle local obligatoire, **pas d'automatisation périodique**, ni modification d'autres dépôts sans accord explicite. Les **artefacts GitHub Actions expirent** (rétention habituelle 30 jours) : **les fichiers de synthèse versionnés sont les traces durables**, mais ne remplacent pas toutes les données brutes.
+
+---
+
+**Journal historique ouvert le 2 novembre 2026** — V0.2 initiale ; les étapes ci-dessous peuvent être dépassées. Lire d'abord « REPRISE IMMÉDIATE ».
 
 ## Terminé
 - EXP-001 et EXP-001B : deux familles de défauts synthétiques, budgets identiques.

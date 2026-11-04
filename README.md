@@ -2,7 +2,7 @@
 
 Prototype indépendant consacré à l'évaluation rigoureuse de méthodes de vérification et, plus tard, de véritables architectures d'agents IA.
 
-**Statut :** V0.2 — EXP-001, EXP-001B et EXP-003 exécutées localement, code de reproduction publié. Aucune API facturée, aucune automatisation périodique. GitHub Actions lance uniquement les tests lors des push/PR.
+**État actuel et consignes de reprise entre agents : [ETAT.md — REPRISE IMMÉDIATE](ETAT.md#reprise-immédiate--pour-un-autre-agent-état-vérifié-le-4-novembre-2026).** Le projet a progressé jusqu'à EXP-009A ; la prochaine mission déclarée est [EXP-009B, issue #23](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23). Les rubriques plus anciennes de ce README restent un historique des expériences. Aucune API de modèle facturée, aucune automatisation périodique.
 
 ## Reproduire (Python 3.10+ ; dépendances externes : aucune)
 
