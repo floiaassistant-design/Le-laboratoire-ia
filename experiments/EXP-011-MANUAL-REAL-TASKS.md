@@ -22,7 +22,7 @@ licence MIT, commit
   12 indices de comparaison : 103, 158, 202, 271, 349, 418,
   503, 611, 704, 826, 943, 1159.
 - Indices décidés sans consulter les sorties d'un nouveau modèle.
-  Les seuils du routeur ont également été écrits avant toute évaluation.
+  Le seuil de revue a été ajusté de 65 à 50 mots après inspection des seules longueurs des questions, avant toute réponse de modèle (aucun oracle consulté pour ce choix). Cette modification basée sur les entrées est documentée comme telle, et réduit l'indépendance du protocole.
   La sélection n'est ni exhaustive, ni aléatoire, ni représentative.
 
 **Important** : GSM8K est un benchmark public et largement utilisé ;
@@ -38,7 +38,7 @@ always_parallel (deux résolutions dans deux contextes séparés),
 always_review (résolveur puis critique), adaptive.
 
 Profil calculé à partir de la **question seule** :
-- au moins 65 mots : incertitude 2 -> revue ;
+- au moins 50 mots : incertitude 2 -> revue ;
 - sinon au moins 40 mots : possibilité de deux résolutions séparées ;
 - sinon solveur seul.
 Budget fixe : 2 appels de rôle pour chaque tâche, toutes politiques
