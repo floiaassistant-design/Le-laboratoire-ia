@@ -1,5 +1,19 @@
 # Laboratoire IA — recherche expérimentale
 
+**État courant (4 novembre 2026)** : [ETAT.md](ETAT.md).
+Les PR #38 et #39 sont fusionnées, avec 7 workflows post-fusion verts
+pour #39 : routeur sans modèle (EXP-010A), puis comparaison
+strictement simulée (EXP-010B, 16 cas x 4 politiques).
+**EXP-011 est en préparation** :
+[protocole sur 16 tâches GSM8K publiques et grille de sessions
+manuelles](experiments/EXP-011-MANUAL-REAL-TASKS.md).
+Le nouveau programme prépare les questions et note des transcriptions
+fournies volontairement, mais **ne peut ni lancer ChatGPT, ni prouver
+l'indépendance des sessions, ni facturer/mesurer automatiquement
+les appels de modèle**. Aucun modèle réel évalué à ce stade.
+Les issues #29/#35 sur 12 bugs réels restent ouvertes.
+
+
 **EXP-010B en préparation :** [comparaison de quatre politiques
 de routage sur 16 cas artificiels](experiments/EXP-010B-SYNTHETIC-EVALUATION.md).
 Il s'agit d'une évaluation mécanique hors ligne, avec réponses
