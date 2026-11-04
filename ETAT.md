@@ -13,6 +13,12 @@
 - **EXP-009A terminée** (PR #22, [issue #21](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/21) clôturée). Audit **sans rescoring** des fichiers bruts d'EXP-008B : parmi 4 cas sans test strictement révélateur, **3 montrent ERROR sur buggy → PASS sur fixed** (\`youtube-dl-4\`, \`tornado-2\`, \`cookiecutter-1\`), et **1 reste PASS des deux côtés** (\`tornado-3\`). Les types/causes de ces exceptions ne sont pas encore attribués. Les chiffres d'EXP-008B restent **2/8** : ne pas transformer rétroactivement ERROR en FAIL. Résultat durable : [\`results/exp009a-oracle-audit.json\`](results/exp009a-oracle-audit.json), protocole : [\`experiments/EXP-009A.md\`](experiments/EXP-009A.md).
 - **Infrastructure actuelle** : Python 3.11 pour les tests du laboratoire et Python 3.8 sur runners Ubuntu 22.04 pour les anciens programmes. Seuil CI : **152 tests unitaires** ; le [workflow \`laboratory-checks\`](.github/workflows/tests.yml) exécute les tests, reproductions historiques et expériences externes. Les suites tierces s'exécutent en jobs isolés, pas sur le poste utilisateur.
 
+### Mission en cours — EXP-009B (PR #25 ouverte, pas encore fusionnée)
+
+La [PR #25](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/25) propose une **première phase** : diagnostic d'exception expurgé, tests synthétiques, qualification exploratoire sur les quatre cas historiques et workflow isolé. Tant que les jobs ne sont pas tous vérifiés **sur la tête de PR**, ne pas déclarer les expériences validées ou fusionnées. Le protocole secondaire préenregistré est dans [`experiments/EXP-009B-SECONDARY-ORACLE.md`](experiments/EXP-009B-SECONDARY-ORACLE.md), mais **aucun lot inédit de 12+ bugs / 4+ projets n'a encore été sélectionné ni exécuté**.
+
+Respecter absolument le gel des scores EXP-008B (2/8 au budget 12), l'attribution prudente de ERROR→PASS et les limites des tests post-correctif. Après cette PR, le travail restant dans #23 est d'interpréter les artefacts avec prudence, puis de qualifier une nouvelle cohorte réellement distincte, avec versions, licences, tests et exclusions préenregistrés avant l'expérience.
+
 ### Première mission à reprendre — **EXP-009B, issue #23 ouverte**
 
 Consulter [**issue #23 — qualifier les exceptions et préparer un oracle secondaire**](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/23) et en suivre les critères. À la date de cette note, **aucune PR EXP-009B n'est ouverte**. Objectifs concrets :
