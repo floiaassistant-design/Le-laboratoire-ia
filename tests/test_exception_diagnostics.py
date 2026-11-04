@@ -130,10 +130,9 @@ class DiagnosticsTests(unittest.TestCase):
         self.assertEqual(redacted_view(report, {"b"})["missing_focus_count"], 1)
 
     def test_invalid_report_redacted(self):
-        self.assertEqual(redacted_view({"valid": False, "reason": "collection_error"},
-                                       {"x"})["focus"] if False else
-                         redacted_view({"valid": False, "reason": "collection_error"},
-                                       {"x"})["reason"], "collection_error")
+        result = redacted_view({"valid": False, "reason": "collection_error"}, {"x"})
+        self.assertEqual(result["reason"], "collection_error")
+        self.assertNotIn("focus", result)
 
 
 if __name__ == "__main__":
