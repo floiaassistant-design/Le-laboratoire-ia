@@ -41,3 +41,39 @@ filiation déjà vérifiée, chemins sûrs, pas de score ou résultat enregistr�
 
 **Aucun gain de politique, aucune découverte de bug nouveau, aucune
 validation indépendante ne sont revendiqués par ce préinventaire.**
+
+
+## Étape de qualification des sources — contrôle répété et CI (PR suivante)
+
+Sur les 12 couples de versions, contrôle de **36 ressources publiques** en
+lecture seule le 4 novembre 2026 : 24 licences (\`buggy\` et \`fixed\`) et
+12 fichiers de tests de la version corrigée. Les fichiers étaient présents,
+et leurs textes de licences conformes aux familles MIT ou BSD-3-Clause
+annoncées. **Cette inspection manuelle ne prouve pas la compatibilité des
+dépendances, ni la qualité ou la détectabilité d'un bug.**
+
+Pour rendre ce constat reproductible, \`python -m
+lab.exp009b_source_preflight --project <project>\` exécute uniquement des
+requêtes GET vers \`api.github.com\`, avec les projets explicitement allowlistés.
+Il vérifie pour chacun des 3 cas du projet :
+
+- le commit corrigé possède **exactement un parent**, qui est le SHA fautif
+  du manifeste ;
+- la licence annoncée existe dans **les deux versions** et contient ses
+  marqueurs textuels de famille ;
+- le fichier de tests de la révision corrigée existe et possède un SHA Git ;
+- les 4 contrôles de chacun des 3 candidats sont présents dans le JSON,
+  y compris en cas d'échec, sans logs bruts, source recopiée, traceback,
+  URL contenant un jeton ou message d'exception externe.
+
+La CI isolée crée un rapport JSON par projet (4 jobs) et vérifie
+indépendamment la **disponibilité** des interpréteurs Python 3.7 et 3.8
+(2 jobs), **sans installer de dépendances tiers ni exécuter les tests**.
+La version exacte du correctif historique (3.7.0/3.7.3/3.8.3) n'est pas
+automatiquement celle mise à disposition par \`setup-python\`. L'installation
+et la compatibilité des dépendances restent à traiter dans une étape
+distincte avant de qualifier le nouveau corpus expérimental.
+
+**Statut des preuves ci-dessus :** la réussite du nouveau contrôle automatisé
+doit être confirmée dans GitHub Actions sur le commit de la PR puis sur
+\`main\` ; ne pas confondre la présence du code avec sa validation.

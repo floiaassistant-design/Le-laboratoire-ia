@@ -1,0 +1,48 @@
+{
+  "experiment": "EXP-009B",
+  "stage": "source_only_upstream_provenance",
+  "status": "metadata_verified_no_upstream_tests",
+  "date": "2026-11-04",
+  "runner": "ubuntu-22.04",
+  "pr": "https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/27",
+  "first_green_ci": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41799770339",
+  "candidates_declared": 12,
+  "projects": 4,
+  "candidates_verified": 12,
+  "candidates_blocked": 0,
+  "verified_per_project": {
+    "black": 3,
+    "fastapi": 3,
+    "httpie": 3,
+    "thefuck": 3
+  },
+  "each_case_checks": [
+    "pinned single-parent fix commit",
+    "license family in buggy revision",
+    "license family in fixed revision",
+    "fixed revision test file existence and Git SHA"
+  ],
+  "git_api_access": "read-only https://api.github.com; ephemeral GitHub token only to that host",
+  "interpreter_availability": {
+    "requested_3.7": {
+      "actual": "3.7.17",
+      "historical_patch_exact": false
+    },
+    "requested_3.8": {
+      "actual": "3.8.18",
+      "historical_patch_exact": false
+    }
+  },
+  "dependency_resolution": "not_tested",
+  "third_party_code_executed": false,
+  "historical_patch_exact": false,
+  "oracles_frozen_for_new_cohort": false,
+  "new_bugs_discovered": 0,
+  "bug_detection_scores_generated": 0,
+  "notes": [
+    "One source-only verification per candidate; not proof of historical environment compatibility.",
+    "Source checks are diagnostic metadata only: they do not measure tests, performance, agents or policies.",
+    "No retrospective rescoring of EXP-008B. Historical primary budget-12 scores remain 2/8.",
+    "Next step: inspect exact third-party dependency constraints, prepare isolated pinned environments, and pre-register the final oracle before any scoring."
+  ]
+}
