@@ -1,0 +1,57 @@
+name: exp009b-diagnostics
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - 'results/**'
+      - '.github/workflows/exp009b.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - 'results/**'
+      - '.github/workflows/exp009b.yml'
+jobs:
+  historical-exception-diagnostics:
+    name: EXP-009B ${{ matrix.project }} (exploratory; no rescoring)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [youtube-dl, tornado, cookiecutter]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Install pinned historical Cookiecutter test dependencies (isolated CI only)
+        if: matrix.project == 'cookiecutter'
+        continue-on-error: true
+        run: |
+          python -m pip install --disable-pip-version-check \
+            pytest==7.4.4 pytest-mock==3.8.2 freezegun==1.2.2 \
+            binaryornot==0.4.4 Jinja2==2.11.3 click==7.1.2 \
+            poyo==0.5.0 jinja2-time==0.2.0 \
+            python-slugify==4.0.1 requests==2.25.1 \
+            MarkupSafe==1.1.1 PyYAML==5.4.1
+      - name: Qualify exceptions without modifying EXP-008B scores
+        env:
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.exp009b_qualification --project "$PROJECT"
+      - name: Archive allowlisted diagnostics (no raw traceback)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009b-${{ matrix.project }}-diagnostics
+          path: results/exp009b-${{ matrix.project }}-diagnostics.json
+          if-no-files-found: error
+          retention-days: 30
