@@ -1,0 +1,76 @@
+name: exp009b-source-qualification
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009b-source-qualification.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009b-source-qualification.yml'
+jobs:
+  source-metadata:
+    name: EXP-009B source-only ${{ matrix.project }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [black, fastapi, httpie, thefuck]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify frozen source metadata only (never run third-party tests)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROJECT: ${{ matrix.project }}
+        run: python -m lab.exp009b_source_preflight --project "$PROJECT"
+      - name: Archive bounded provenance evidence, including blockers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009b-sources-${{ matrix.project }}
+          path: results/exp009b-source-${{ matrix.project }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  historical-interpreter-availability:
+    name: EXP-009B interpreter Python ${{ matrix.python }} (availability only)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.7', '3.8']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Capture interpreter metadata only (no upstream imports/install)
+        shell: bash
+        run: |
+          python -c 'import sys,json,platform; from pathlib import Path; v="${{ matrix.python }}"; p=Path("results/exp009b-python-"+v+".json"); p.parent.mkdir(exist_ok=True); p.write_text(json.dumps({"requested_minor":v,"actual":platform.python_version(),"executable_major_minor":list(sys.version_info[:2]),"historical_patch_exact":False,"upstream_tests_executed":0,"dependencies_verified":False},sort_keys=True)+"\n")'
+      - name: Archive interpreter availability
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009b-interpreter-${{ matrix.python }}
+          path: results/exp009b-python-${{ matrix.python }}.json
+          if-no-files-found: error
+          retention-days: 30
