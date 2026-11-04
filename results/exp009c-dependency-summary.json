@@ -1,0 +1,62 @@
+{
+  "experiment": "EXP-009C",
+  "phase": "static_dependency_metadata_preflight",
+  "date": "2026-11-04",
+  "status": "source_descriptors_inspected_without_installation",
+  "pr": "https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/28",
+  "evidence_run": "https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41800731190",
+  "projects": 4,
+  "candidates": 12,
+  "inspected": 12,
+  "blocked": 0,
+  "files_inspected": 21,
+  "projects_breakdown": {
+    "black": {
+      "cases": 3,
+      "files": 6,
+      "descriptors": [
+        "Pipfile.lock",
+        "setup.py"
+      ],
+      "observation": "Existing historical lockfile but some local/conditional or dynamically interpreted install metadata."
+    },
+    "fastapi": {
+      "cases": 3,
+      "files": 3,
+      "descriptors": [
+        "pyproject.toml"
+      ],
+      "observation": "FLIT core includes exact Starlette and ranged Pydantic requirements; optional test dependencies are not all exact."
+    },
+    "httpie": {
+      "cases": 3,
+      "files": 6,
+      "descriptors": [
+        "requirements-dev.txt",
+        "setup.py"
+      ],
+      "observation": "Test requirements include unbounded pytest and lower bounds; setup has conditional dependencies."
+    },
+    "thefuck": {
+      "cases": 3,
+      "files": 6,
+      "descriptors": [
+        "requirements.txt",
+        "setup.py"
+      ],
+      "observation": "Test tooling largely unpinned; setup declarations are not environment validation."
+    }
+  },
+  "unit_tests_discovered": 214,
+  "original_scores_unmodified": true,
+  "third_party_code_executed": false,
+  "packages_installed": false,
+  "environment_compatibility_verified": false,
+  "oracles_for_new_cases_frozen": false,
+  "result_interpretation": "Source metadata observation only. No bug outcomes, tests or AI models evaluated.",
+  "next_actions": [
+    "resolve exact historical dependencies and transitive constraints in controlled CI",
+    "preregister per-case business oracle and exclusion rules before new tests",
+    "retain blocked/negative cases; never treat source-only checks as experimental success"
+  ]
+}
