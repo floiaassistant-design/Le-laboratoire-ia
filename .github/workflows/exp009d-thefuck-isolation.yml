@@ -1,0 +1,42 @@
+name: exp009d-thefuck-isolation
+on:
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - 'results/exp009d-wheel-summary.json'
+      - '.github/workflows/exp009d-thefuck-isolation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'experiments/**'
+      - '.github/workflows/exp009d-thefuck-isolation.yml'
+jobs:
+  direct-wheel-isolation:
+    name: EXP-009D-B TheFuck direct dependency diagnosis (post hoc)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 9
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.7'
+      - name: Check preserved original failure and case denominator
+        run: python -m lab.exp009d_thefuck_isolation --offline
+      - name: Probe each originally selected wheel separately (no dependencies or installs)
+        run: python -m lab.exp009d_thefuck_isolation
+      - name: Archive every dependency outcome and all failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp009d-thefuck-direct-wheel-isolation
+          path: results/exp009d-thefuck-wheel-isolation.json
+          if-no-files-found: error
+          retention-days: 30
