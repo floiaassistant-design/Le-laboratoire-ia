@@ -54,7 +54,7 @@ Si le kit officiel change ou ne s'installe pas à cette révision, ne pas modifi
 .\node_modules\.bin\electron.cmd .\lab-siwc.mjs smoke
 ~~~
 
-Si login réussit mais que plan_usage_enabled est false, aucune requête n'est envoyée. Si models ne propose aucun modèle, l'expérience est bloquée. Si smoke renvoie real_request_completed:true et un texte non vide, une seule requête technique a abouti **sur cette machine**. Aucun test réel de ce type n'a été réalisé ou enregistré au moment d'écrire le protocole.
+Si login réussit mais que plan_usage_enabled est false, aucune requête n'est envoyée. Si models ne propose aucun modèle, l'expérience est bloquée. Si smoke renvoie real_request_completed:true et un texte non vide, une seule requête technique a abouti **sur cette machine**. **Mise à jour du 5 novembre 2026 :** le premier appel réel a été effectué sur le PC de l'utilisateur, avec succès rapporté pour `gpt-6.1-sol`. Voir [observation EXP-019](../../results/EXP-019-LOCAL-SMOKE-2026-11-05.md). La validation à plusieurs rôles est seulement préparée dans le [protocole EXP-020](../../experiments/EXP-020-LOCAL-DUAL-MODEL-PILOT.md) ; aucun essai correspondant n'a encore été exécuté.
 
 ### Un prompt de rôle, à exécuter séparément
 
