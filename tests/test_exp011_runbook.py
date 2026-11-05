@@ -13,7 +13,7 @@ def fixture():
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
     # Synthetic-only questions; answer is intentionally not put in packets.
     rows = [{"question": " ".join(["short"] * 24) + "?",
-             "answer": "Artificial solution.\\n#### 98765"}
+             "answer": "Artificial solution.\n#### 98765"}
             for _ in range(1319)]
     rows[CALIBRATION[0]]["question"] = " ".join(["middle"] * 43) + "?"
     rows[EVALUATION[0]]["question"] = " ".join(["long"] * 52) + "?"
