@@ -1,49 +1,64 @@
 # État du laboratoire IA
 
-## REPRISE À JOUR — 4 novembre 2026, EXP-011 en cours
+## REPRISE À JOUR — 4 novembre 2026, EXP-011 intégré
 
-**Projet** : floiaassistant-design/Le-laboratoire-ia, branche officielle main.
-**Dernier main fusionné vérifié** : 7e78451bed72a9d0b7dc7741dc6b0edf1b477abd
-(PR #39). Les **7 workflows post-fusion de la PR #39 ont tous réussi** ;
-le dépôt comptait **311 tests** avant EXP-011.
+**Source de vérité :** [GitHub main](https://github.com/floiaassistant-design/Le-laboratoire-ia).
+Dernier commit fusionné vérifié à cette rédaction :
+9e83401d2d241d59cc581b91efb9e0836970f996
+([PR #41](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/41)).
+Les **7 workflows de la PR #41 sont verts sur son dernier SHA**,
+dont un seuil de **350 tests unitaires** et le précontrôle du protocole
+EXP-011 ; les [contrôles post-fusion de main](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions)
+ont démarré et doivent être revérifiés. Ne pas présumer leur succès.
 
-**Travail terminé**
-- PR #38, EXP-010A : routeur déterministe sans modèle,
-  trois rôles possibles et contrôle des blocages ; 20 tests nouveaux.
-- PR #39, EXP-010B : 16 cas symboliques, quatre politiques,
-  64 évaluations simulées, critique parfois trompeur ; 20 tests nouveaux.
-  Aucun modèle réel n'a été interrogé et aucun gain scientifique prouvé.
-- EXP-009E : inventaire statique des 12 défauts historiques ; 448
-  occurrences de définitions, **pas 448 tests observés** ni de nouveau score.
+### Chronologie récente confirmée
 
-**Travail en cours** : branche feat/exp011-manual-real-task-protocol,
-issue #40. Préenregistrement de 16 tâches GSM8K publiques (4 de
-calibration / 12 d'évaluation), source et empreinte figées, puis
-préparateur de questions sans réponses et évaluateur de sessions
-manuellement consignées. Protocole :
-[EXP-011](experiments/EXP-011-MANUAL-REAL-TASKS.md).
-**Ce travail est un outil d'étude**, pas une exécution de modèle :
-0 appel LLM, 0 résultat mesuré, 0 revendication de supériorité.
-La nouvelle CI exigera au moins 350 tests ; fusion seulement après tous
-les contrôles verts sur le dernier SHA, suivis des contrôles post-fusion.
+- [PR #38](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/38)
+  EXP-010A : routeur Python déterministe, rôles single/parallel/review
+  et blocages, **sans modèle IA**, fusionné et CI post-fusion verte.
+- [PR #39](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/39)
+  EXP-010B : 16 cas symboliques x 4 politiques = 64 évaluations simulées,
+  faux consensus et critiques trompeuses testés. Fusionné et 7 workflows
+  post-fusion verts ; aucune conclusion de performance de modèles.
+- [PR #41](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/41)
+  EXP-011 : **protocole prêt**, avec 16 problèmes publics GSM8K
+  (4 calibration, 12 évaluation), source MIT commit et blob épinglés,
+  préparation hors réseau des questions, clé conservée à part,
+  notateur de réponses saisies manuellement et vérification
+  de la source/clé avant score. **39 tests nouveaux, seuil 350**.
+  Seuil de revue (65→50 mots) amendé sur les longueurs des entrées
+  avant tout résultat de modèle, limite signalée dans le protocole.
 
-**Priorités parallèles toujours ouvertes** : les issues #29 et #35
-(qualification des environnements et témoins métier de 12 vrais bugs).
-Aucun des 12 nouveaux défauts n'est exécuté ou noté ; EXP-008B reste
-2/8 à budget 12 pour les trois politiques. Ne pas fusionner des résultats
-mathématiques GSM8K avec les scores des bugs.
+### Ce qui reste à faire
 
-**À la prochaine reprise** : vérifier PRs, branche main, runs GitHub
-Actions ; lire cette section, l'issue #40, le manifeste
-experiments/exp011-gsm8k-plan.json et les limitations EXP-011.
-Pour faire réellement collaborer des modèles, il faudra des sessions
-isolées et un relevé manuel ou un connecteur modèle explicitement
-disponible : GitHub Actions seul n'appelle aucun modèle.
+**L'EXP-011 n'a exécuté AUCUN modèle IA et n'a aucun score réel.**
+Les tâches sont sur un corpus public déjà connu, donc aucune
+validation aveugle ou meilleure architecture ne peut être revendiquée.
+Mission ouverte : [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+Pour réellement évaluer les routes, mener les sessions séparées
+avec le même modèle, consigner les réponses, les coûts connus
+ou null s'ils ne sont pas accessibles, puis scorer localement
+selon [EXP-011](experiments/EXP-011-MANUAL-REAL-TASKS.md).
+GitHub ne lance pas ChatGPT automatiquement. Aucune API payante
+ni installation locale de LLM n'est imposée.
+
+**Pistes scientifiques indépendantes toujours ouvertes** :
+[issue #29](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/29)
+et [#35](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/35)
+sur la reproduction de 12 défauts historiques non encore évalués ;
+EXP-008B reste 2/8 par politique au budget 12. Ne pas mélanger
+ces cohortes avec les exercices GSM8K.
+
+**À chaque reprise** : vérifier la branche main, les PR ouvertes,
+la CI sur le commit courant et les commentaires des issues ; lire
+cette section puis le protocole de la mission active. Les sections
+ci-dessous sont des journaux plus anciens, pas des consignes en vigueur.
 
 ---
+
 ## JOURNAL ANTÉRIEUR — reprise historique avant EXP-010
 
-> **Cette section prime sur les anciennes rubriques « prochaine étape » ci-dessous**, qui constituent un journal historique. Ne pas supposer que les derniers messages d'une conversation sont plus récents que GitHub : vérifier l'état du dépôt avant toute action. Un agent ne possède pas automatiquement le contexte des chats précédents.
+> **Cette section est historique et ne prime plus sur la reprise à jour ci-dessus**, qui constituent un journal historique. Ne pas supposer que les derniers messages d'une conversation sont plus récents que GitHub : vérifier l'état du dépôt avant toute action. Un agent ne possède pas automatiquement le contexte des chats précédents.
 
 **Projet unique :** [\`floiaassistant-design/Le-laboratoire-ia\`](https://github.com/floiaassistant-design/Le-laboratoire-ia). Branche officielle : \`main\`. Dernier commit technique vérifié lors de cette rédaction : \`4ba1854d1fa8236e78553106eb3055371be267fe\` (PR #22, EXP-009A). **Cette empreinte n'est pas une branche à imposer : relire \`main\` au moment de la reprise.** Au contrôle du 4 novembre : **aucune PR ouverte** et [dernier run sur \`main\` #41719295541](https://github.com/floiaassistant-design/Le-laboratoire-ia/actions/runs/41719295541) entièrement vert.
 

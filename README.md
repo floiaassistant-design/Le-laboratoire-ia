@@ -1,34 +1,24 @@
 # Laboratoire IA — recherche expérimentale
 
-**État courant (4 novembre 2026)** : [ETAT.md](ETAT.md).
-Les PR #38 et #39 sont fusionnées, avec 7 workflows post-fusion verts
-pour #39 : routeur sans modèle (EXP-010A), puis comparaison
-strictement simulée (EXP-010B, 16 cas x 4 politiques).
-**EXP-011 est en préparation** :
-[protocole sur 16 tâches GSM8K publiques et grille de sessions
-manuelles](experiments/EXP-011-MANUAL-REAL-TASKS.md).
-Le nouveau programme vérifie les questions et la clé contre la source officielle avant de noter les transcriptions
-fournies volontairement, mais **ne peut ni lancer ChatGPT, ni prouver
-l'indépendance des sessions, ni facturer/mesurer automatiquement
-les appels de modèle**. Aucun modèle réel évalué à ce stade.
-Les issues #29/#35 sur 12 bugs réels restent ouvertes.
+**État vérifié :** [ETAT.md](ETAT.md) — projet Python
+reproductible et expériences documentées sur GitHub.
 
+Les trois expériences récentes sont **fusionnées** :
+[EXP-010A — routeur adaptatif](experiments/EXP-010A-ADAPTIVE-ROUTING.md),
+[EXP-010B — comparateurs simulés](experiments/EXP-010B-SYNTHETIC-EVALUATION.md)
+et [EXP-011 — protocole GSM8K public](experiments/EXP-011-MANUAL-REAL-TASKS.md)
+([PR #41](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/41)).
+Les 350 tests unitaires requis ont passé la CI de la PR #41.
 
-**EXP-010B en préparation :** [comparaison de quatre politiques
-de routage sur 16 cas artificiels](experiments/EXP-010B-SYNTHETIC-EVALUATION.md).
-Il s'agit d'une évaluation mécanique hors ligne, avec réponses
-inventées et sans appel de modèle IA, **sans conclusion scientifique
-de supériorité**. Les expériences réelles sur les bugs restent distinctes.
-
-
-
-**Piste d'architecture en cours (EXP-010A) :**
-[routeur adaptatif sans modèle](experiments/EXP-010A-ADAPTIVE-ROUTING.md),
-avec simulateurs de rôles, refus explicite en cas de blocage et
-comparateurs fixes. Il s'agit d'un **pilote de contrôle de flux**,
-pas d'une collaboration réelle entre LLM ni d'une mesure de supériorité.
-Les expérimentations sur bugs historiques restent régies par les issues #29/#35.
-
+**Limite déterminante : EXP-011 n'a interrogé aucun vrai modèle IA.**
+Les 16 problèmes GSM8K ne sont pas un jeu de validation aveugle.
+Le code sait préparer des questions sans réponses et, séparément,
+noter des sorties de sessions **manuellement** renseignées après
+vérification de la source officielle. Il ne lance ni ChatGPT ni un modèle
+local, et n'a pas accès automatiquement aux coûts de tokens.
+La prochaine étape est suivie par
+[l'issue #40 — essais réels](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+Les chantiers historiques de bugs (#29 et #35) restent distincts.
 
 Prototype indépendant consacré à l'évaluation rigoureuse de méthodes de vérification et, plus tard, de véritables architectures d'agents IA.
 
