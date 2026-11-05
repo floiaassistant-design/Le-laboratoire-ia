@@ -142,5 +142,11 @@ class EXP017Checks(unittest.TestCase):
         self.assertEqual(summary(audit(a))["input_manifest_git_blob"], FROZEN_BLOB)
 
 
+    def test_versioned_results_equal_fresh_calculation(self):
+        path = MANIFEST.parent.parent / "results" / "exp017-conservative-summary.json"
+        expected = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(expected, summary(audit(load_manifest())))
+
+
 if __name__ == "__main__":
     unittest.main()
