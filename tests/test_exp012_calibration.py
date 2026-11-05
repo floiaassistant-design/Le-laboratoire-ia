@@ -15,10 +15,10 @@ def fixture():
         ).read_text(encoding="utf-8")
     )
     # Use locally invented synthetic fixtures, NOT official GSM8K data.
-    rows = [{"question": "synthetic", "answer": "synthetic\\n#### 0"}
+    rows = [{"question": "synthetic", "answer": "synthetic\n#### 0"}
             for _ in range(1319)]
     for i, val in zip(indices, responses):
-        rows[i]["answer"] = "synthetic\\n#### " + str(val)
+        rows[i]["answer"] = "synthetic\n#### " + str(val)
     return rows, data
 
 
