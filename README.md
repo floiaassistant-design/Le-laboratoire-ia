@@ -7,8 +7,7 @@ Quatre réponses réelles auto-déclarées ont été enregistrées avant
 lecture des solutions, puis vérifiées ligne à ligne : **4/4** sur
 quatre questions de **calibration**, sans contexte indépendant.
 Un score sur quatre questions publiques ne constitue pas une validation
-des politiques multi-agents. La CI EXP-012 vérifie le fichier source
-complet avant de recalculer ce score ; la PR reste à valider.
+des politiques multi-agents. La [PR #46](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/46) est fusionnée : ses huit workflows sont verts, dont la vérification indépendante du fichier source complet et du score **4/4**.
 
 
 **Étape du 5 novembre 2026 :** [EXP-011B — carnet de sessions manuelles équilibrées](experiments/EXP-011B-BALANCED-RUNBOOK.md), fusionnée via [PR #43](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/43). Il prévoit l'ordre des 64 essais de l'EXP-011, prépare des consignes séparées et contrôle les sources. **Aucun modèle IA n'est automatiquement interrogé et aucun score n'est encore mesuré.**
