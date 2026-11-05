@@ -1,5 +1,8 @@
 # Laboratoire IA — recherche expérimentale
 
+**EXP-017 en cours de validation** : [issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59), [protocole](experiments/EXP-017-CONSERVATIVE-ROUTING.md), [16 nouveaux cas figés](experiments/exp017-cases.json). Le candidat conservateur n'appelle aucun modèle : il accepte uniquement une syntaxe arithmétique définie, renvoie explicitement des abstentions ou blocages, et est comparé aux deux routeurs historiques sur 48 formulations par politique. **Aucune preuve de qualité de modèle ou de généralisation** ; le chantier de la PR et des résultats est encore en validation.
+
+
 **EXP-016 fusionnée le 5 novembre 2026** ([PR #58](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/58), **8 workflows PR verts et 439 tests**) : [protocole](experiments/EXP-016-ROUTING-STRESS.md), [16 questions figées](experiments/exp016-cases.json) et [résumé durable](results/exp016-routing-summary.json). Le nouveau remplissage neutre ne modifie aucune des 16 routes du candidat, contrairement aux 16 du témoin longueur. Mais le candidat refuse **16/16** cas en nombres écrits en mots, change **12/16** routes avec un `then` non mathématique, et **4/4** lors d'un remplacement du connecteur. **Aucun LLM appelé, aucune supériorité de précision démontrée, pas de validation aveugle**. Prochaine mission : [EXP-017, issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59), routeur prudent et abstention explicite.
 
 
