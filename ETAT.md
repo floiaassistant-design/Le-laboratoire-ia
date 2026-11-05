@@ -1,5 +1,17 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-011C : vérification de provenance des sessions (PR en cours)
+
+**Travail de cette reprise** : après [EXP-018 fusionnée](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/64) et la [documentation fusionnée #65](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/65), le `main` de départ est `66be5381f5b272bedaf3c3ecbbd9181d969810f6`. Ses deux workflows déclenchés post-fusion ont réussi ; les huit contrôles étaient déjà verts sur le SHA final de la PR #64 (476 tests).
+
+**Nouveau chantier** : [issue #66](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/66), préenregistrée avant le code ; [PR #67](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/67) : `lab.exp011_provenance`, tests synthétiques et [protocole EXP-011C](experiments/EXP-011C-PROVENANCE-AUDIT.md). Contrôle en lecture seule du fichier de saisie manuel EXP-011, du carnet EXP-011B et des 64 essais. Il identifie les références de chat réutilisées **entre essais**, les appels de rôle incohérents, les omissions et les étiquettes de modèle divergentes. Aucun appel LLM ; la clé oracle n'est pas utilisée pour le jugement. **Le travail en PR n'est pas encore fusionné** ; les tests et workflows doivent être vérifiés sur le SHA final, et corrigés le cas échéant.
+
+**État de preuve inchangé** : toujours **aucune comparaison réelle** des quatre politiques sur 12 tâches d'évaluation EXP-011 ; EXP-012 est seulement une calibration dans un même contexte (4/4). Les chiffres EXP-018 (0 rôle prudent sur 136 variantes) restent descriptifs de règles hors ligne. Une référence de chat unique ne prouve ni isolement ni même exécution d'une IA ; EXP-011C est une protection de saisie, non une expérience comparative.
+
+**Prochaine reprise inter-agent** : contrôler [PR #67](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/67) et **huit workflows** du dernier SHA, fusionner seulement après CI verte et vérifier ensuite `main` ; autrement corriger et transmettre l'état. La priorité scientifique demeure [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) : récolter volontairement de vraies sorties de sessions séparées sans API payante obligatoire. Ne pas fabriquer de réponses ni de résultats, et ne pas modifier la cohorte gelée.
+
+---
+
 ## REPRISE — 5 novembre 2026, EXP-018 fusionnée (prochaine preuve : modèles réels)
 
 **Dépôt officiel** : [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). **Dernière expérience fusionnée** : [PR #64 — EXP-018](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/64), commit `6ad4f2d44821aaf42192308a9ee4e1661aa5fea0`. [Issue #62](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/62) clôturée. Sur le **dernier SHA de la PR**, les **8 workflows GitHub Actions sont verts, dont 476 tests unitaires** et le contrôle d'égalité du résumé avec le calcul frais. Vérifier séparément les runs **post-fusion de `main`** ; ne pas supposer leur succès.
