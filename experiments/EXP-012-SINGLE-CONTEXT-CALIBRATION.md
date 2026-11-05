@@ -47,3 +47,37 @@ Toutes les réponses brutes et tous les échecs doivent être conservés,
 sans sélection post hoc. Les réponses du solveur seront enregistrées
 dans `results/exp012-calibration-observations.json`; l'oracle sera
 consulté seulement après cet enregistrement.
+
+
+## Observation gelée puis score
+
+Les quatre réponses ont été consignées **avant de lire les oracles**
+dans `results/exp012-calibration-observations.json`, commit
+`6611afa785417c87cc6985929da71f47c645fe61`.
+
+La consultation ultérieure des quatre lignes officielles au blob Git
+`e4c2ff4942b9a78bd74f04141224c11e28d12dc9` a donné **4/4**,
+sans réponse absente ni malformée. Le rapport initial a été versionné
+dans `results/exp012-calibration-score.json`. La vérification des
+**quatre lignes** a été réalisée par le connecteur GitHub et ne vaut pas
+vérification de la copie du fichier complet : un workflow CI
+`exp012-calibration-verification` effectue cette vérification
+supplémentaire par `lab.exp012_calibration` et compare les statistiques
+au rapport enregistré. Ne pas présumer ce workflow vert avant lecture
+de son résultat.
+
+Commande entièrement hors réseau après téléchargement contrôlé de la
+source au commit prévu :
+
+```bash
+python -m lab.exp012_calibration \
+  --source test.jsonl \
+  --observations results/exp012-calibration-observations.json \
+  --report /tmp/exp012-rescore.json
+```
+
+Le score n'établit pas la valeur de l'architecture multi-agent :
+seulement **quatre questions de calibration connues sur quatre**
+dans une conversation non isolée. Aucune précision comparative,
+aucune mesure de coût et aucun résultat sur les douze tâches
+de validation.
