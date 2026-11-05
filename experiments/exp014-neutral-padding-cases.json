@@ -1,0 +1,42 @@
+{
+  "experiment": "EXP-014",
+  "phase": "preregistered_model_free_length_sensitivity_audit",
+  "status": "input_only_deterministic_preflight_no_llm",
+  "rule_reference": "EXP-011 question_word_count_only 40/50 words, budget 2",
+  "padding": "No additional quantities or conditions are supplied here.",
+  "categories_are_author_declared_not_measured": true,
+  "model_calls": 0,
+  "answer_key_included": false,
+  "cases": [
+    {
+      "id": "add-01",
+      "declared_steps": 1,
+      "question": "Mina has 12 coins and receives 5 more coins. How many coins does she have now?"
+    },
+    {
+      "id": "subtract-01",
+      "declared_steps": 1,
+      "question": "Luc had 19 stickers and gave away 7 stickers. How many stickers remain?"
+    },
+    {
+      "id": "multiply-01",
+      "declared_steps": 1,
+      "question": "A shelf holds 4 trays with 6 cups on each tray. How many cups are on the shelf?"
+    },
+    {
+      "id": "mixed-01",
+      "declared_steps": 2,
+      "question": "A gardener plants 3 rows of 8 trees each and later removes 5 trees. How many trees remain?"
+    },
+    {
+      "id": "mixed-02",
+      "declared_steps": 2,
+      "question": "A baker prepares 48 muffins, sells one quarter of them, then gives 6 away. How many muffins are left?"
+    },
+    {
+      "id": "mixed-03",
+      "declared_steps": 3,
+      "question": "A ticket office sells 9 tickets in the morning and twice as many in the afternoon, then cancels 4 tickets. How many tickets remain sold?"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "experiment": "EXP-014",
+  "result_type": "deterministic_mechanical_routing_observation",
+  "source_manifest_git_blob_sha": "f51140fac70d0471bfc22297ca7ccb791a85e5b3",
+  "source_router": "lab.exp011_manual.task_profile + lab.exp010a_adaptive.choose",
+  "base_families": 6,
+  "total_input_variants": 18,
+  "route_counts": {
+    "short": {
+      "single": 6
+    },
+    "medium": {
+      "parallel": 6
+    },
+    "long": {
+      "review": 6
+    }
+  },
+  "route_changes_by_pair": {
+    "short_to_medium": 6,
+    "medium_to_long": 6,
+    "short_to_long": 6
+  },
+  "planned_role_calls_by_variant": {
+    "short": 6,
+    "medium": 12,
+    "long": 12
+  },
+  "short_to_long_role_call_ratio": 2,
+  "model_calls_executed": 0,
+  "real_model_accuracy_measured": false,
+  "statistical_improvement_proven": false,
+  "interpretation": "All six fixed arithmetic questions switch routing through the designed word-count thresholds after appending a registered number-free sentence. This is a deterministic design sensitivity, not evidence that model answers are affected or that any alternative router is superior.",
+  "ci_evidence_run_id": 42043820310,
+  "status": "verified_by_lab_offline_tests_prior_to_PR_merge"
+}
