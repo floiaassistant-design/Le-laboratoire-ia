@@ -69,6 +69,16 @@ jobs:
           path: results/exp014-neutral-padding-audit.json
           if-no-files-found: error
           retention-days: 30
+      - name: EXP-015 content-feature router vs word count (no model calls)
+        run: python -m lab.exp015_content_router --output results/exp015-content-router-audit.json
+      - name: Archive EXP-015 retrospective routing audit only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp015-content-routing-model-free
+          path: results/exp015-content-router-audit.json
+          if-no-files-found: error
+          retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)
         run: python -m lab.exp009d_wheels --project black --offline
       - name: EXP-009B candidate metadata structural preflight (no upstream execution)
