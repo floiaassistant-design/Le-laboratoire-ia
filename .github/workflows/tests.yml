@@ -49,6 +49,16 @@ jobs:
           path: results/exp011-protocol-preflight.json
           if-no-files-found: error
           retention-days: 30
+      - name: EXP-013 paired-metric offline preflight (synthetic, no LLM)
+        run: python -m lab.exp013_paired preflight --report results/exp013-analysis-preflight.json
+      - name: Archive EXP-013 synthetic preflight only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp013-paired-analysis-synthetic-only
+          path: results/exp013-analysis-preflight.json
+          if-no-files-found: error
+          retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)
         run: python -m lab.exp009d_wheels --project black --offline
       - name: EXP-009B candidate metadata structural preflight (no upstream execution)
