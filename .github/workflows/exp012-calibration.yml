@@ -1,0 +1,65 @@
+name: exp012-calibration-verification
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-four-frozen-observations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download exact public GSM8K data (never execute upstream code)
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            --retry 2 --max-time 60 \
+            'https://raw.githubusercontent.com/openai/grade-school-math/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl' \
+            --output "$RUNNER_TEMP/exp012-gsm8k.jsonl"
+      - name: Verify full upstream blob and score frozen replies (no model)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m lab.exp012_calibration \
+            --source "$RUNNER_TEMP/exp012-gsm8k.jsonl" \
+            --observations results/exp012-calibration-observations.json \
+            --report "$RUNNER_TEMP/exp012-verified-score.json"
+          python - "$RUNNER_TEMP/exp012-verified-score.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          observed = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+          committed = json.loads(Path("results/exp012-calibration-score.json").read_text(encoding="utf-8"))
+          required = ("experiment", "phase", "source_blob_sha",
+                      "calibration_cases_total", "correct",
+                      "accuracy_over_all_four", "status_counts",
+                      "evaluations", "model_provenance",
+                      "fresh_contexts_verified", "model_orchestration_compared",
+                      "independent_holdout_claim", "model_calls_automated_by_scorer",
+                      "training_contamination_possible", "notes")
+          for field in required:
+              if committed[field] != observed[field]:
+                  raise SystemExit("EXP-012 reported score does not match pinned source: " + field)
+          if observed["full_upstream_blob_verified"] is not True:
+              raise SystemExit("Official source full-blob hash not verified")
+          print("EXP-012: 4/4 calibration responses independently re-scored; no model called")
+          PY
+      - name: Archive verification-only report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp012-calibration-verification
+          path: ${{ runner.temp }}/exp012-verified-score.json
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,44 @@
+{
+  "experiment": "EXP-012",
+  "phase": "exploratory_single_context_calibration_only",
+  "source_blob_sha": "e4c2ff4942b9a78bd74f04141224c11e28d12dc9",
+  "calibration_cases_total": 4,
+  "correct": 4,
+  "accuracy_over_all_four": 1,
+  "status_counts": {
+    "correct": 4,
+    "incorrect": 0,
+    "unanswered": 0,
+    "malformed": 0
+  },
+  "evaluations": [
+    {
+      "task_id": "gsm8k-test-0013",
+      "status": "correct"
+    },
+    {
+      "task_id": "gsm8k-test-0037",
+      "status": "correct"
+    },
+    {
+      "task_id": "gsm8k-test-0059",
+      "status": "correct"
+    },
+    {
+      "task_id": "gsm8k-test-0081",
+      "status": "correct"
+    }
+  ],
+  "model_provenance": "assistant_self_report_only",
+  "fresh_contexts_verified": false,
+  "model_orchestration_compared": false,
+  "independent_holdout_claim": false,
+  "model_calls_automated_by_scorer": 0,
+  "training_contamination_possible": true,
+  "full_upstream_blob_verified": false,
+  "source_line_blob_verified_via_connector": true,
+  "raw_observations_frozen_commit": "6611afa785417c87cc6985929da71f47c645fe61",
+  "raw_observations_git_blob_sha": "94c4acda5d1dc42114a4922e6bf71f4b38b880e0",
+  "notes": "Same-chat exploratory arithmetic calibration on known public GSM8K examples; not a multi-agent benchmark or model performance claim.",
+  "source_verification_notes": "The initial four-line GitHub connector comparison is separately recorded; the exp012-calibration-verification workflow also verifies the entire official dataset blob."
+}
