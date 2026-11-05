@@ -144,7 +144,7 @@ class ProvenanceAuditTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             audit(packets, book, responses)
         _, book, responses = fixture()
-        book["trials"][0]["route"] = "parallel"
+        book["trials"][0]["route"] = "tampered-route"
         with self.assertRaises(ValueError):
             audit(packets, book, responses)
 
