@@ -103,15 +103,18 @@ async function main() {
   process.stdout.write(JSON.stringify(output) + "\n");
 }
 
-try {
-  await main();
-} catch (error) {
-  // Do not print raw HTTP responses, access tokens or stack dumps.
-  // Error messages can contain request details. Never print raw SDK errors or tokens.
-  const code = error && typeof error.code === "string"
-    && /^[a-z_]{1,50}$/.test(error.code) ? error.code : "request_failed";
-  process.stderr.write("EXP-019 not completed (" + code + "). No real success recorded.\n");
-  process.exitCode = 1;
-} finally {
-  app.quit();
-}
+// Electron's ESM main entry must finish evaluating before the app's "ready"
+// event is dispatched. A top-level `await main()` deadlocks because main()
+// awaits app.whenReady(). Start the Promise chain without awaiting it here.
+void main()
+  .catch(error => {
+    // Do not print raw HTTP responses, access tokens or stack dumps.
+    // Error messages can contain request details. Never print raw SDK errors or tokens.
+    const code = error && typeof error.code === "string"
+      && /^[a-z_]{1,50}$/.test(error.code) ? error.code : "request_failed";
+    process.stderr.write("EXP-019 not completed (" + code + "). No real success recorded.\n");
+    process.exitCode = 1;
+  })
+  .finally(() => {
+    app.quit();
+  });
