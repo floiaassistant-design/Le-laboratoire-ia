@@ -79,6 +79,16 @@ jobs:
           path: results/exp015-content-router-audit.json
           if-no-files-found: error
           retention-days: 30
+      - name: EXP-016 frozen-cohort routing stress (no model)
+        run: python -m lab.exp016_routing_stress --output results/exp016-routing-stress-audit.json
+      - name: Archive EXP-016 input-only routing report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp016-input-only-routing-stress
+          path: results/exp016-routing-stress-audit.json
+          if-no-files-found: error
+          retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)
         run: python -m lab.exp009d_wheels --project black --offline
       - name: EXP-009B candidate metadata structural preflight (no upstream execution)
