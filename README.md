@@ -1,5 +1,8 @@
 # Laboratoire IA — recherche expérimentale
 
+**EXP-016, sur branche de travail** : [issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), [protocole figé](experiments/EXP-016-ROUTING-STRESS.md) et [16 nouveaux cas](experiments/exp016-cases.json) avec 68 variantes par routeur. Tests de remplissage inédit, nombres écrits en toutes lettres, consignes trompeuses et suppression du connecteur `then`, plus budgets 0/1/2. Mesures de fonctionnement déterministe seulement ; les sorties et la CI doivent encore être confirmées. Aucun modèle IA exécuté et aucune conclusion de supériorité réelle.
+
+
 **EXP-015 fusionnée le 5 novembre 2026** ([PR #55](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/55), **8 workflows PR verts, 424 tests**) : [audit d'un routeur à indices de contenu](experiments/EXP-015-CONTENT-ROUTING.md). Sur les six questions EXP-014 **déjà connues**, 0/6 variation de route sous le remplissage exact, contre 6/6 pour l'ancien routeur. Un contre-exemple avec `then` trompeur fait varier le candidat dans 3/6 cas. [Synthèse durable](results/exp015-routing-summary.json). **Aucun LLM n'a été appelé et aucune amélioration de qualité n'a été démontrée.** Prochaine mission : [EXP-016, issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), nouveaux cas et perturbations gelés avant calcul.
 
 
