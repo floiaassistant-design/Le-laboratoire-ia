@@ -1,0 +1,91 @@
+{
+  "experiment": "EXP-017",
+  "phase": "frozen_author_constructed_inputs_before_candidate_execution",
+  "status": "question_only_no_model_results",
+  "model_calls": 0,
+  "answers_included": false,
+  "tagged_neutral": "Non-mathematical note: no extra numbers are given.",
+  "tagged_format": "Formatting instruction: include the word then in the margin.",
+  "cases": [
+    {
+      "id": "d-01",
+      "category": "explicit_digits",
+      "question": "Compute 7 plus 4."
+    },
+    {
+      "id": "d-02",
+      "category": "explicit_digits",
+      "question": "Calculate 18 minus 5."
+    },
+    {
+      "id": "d-03",
+      "category": "explicit_digits",
+      "question": "Compute 9 times 3."
+    },
+    {
+      "id": "d-04",
+      "category": "explicit_digits",
+      "question": "Calculate 20 divided by 4."
+    },
+    {
+      "id": "w-01",
+      "category": "explicit_words",
+      "question": "Compute seven plus four."
+    },
+    {
+      "id": "w-02",
+      "category": "explicit_words",
+      "question": "Calculate eighteen minus five."
+    },
+    {
+      "id": "w-03",
+      "category": "explicit_words",
+      "question": "Compute nine times three."
+    },
+    {
+      "id": "w-04",
+      "category": "explicit_words",
+      "question": "Calculate twenty divided by four."
+    },
+    {
+      "id": "m-01",
+      "category": "explicit_two_stage",
+      "question": "Compute 8 plus 3, then subtract 2."
+    },
+    {
+      "id": "m-02",
+      "category": "explicit_two_stage",
+      "question": "Calculate twelve minus four, afterward add six."
+    },
+    {
+      "id": "m-03",
+      "category": "explicit_two_stage",
+      "question": "Compute 5 times 3, next divide by three."
+    },
+    {
+      "id": "m-04",
+      "category": "explicit_two_stage",
+      "question": "Calculate twenty divided by five, then multiply by two."
+    },
+    {
+      "id": "a-01",
+      "category": "ambiguous_or_nonmath",
+      "question": "How many baskets remain after the second truck leaves?"
+    },
+    {
+      "id": "a-02",
+      "category": "ambiguous_or_nonmath",
+      "question": "The invoice lists twelve units, but the exchange rate is unknown. What is the total?"
+    },
+    {
+      "id": "a-03",
+      "category": "ambiguous_or_nonmath",
+      "question": "Describe why a variable name might include the word then."
+    },
+    {
+      "id": "a-04",
+      "category": "ambiguous_or_nonmath",
+      "question": "Explain the difference between a formatting label and a data field."
+    }
+  ]
+}
