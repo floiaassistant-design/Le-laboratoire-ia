@@ -1,16 +1,15 @@
 # État du laboratoire IA
 
 
-## REPRISE — 5 novembre 2026, EXP-013 en validation
+## REPRISE — 5 novembre 2026, EXP-013 fusionnée
 
-**Référence** : [issue #48](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/48), branche `feat/exp013-paired-validity-analysis`; code, tests et protocole [EXP-013](experiments/EXP-013-PAIRED-ANALYSIS.md).
-Dernier `main` vérifié avant cette branche : `6d9605841f8f1d4ea98df39a23b3de6c8c3261db` (PR #47). Les deux workflows post-fusion de ce commit étaient **verts**. Aucune PR ouverte au début de cette reprise.
+**Référence** : [PR #49](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/49) fusionnée au commit `86e34878b2a7bef51b3ff1bfcf843612d08746be`, [issue #48](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/48) et protocole [EXP-013](experiments/EXP-013-PAIRED-ANALYSIS.md). **8 workflows verts sur le dernier SHA de la PR**, dont `laboratory-checks` (391 tests unitaires) et précontrôle synthétique EXP-013 (0 appel modèle, 0 observation). Les contrôles post-fusion de `main` doivent être vérifiés séparément.
 
-**Nouveauté logicielle en cours de CI** : analyse non inférentielle des **12 tâches d'évaluation** déjà fixées dans EXP-011, en comparant appariés `adaptive` / `always_single` / `always_parallel` / `always_review`. Chaque politique conserve le dénominateur 12 ; le rapport distingue réponses correctes, mauvaises, refus, blocages **par conception**, formats invalides et essais non observés ou non indépendants. Les différences sont des **bornes déterministes** en cas de données inconnues, pas des intervalles de confiance. Comptabiliser séparément les victoires par blocage du témoin pour éviter de confondre architecture et meilleur raisonnement.
+**Nouveauté logicielle intégrée** : analyse non inférentielle des **12 tâches d'évaluation** déjà fixées dans EXP-011, en comparant appariés `adaptive` / `always_single` / `always_parallel` / `always_review`. Chaque politique conserve le dénominateur 12 ; le rapport distingue réponses correctes, mauvaises, refus, blocages **par conception**, formats invalides et essais non observés ou non indépendants. Les différences sont des **bornes déterministes** en cas de données inconnues, pas des intervalles de confiance. Comptabiliser séparément les victoires par blocage du témoin pour éviter de confondre architecture et meilleur raisonnement.
 
 **État scientifique** : le seul pilote réel reste **EXP-012 : 4/4 sur quatre questions de calibration dans un même contexte ChatGPT**, et la source GSM8K intégrale a été vérifiée par CI. **Aucun modèle indépendant, aucune comparaison réelle des quatre stratégies, zéro observation sur les 12 tâches de validation.** Le précontrôle EXP-013 est **entièrement synthétique**, n'appelle pas d'IA et n'enregistre aucun score réel. EXP-008B conserve 2/8 selon son protocole, et les issues #29/#35 restent séparées.
 
-**Prochaine reprise** : vérifier la PR EXP-013, ses tests unitaires et tous les jobs au SHA final ; fusionner uniquement si tous les contrôles verts, puis vérifier `main` post-fusion. Pour mesurer des modèles réels, il faudra des sessions volontairement distinctes et des observations documentées ; les scripts GitHub Actions ne peuvent pas ouvrir ChatGPT automatiquement. Voir en premier cette section avant les journaux plus anciens.
+**Prochaine reprise** : vérifier les huit jobs post-fusion de `main` sur `86e34878b2a7bef51b3ff1bfcf843612d08746be`, puis préparer la collecte de sessions réelles volontairement séparées selon EXP-011/011B, sans affirmer leur indépendance par défaut. Pour mesurer des modèles réels, il faudra des sessions volontairement distinctes et des observations documentées ; les scripts GitHub Actions ne peuvent pas ouvrir ChatGPT automatiquement. Voir en premier cette section avant les journaux plus anciens.
 
 ---
 
