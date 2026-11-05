@@ -1,5 +1,17 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-011D — collecte guidée des vrais essais (PR ouverte)
+
+**Contrôles de départ :** dernier `main` au commit `75dd1a18e07e41a917966c1ec50be8a95929e7de`, les deux workflows post-fusion réussis ; aucune PR ouverte avant la reprise. EXP-011C avait été fusionnée, avec **486 tests** sur la PR.
+
+**Nouveau chantier préenregistré** : [issue #69](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/69), [PR #70](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/70) (non fusionnée à l'écriture de ce paragraphe) ; [EXP-011D](experiments/EXP-011D-GUIDED-COLLECTION.md). Le module `lab.exp011_session_guide` ajoute les commandes privées `next`, `record`, `status` au carnet EXP-011B : prochaine instruction dans l'ordre, sortie de critique basée uniquement sur la sortie enregistrée du solveur, référence unique de chat et étiquette de modèle, saisie atomique sans réécriture. Les tests sont **synthétiques**, sans oracle ni chat réel. Aucun modèle contacté, aucun gain qualité/coût prouvé.
+
+**Vérification avant fusion** : relire la PR #70 et les **8 workflows** du SHA final, corriger toute erreur puis fusionner seulement si intégralement verts. Vérifier les deux workflows post-fusion de `main` séparément. Si fusionnée, reporter le SHA et actualiser ce statut à la reprise suivante.
+
+**Prochaine priorité scientifique** : [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) — récolter volontairement de **vraies** réponses de modèles, à commencer par la calibration, dans de nouvelles conversations utilisateur en suivant EXP-011B et en contrôlant EXP-011C. Aucune preuve d'isolation ni appel de modèle n'est créée par le CLI ; ne pas inventer les 12 observations de validation. Respecter les 16 tâches et les quatre politiques gelées.
+
+---
+
 ## REPRISE — 5 novembre 2026, EXP-011C fusionnée (prochaine preuve : sessions réelles)
 
 **Dépôt de référence** : [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). [PR #67 — EXP-011C](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/67) **fusionnée** au commit `3fff3859ec0ca76d3dca42142f219e04dc66c83b` ; [issue #66](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/66) clôturée. Sur le SHA final `79b0014c3353bdc4a191086a934bcb11dce00e79` de la PR, les **huit workflows GitHub Actions sont verts**, avec **486 tests unitaires** dans `laboratory-checks`. Les runs *post-fusion* de `main` doivent être vérifiés séparément.
