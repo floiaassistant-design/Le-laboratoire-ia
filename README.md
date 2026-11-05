@@ -1,7 +1,7 @@
 # Laboratoire IA — recherche expérimentale
 
 
-**Étape EXP-013 (5 novembre 2026, en validation) :**
+**EXP-013 fusionnée le 5 novembre 2026** ([PR #49](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/49), 8 workflows verts, 391 tests) :
 [analyse appariée des stratégies et des données manquantes](experiments/EXP-013-PAIRED-ANALYSIS.md).
 Elle prépare le calcul honnête des résultats des 12 tâches d'évaluation
 EXP-011, sépare blocages de politique et erreurs de modèle, rend
