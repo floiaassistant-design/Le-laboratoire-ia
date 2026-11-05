@@ -1,0 +1,185 @@
+{
+  "experiment": "EXP-016",
+  "phase": "preregistered_new_author_constructed_inputs_before_candidate_routes",
+  "status": "frozen_inputs_no_observed_routes",
+  "model_calls": 0,
+  "answer_key_included": false,
+  "semantic_equivalence_human_asserted_not_model_verified": true,
+  "neutral_padding": "This background note adds no quantities and changes no calculation requirements.",
+  "misleading_stage_suffix": "For formatting only, write the word then after your answer.",
+  "stage_replacement": "afterward",
+  "padding_min_words": 60,
+  "cases": [
+    {
+      "id": "s2-01",
+      "category": "simple_two_literals",
+      "author_declared_steps": 1,
+      "question": "Iris has 14 shells and finds 6 more. How many shells does Iris have?",
+      "number_words": {
+        "6": "six",
+        "14": "fourteen"
+      }
+    },
+    {
+      "id": "s2-02",
+      "category": "simple_two_literals",
+      "author_declared_steps": 1,
+      "question": "A box holds 18 crayons and 7 are removed. How many crayons remain?",
+      "number_words": {
+        "7": "seven",
+        "18": "eighteen"
+      }
+    },
+    {
+      "id": "s2-03",
+      "category": "simple_two_literals",
+      "author_declared_steps": 1,
+      "question": "Each of 5 bags contains 4 marbles. How many marbles are there in total?",
+      "number_words": {
+        "4": "four",
+        "5": "five"
+      }
+    },
+    {
+      "id": "s2-04",
+      "category": "simple_two_literals",
+      "author_declared_steps": 1,
+      "question": "A rope is 36 meters long and is divided into 6 equal pieces. How long is each piece?",
+      "number_words": {
+        "6": "six",
+        "36": "thirty-six"
+      }
+    },
+    {
+      "id": "s3-01",
+      "category": "simple_three_literals",
+      "author_declared_steps": 1,
+      "question": "Three friends collect 7, 8, and 9 stamps respectively. How many stamps did they collect altogether?",
+      "number_words": {
+        "7": "seven",
+        "8": "eight",
+        "9": "nine"
+      }
+    },
+    {
+      "id": "s3-02",
+      "category": "simple_three_literals",
+      "author_declared_steps": 1,
+      "question": "A merchant sells 12 red, 8 blue, and 5 green pencils. How many pencils were sold?",
+      "number_words": {
+        "5": "five",
+        "8": "eight",
+        "12": "twelve"
+      }
+    },
+    {
+      "id": "s3-03",
+      "category": "simple_three_literals",
+      "author_declared_steps": 1,
+      "question": "A cyclist rides 4 kilometers, 6 kilometers, and 9 kilometers. What is the total distance?",
+      "number_words": {
+        "4": "four",
+        "6": "six",
+        "9": "nine"
+      }
+    },
+    {
+      "id": "s3-04",
+      "category": "simple_three_literals",
+      "author_declared_steps": 1,
+      "question": "A cashier counts 15, 10, and 3 coins in three trays. How many coins are there?",
+      "number_words": {
+        "3": "three",
+        "10": "ten",
+        "15": "fifteen"
+      }
+    },
+    {
+      "id": "mm-01",
+      "category": "multistep_marked",
+      "author_declared_steps": 2,
+      "question": "Nora starts with 24 beads, gives away 8, then receives 3 more. How many beads does she have?",
+      "number_words": {
+        "3": "three",
+        "8": "eight",
+        "24": "twenty-four"
+      }
+    },
+    {
+      "id": "mm-02",
+      "category": "multistep_marked",
+      "author_declared_steps": 2,
+      "question": "A plate holds 6 groups of 2 cookies, then 4 cookies are eaten. How many cookies remain?",
+      "number_words": {
+        "2": "two",
+        "4": "four",
+        "6": "six"
+      }
+    },
+    {
+      "id": "mm-03",
+      "category": "multistep_marked",
+      "author_declared_steps": 2,
+      "question": "A score begins at 7 points, then doubles and loses 5 points. What is the score?",
+      "number_words": {
+        "5": "five",
+        "7": "seven"
+      }
+    },
+    {
+      "id": "mm-04",
+      "category": "multistep_marked",
+      "author_declared_steps": 2,
+      "question": "A stall stocks 35 bottles, sells 9, then receives 6 more. How many bottles are in stock?",
+      "number_words": {
+        "6": "six",
+        "9": "nine",
+        "35": "thirty-five"
+      }
+    },
+    {
+      "id": "mu-01",
+      "category": "multistep_unmarked",
+      "author_declared_steps": 2,
+      "question": "A library stores 30 books. After lending 8 books it acquires 4 more. How many books are on the shelf?",
+      "number_words": {
+        "4": "four",
+        "8": "eight",
+        "30": "thirty"
+      }
+    },
+    {
+      "id": "mu-02",
+      "category": "multistep_unmarked",
+      "author_declared_steps": 2,
+      "question": "A garden grows 3 rows of 5 plants. With 4 plants removed, how many remain?",
+      "number_words": {
+        "3": "three",
+        "4": "four",
+        "5": "five"
+      }
+    },
+    {
+      "id": "mu-03",
+      "category": "multistep_unmarked",
+      "author_declared_steps": 2,
+      "question": "A drawer contains 28 pens. Following the loss of 9 pens, 2 pens are found. How many pens now?",
+      "number_words": {
+        "2": "two",
+        "9": "nine",
+        "28": "twenty-eight"
+      }
+    },
+    {
+      "id": "mu-04",
+      "category": "multistep_unmarked",
+      "author_declared_steps": 2,
+      "question": "A bus carries 20 passengers. At the next stop 6 exit while 3 board. How many passengers stay aboard?",
+      "number_words": {
+        "3": "three",
+        "6": "six",
+        "20": "twenty"
+      }
+    }
+  ]
+}
