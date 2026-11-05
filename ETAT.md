@@ -1,5 +1,43 @@
 # État du laboratoire IA
 
+
+## REPRISE — 5 novembre 2026, EXP-012 calibration réelle exploratoire
+
+**Étape nouvelle (PR en validation, ne pas annoncer fusionnée)** :
+[EXP-012](experiments/EXP-012-SINGLE-CONTEXT-CALIBRATION.md), liée à
+[l'issue #45](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/45).
+L'EXP-011B est fusionnée (PR #43), et la PR documentaire #44 a été
+fusionnée au commit `75ee1086281f0d93f6148826ff212d671a7ff894`.
+Recontrôler les CI post-fusion au moment de la reprise.
+
+**Mesure exploratoire réelle, non comparative** : un solveur ChatGPT
+dans une seule conversation a répondu aux quatre problèmes de **calibration**
+GSM8K pré-sélectionnés (indices 13, 37, 59, 81). Réponses figées
+**avant la consultation des solutions** au commit
+`6611afa785417c87cc6985929da71f47c645fe61`.
+Vérification ligne à ligne du blob Git officiel : **4/4 bonnes réponses**.
+La nouvelle CI EXP-012 téléchargera le fichier complet épinglé et
+recalculera le score hors réseau avec contrôle d'empreinte Git ; son
+statut doit être vérifié avant fusion.
+
+**Ne pas exagérer** : même conversation, provenance auto-déclarée,
+GSM8K public, aucune indépendance des sessions, aucun agent parallèle,
+aucun critique, aucune comparaison adaptative. Les **12 tâches
+d'évaluation EXP-011 ne sont pas utilisées** ; il n'existe donc toujours
+pas de résultat réel comparatif des quatre politiques.
+Les 12 bugs historiques #29/#35 restent hors mesure et le score
+EXP-008B reste 2/8, inchangé.
+
+**Prochaine étape** : vérifier tous les jobs sur le SHA final de la PR
+EXP-012, fusion uniquement si verts ; vérifier les runs post-fusion,
+puis poursuivre avec des sessions réellement séparées et le
+runbook EXP-011B si un moyen de les ouvrir est disponible. Sinon,
+documenter cette limite, sans transformer les réponses de
+ce dialogue en agents indépendants.
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-011B fusionnée
 
 **Dépôt** : [floiaassistant-design/Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia), branche officielle `main`. La PR [#42](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/42) a été fusionnée au commit `aefb795ec23a53b7a8ca7f9c592027392abad558` après **7 jobs de CI verts sur la PR**. Les contrôles post-fusion de ce commit sont à revérifier séparément.
