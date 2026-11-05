@@ -145,6 +145,19 @@ class NeutralPaddingAuditTests(unittest.TestCase):
         for family in result["families"]:
             self.assertTrue(family["question_facts_preserved_as_numeric_tokens"])
 
+    def test_durable_versioned_summary_matches_recomputed_routing(self):
+        from lab.exp014_neutral_padding import ROOT
+        expected = json.loads((ROOT / "results" / "exp014-routing-summary.json")
+                              .read_text(encoding="utf-8"))
+        actual = audit(fixture())
+        for field in ("base_families", "total_input_variants",
+                      "route_counts", "route_changes_by_pair",
+                      "planned_role_calls_by_variant",
+                      "short_to_long_role_call_ratio", "model_calls_executed"):
+            self.assertEqual(expected[field], actual[field], field)
+        self.assertFalse(expected["real_model_accuracy_measured"])
+        self.assertFalse(expected["statistical_improvement_proven"])
+
     def test_router_selection_directly_matches_source(self):
         for case in fixture()["cases"]:
             for name, q in variants(case["question"]).items():
