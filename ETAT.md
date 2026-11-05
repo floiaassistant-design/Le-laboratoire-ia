@@ -1,5 +1,16 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-017 candidate en cours de validation
+
+**Source de vérité** : [issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59), branche `feat/exp017-conservative-routing-abstain`, [protocole EXP-017](experiments/EXP-017-CONSERVATIVE-ROUTING.md) déposé **avant** le [manifeste de 16 nouvelles questions](experiments/exp017-cases.json), figé par Git blob `c834f0b9360c93eb930b5045621fba98a9d4ce43`. Le code `lab.exp017_conservative`, ses tests et sa CI sont sur cette branche, **non encore intégrés à main**. Dernière base `main` avant travaux : `21ed1c24a3826ce302da792697d4fe5a45111b59`.
+
+**Question technique** : accepter une **grammaire très limitée** (`Compute/Calculate N op N`, éventuellement suivi d'une deuxième opération explicite), comprendre les nombres anglais entiers simples, et rendre `uncertain`/`unsupported` au lieu de lancer des rôles sur des indices lexicaux fragiles. Autres états : `single`, `needs_review`, `blocked_by_budget`. Ce sont des **décisions programmées sans agent IA ni appel de modèle**. Trois routeurs comparés, 16 cas × 3 formulations = 48 entrées par politique, budgets 0/1/2, et les 16 cas EXP-016 réutilisés **en régression non indépendante**.
+
+**Limites et prochaine reprise** : les questions sont conçues par l'auteur **connaissant les règles**, aucune expérience aveugle, aucune précision de modèle mesurée, et le routage prudent risque une **faible couverture des problèmes réels**. Vérifier la PR active, tous les jobs et le dernier SHA exact ; consigner un résumé chiffré versionné contrôlé par les tests, publier les abstentions et refus, fusionner uniquement lorsque tous les workflows sont verts. Les études EXP-011/012/013/014/015/016 et EXP-008B restent inchangées. Les vraies sessions d'IA restent [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-016 fusionnée
 
 **Dépôt officiel** : [floiaassistant-design/Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). **Dernier développement fusionné** : [PR #58, EXP-016](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/58), commit `09ba580508731f1edaa523b9850c1f8ccadb0016`. [Issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56) clôturée. Sur le dernier SHA de la PR, **8 workflows verts, dont 439 tests unitaires** et le test de comparaison du résumé versionné. Les workflows **post-fusion de `main` doivent être revérifiés séparément** ; ne jamais leur attribuer le statut de la PR.
