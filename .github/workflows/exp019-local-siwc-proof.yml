@@ -1,0 +1,22 @@
+name: exp019-local-siwc-proof
+on:
+  push:
+    paths:
+      - 'prototypes/siwc-local/**'
+      - '.github/workflows/exp019-local-siwc-proof.yml'
+  pull_request:
+    paths:
+      - 'prototypes/siwc-local/**'
+      - '.github/workflows/exp019-local-siwc-proof.yml'
+jobs:
+  offline-mock-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mock-only tests without any credentials or model calls
+        run: node --test prototypes/siwc-local/adapter.test.mjs
