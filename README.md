@@ -1,6 +1,6 @@
 # Laboratoire IA — recherche expérimentale
 
-**EXP-015 en cours de validation sur une branche non fusionnée** : [protocole de comparaison](experiments/EXP-015-CONTENT-ROUTING.md), [issue #54](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/54). Routeur candidat fondé sur deux indices de contenu (chiffres, `then/later`) et non sur la longueur. Il est étudié sur les **six cas connus** d'EXP-014 et sur un contre-exemple où `then` est trompeur. [Résumé mécanique versionné](results/exp015-routing-summary.json) en attente de confirmation CI ; **aucun appel LLM**, aucune validation indépendante et aucun gain de qualité réel établi. EXP-011 et ses mesures antérieures sont conservés.
+**EXP-015 fusionnée le 5 novembre 2026** ([PR #55](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/55), **8 workflows PR verts, 424 tests**) : [audit d'un routeur à indices de contenu](experiments/EXP-015-CONTENT-ROUTING.md). Sur les six questions EXP-014 **déjà connues**, 0/6 variation de route sous le remplissage exact, contre 6/6 pour l'ancien routeur. Un contre-exemple avec `then` trompeur fait varier le candidat dans 3/6 cas. [Synthèse durable](results/exp015-routing-summary.json). **Aucun LLM n'a été appelé et aucune amélioration de qualité n'a été démontrée.** Prochaine mission : [EXP-016, issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), nouveaux cas et perturbations gelés avant calcul.
 
 
 
