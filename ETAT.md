@@ -1,14 +1,14 @@
 # État du laboratoire IA
 
-## REPRISE — 5 novembre 2026, EXP-011B en validation
+## REPRISE — 5 novembre 2026, EXP-011B fusionnée
 
 **Dépôt** : [floiaassistant-design/Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia), branche officielle `main`. La PR [#42](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/42) a été fusionnée au commit `aefb795ec23a53b7a8ca7f9c592027392abad558` après **7 jobs de CI verts sur la PR**. Les contrôles post-fusion de ce commit sont à revérifier séparément.
 
-**Nouvelle étape en branche** : `feat/exp011b-balanced-manual-runbook`, suite opérationnelle de l'[issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40). [EXP-011B](experiments/EXP-011B-BALANCED-RUNBOOK.md) génère un **carnet de 64 essais manuels ordonnés** pour les 16 tâches et 4 politiques déjà figées, équilibre chaque politique aux quatre positions de passage, produit les prompts séparés solver/independent/critic et garde les routes bloquées à zéro appel. Les fichiers GSM8K officiels et la clé privée sont contrôlés avant génération, et le carnet ne contient aucun oracle.
+**Nouvelle étape fusionnée** : [PR #43](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/43), commit `d358e075814d342412ac0dd0f219780b9b979986`, tous les **7 workflows de la PR verts** sur le SHA final. Les runs post-fusion de `main` restent à vérifier séparément. Suite opérationnelle de l'[issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40). [EXP-011B](experiments/EXP-011B-BALANCED-RUNBOOK.md) génère un **carnet de 64 essais manuels ordonnés** pour les 16 tâches et 4 politiques déjà figées, équilibre chaque politique aux quatre positions de passage, produit les prompts séparés solver/independent/critic et garde les routes bloquées à zéro appel. Les fichiers GSM8K officiels et la clé privée sont contrôlés avant génération, et le carnet ne contient aucun oracle.
 
 **Statut scientifique non modifié** : EXP-011 reste un protocole **sans aucune exécution réelle de modèle et sans résultat de performance**. EXP-011B est une aide à la collecte, pas une comparaison expérimentale achevée. Les 12 bugs historiques des issues #29/#35 ne sont toujours pas évalués ; EXP-008B reste à **2/8** sur son protocole antérieur. Aucun appel API payant ni modèle local obligatoire.
 
-**Prochaine reprise** : vérifier les jobs CI sur le SHA final de la PR EXP-011B, ne fusionner que tout vert, puis vérifier les CI sur `main`. Sans collecte de sessions réellement distinctes, ne pas présenter le carnet comme des résultats. Mettre à jour les pointeurs du présent fichier après fusion. Les anciennes sections ci-dessous sont historiques.
+**Prochaine reprise** : vérifier les sept workflows post-fusion de `main` au commit `d358e075814d342412ac0dd0f219780b9b979986`. Ensuite, si des sessions réellement séparées sont réalisables, collecter des sorties sur la calibration puis sur la validation selon `experiments/EXP-011-MANUAL-REAL-TASKS.md` et `experiments/EXP-011B-BALANCED-RUNBOOK.md` ; sinon consigner honnêtement le blocage. Ne pas présenter le carnet comme des résultats ni modifier les expériences historiques. Les anciennes sections ci-dessous sont historiques.
 
 ---
 

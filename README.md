@@ -1,6 +1,6 @@
 # Laboratoire IA — recherche expérimentale
 
-**Étape du 5 novembre 2026 :** [EXP-011B — carnet de sessions manuelles équilibrées](experiments/EXP-011B-BALANCED-RUNBOOK.md) sur une branche dédiée. Il prévoit l'ordre des 64 essais de l'EXP-011, prépare des consignes séparées et contrôle les sources. **Aucun modèle IA n'est automatiquement interrogé et aucun score n'est encore mesuré.**
+**Étape du 5 novembre 2026 :** [EXP-011B — carnet de sessions manuelles équilibrées](experiments/EXP-011B-BALANCED-RUNBOOK.md), fusionnée via [PR #43](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/43). Il prévoit l'ordre des 64 essais de l'EXP-011, prépare des consignes séparées et contrôle les sources. **Aucun modèle IA n'est automatiquement interrogé et aucun score n'est encore mesuré.**
 
 
 **État vérifié :** [ETAT.md](ETAT.md) — projet Python
