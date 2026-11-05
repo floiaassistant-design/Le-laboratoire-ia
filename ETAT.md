@@ -1,5 +1,19 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-019 — connexion locale au forfait ChatGPT, **sans essai réel**
+
+**Dernier `main` vérifié avant travaux** : `29838c0b6443484eb4391b909b913a9eb51054aa`, aucune PR ouverte. Après [EXP-011D](experiments/EXP-011D-GUIDED-COLLECTION.md) et [fiche de calibration](experiments/EXP-011-CALIBRATION-START.md), la priorité est de lever le **blocage d'accès technique au modèle**, sans fausse comparaison.
+
+**Expérience préenregistrée** : [issue #73](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/73), branche `feat/exp019-local-siwc-proof`, [prototype EXP-019](prototypes/siwc-local/README.md). Documentation OpenAI SIWC vérifiée au 5/11/2026 : les projets open source **exécutés localement** peuvent demander à utiliser le forfait ChatGPT par OAuth avec permission distincte et le DevKit officiel ; les applications hébergées et commerciales n'ont pas automatiquement les mêmes droits. Les modèles, limites et autorisations effectifs restent **inconnus pour ce compte**.
+
+**Implémentation** : lanceur Electron local `prototypes/siwc-local/lab-siwc.mjs` utilisant le DevKit officiel `@siwc/local` et `safeStorage` du système ; adaptateur avec vérification de la permission et du modèle proposé ; sept contrôles d'adaptateur mockés ; workflow GitHub Actions distinct, **sans requête de modèle ni secrets**. Commandes `login` (consentement utilisateur), `status`, `models`, `smoke` (une requête volontaire) et `role` (une question à la fois sans historique fourni). DevKit épinglé au commit `0a36fefeb913055c8c7a1a29b63d82b96b2e841a` et soumis à licence non commerciale. Le code doit être revu/testé sur SHA final avant fusion ; le flux OAuth live ne peut pas être confirmé par CI.
+
+**Limites scientifiques** : **aucun login effectué**, aucun modèle interrogé et aucune habilitation de compte démontrée ici. Un test `smoke` réellement réussi démontrerait seulement une capacité de requête Responses par le forfait, pas l'exécution de conversations UI, ni l'indépendance d'agents, ni une amélioration de la qualité. Ne pas modifier le corpus EXP-011 ni les résultats historiques. [Issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) pour les vrais 64 essais reste ouverte.
+
+**Prochaine reprise** : vérifier la PR EXP-019 et ses workflows sur dernier SHA ; fusionner uniquement si verts ; **ensuite, l'utilisateur doit consentir lui-même au lancement local sur son PC**. En cas de refus d'OAuth/absence de permission, consigner le blocage et ne pas contourner par scraping ou récupération de cookies ChatGPT. Ne pas prétendre qu'une plateforme hébergée ou un serveur MCP peut utiliser ce jeton à distance.
+
+---
+
 ## REPRISE — 5 novembre 2026, EXP-011 : démarrage de la calibration, aucune nouvelle observation
 
 **État initial vérifié** : dernier `main` `beaf852a8847e3c0a50e76a5b4522c93cdce7da0`, aucune PR ouverte, deux workflows post-fusion verts. L'EXP-011D et ses **498 tests unitaires** sont fusionnés. [Issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste ouverte, sans comparaison réelle sur les 12 tâches d'évaluation.

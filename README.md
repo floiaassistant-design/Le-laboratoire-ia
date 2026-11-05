@@ -1,5 +1,8 @@
 # Laboratoire IA — recherche expérimentale
 
+**EXP-019 — preuve de faisabilité de connexion locale au forfait ChatGPT, non encore vérifiée avec un vrai compte** : [prototype local SIWC](prototypes/siwc-local/README.md), [issue #73](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/73). Utilise le DevKit officiel, OAuth avec consentement, chiffrement système et requête explicite de test ; les tests CI sont **entièrement mockés**. Cela ne donne accès ni aux conversations UI ni à un hébergement distant automatique. Les vrais essais comparatifs restent à réaliser dans [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+
 **Calibration réelle : fiche de démarrage préparée, aucune session exécutée** — [EXP-011-CALIBRATION-START](experiments/EXP-011-CALIBRATION-START.md). Quatre questions GSM8K officielles, vérifiées au blob gelé ; ordre des **16 essais**, dont un bloqué, **25 appels de rôle seulement planifiés**, et premier prompt de rôle. Les vraies conversations doivent être créées séparément avec [EXP-011D](experiments/EXP-011D-GUIDED-COLLECTION.md), puis auditées avec EXP-011C. **Aucune réponse nouvelle, aucune preuve de supériorité multi-agent.** Suivi : [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
 
 
