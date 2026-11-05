@@ -1,5 +1,8 @@
 # Laboratoire IA — recherche expérimentale
 
+**Calibration réelle : fiche de démarrage préparée, aucune session exécutée** — [EXP-011-CALIBRATION-START](experiments/EXP-011-CALIBRATION-START.md). Quatre questions GSM8K officielles, vérifiées au blob gelé ; ordre des **16 essais**, dont un bloqué, **25 appels de rôle seulement planifiés**, et premier prompt de rôle. Les vraies conversations doivent être créées séparément avec [EXP-011D](experiments/EXP-011D-GUIDED-COLLECTION.md), puis auditées avec EXP-011C. **Aucune réponse nouvelle, aucune preuve de supériorité multi-agent.** Suivi : [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+
 **EXP-011D fusionnée le 5 novembre 2026** ([PR #70](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/70), **8 workflows verts, 498 tests**) : [guide de collecte EXP-011D](experiments/EXP-011D-GUIDED-COLLECTION.md), commandes hors réseau pour afficher un prompt à la fois, saisir une réponse réelle, préserver l'ordre et éviter la réutilisation de conversations parmi les 64 essais. [Issue #69](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/69) clôturée. **Aucun modèle interrogé automatiquement, aucun score réel ni avantage multi-agent démontré.** La priorité est toujours l'[issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40), collecte de vraies sorties de chats distincts.
 
 

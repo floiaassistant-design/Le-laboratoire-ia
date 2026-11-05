@@ -1,5 +1,15 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-011 : démarrage de la calibration, aucune nouvelle observation
+
+**État initial vérifié** : dernier `main` `beaf852a8847e3c0a50e76a5b4522c93cdce7da0`, aucune PR ouverte, deux workflows post-fusion verts. L'EXP-011D et ses **498 tests unitaires** sont fusionnés. [Issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste ouverte, sans comparaison réelle sur les 12 tâches d'évaluation.
+
+**Avancement de cette session** : [fiche de démarrage de calibration](experiments/EXP-011-CALIBRATION-START.md) (branche `docs/exp011-calibration-real-session-start`, à fusionner seulement après CI verte). Les **quatre questions officielles** GSM8K aux indices 13, 37, 59, 81 ont été récupérées depuis la révision préenregistrée et vérifiées contre le blob `e4c2ff4942b9a78bd74f04141224c11e28d12dc9`. Le document contient seulement les questions (jamais leurs réponses), l'ordre gelé des **16 essais de calibration**, les routes et le **premier prompt réel prêt à copier**. Un essai est bloqué par conception ; les 15 autres nécessiteraient **25 appels de rôle planifiés**, zéro réalisé ici.
+
+**Limite cruciale** : aucune conversation ChatGPT distincte n'a été ouverte par les outils GitHub, aucune vraie sortie ni provenance n'a été enregistrée dans cette reprise, aucun avantage d'agents mesuré. La réutilisation des questions d'EXP-012 reste une calibration exploratoire potentiellement contaminée ; ne pas appeler cela holdout. **Arrêter l'empilement de tests synthétiques** tant que la collecte volontaire de sessions distinctes n'est pas possible ; ne pas créer de fausses observations. Un prochain agent doit vérifier PR/CI, puis utiliser EXP-011D et la fiche question-only pour engager de véritables conversations et conserver leurs identifiants (auto-déclarés) avec EXP-011C.
+
+---
+
 ## REPRISE — 5 novembre 2026, EXP-011D fusionnée (vers vraies sessions)
 
 **Dépôt officiel** : [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). [PR #70 — EXP-011D](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/70) **fusionnée** au commit `17e9f547ec5034500dafb7178892bb7f853a0b4c` ; [issue #69](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/69) clôturée. Sur le dernier SHA `7866cc19021f2d6cfc691e18de3f12acab46ee7f` de la PR, les **8 workflows GitHub Actions sont verts**, dont **498 tests unitaires** dans `laboratory-checks`. Vérifier séparément les contrôles post-fusion de `main`, pas encore garantis à la rédaction.
