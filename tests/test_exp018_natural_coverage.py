@@ -165,5 +165,11 @@ class TestExp018NaturalCoverage(unittest.TestCase):
         self.assertEqual(summary(actual)["input_manifest_git_blob"], FROZEN_MANIFEST_BLOB)
 
 
+    def test_committed_summary_equal_fresh_recalculation(self):
+        path = MANIFEST_PATH.parent.parent / "results" / "exp018-natural-summary.json"
+        expected = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(expected, summary(audit(load_manifest())))
+
+
 if __name__ == "__main__":
     unittest.main()
