@@ -1,14 +1,18 @@
 # État du laboratoire IA
 
-## REPRISE — 5 novembre 2026, EXP-016 en expérimentation
+## REPRISE — 5 novembre 2026, EXP-016 — résultats mécaniques, CI finale à vérifier
 
-**Prérequis confirmé** : [PR #57](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/57) documentaire fusionnée après 2 workflows verts, commit `b1d8934b3b86d2dbe3531d2f992bfb09459b8bde`. La PR #55 (EXP-015) est fusionnée et l'issue #54 clôturée.
+**Prérequis** : PR [#55](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/55) (EXP-015) et [#57](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/57) (reprise) fusionnées dans `main`. **Étape active** : [issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), [PR #58](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/58), branche `feat/exp016-out-of-sample-routing-stress`.
 
-**Étape active** : [issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), branche `feat/exp016-out-of-sample-routing-stress`, [protocole gelé](experiments/EXP-016-ROUTING-STRESS.md) et manifeste [16 cas, 68 entrées](experiments/exp016-cases.json) enregistrés **avant l'exécution du routeur**. SHA du blob manifeste : `71fc6eb6ca88f3a412faf9a019e824caacc4f9cd`. Deux routeurs inchangés, quatre transformations et budgets 0/1/2 ; un refus de question sans chiffre compte comme `invalid_input`, pas comme une route stable. Suite de tests, script et CI ajoutés sur branche ; **résultats et validation complets encore à contrôler**.
+**Protocole [EXP-016](experiments/EXP-016-ROUTING-STRESS.md) et manifeste [16 nouvelles questions](experiments/exp016-cases.json)** figés avant calcul des routes, blob `71fc6eb6ca88f3a412faf9a019e824caacc4f9cd`. 16 cas × 4 transformations incomplètement uniformes = **68 entrées par routeur**. Les deux routeurs EXP-011 et EXP-015 restent **strictement inchangés**. Première exécution CI sur le SHA `a9f69006a1b2099c975873cf23b01d0e54ddca3f` : **438 tests unitaires verts** et l'étape EXP-016 verte ; ne pas supposer les autres jobs verts avant leur fin. Une nouvelle assertion a depuis été ajoutée pour comparer la synthèse versionnée au calcul frais ; la **CI du SHA final est à vérifier de nouveau avant fusion**.
 
-**Limites scientifiques** : auteur informé des heuristiques, cohorte construite et non représentative ; aucun LLM, aucune mesure de précision/coût réel ni validation aveugle. Les 12 problèmes de validation EXP-011 restent sans sorties de modèles. Ne pas changer les résultats historiques.
+**Résultats reproductibles sans modèle** : pour `neutral_padding`, témoin longueur **16/16 routes changées**, candidat contenu **0/16**. Pour les chiffres convertis en mots, candidat **16/16 `invalid_input`** (pas 0 appel réussi, ni un coût réel nul) contre **0/16 changements** du témoin. Pour la consigne contenant un `then` non arithmétique, candidat **12/16 routes changées**, témoin **0/16**. Pour quatre étapes exprimées sans `then`, candidat **4/4 routes changées**, témoin **0/4**. Toutes les observations, groupes, dénominateurs, budgets 0/1/2 et appels **prévus** sont dans la [synthèse EXP-016](results/exp016-routing-summary.json), vérifiée par le futur test de concordance.
 
-**Prochaine reprise** : lire la PR active, vérifier tous les jobs sur le dernier SHA, figer une synthèse reproduite par CI, corriger les éventuelles erreurs et **ne fusionner qu'après CI verte**. La mission des véritables sessions IA séparées reste [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+**Interprétation** : ces 16 problèmes sont nouveaux par rapport à EXP-014/015, mais **construits par un auteur connaissant les heuristiques** — ni échantillon aveugle ni validation statistique. Le candidat est stable face au nouveau remplissage neutre, mais refuse tous les cas « nombres en mots » et se laisse tromper par des marqueurs superficiels. Aucun LLM interrogé, aucune mesure d'exactitude, de coût réel, de latence ou de meilleure architecture. Cohortes GSM8K EXP-011 (12 évaluations sans réponses de modèles) et bugs EXP-008B inchangés.
+
+**Prochaine reprise :** vérifier les huit workflows et commentaires de la PR #58 sur le **dernier SHA**, corriger toute erreur, puis fusionner uniquement si tout est vert. Créer ensuite une mission indépendante visant un parseur léger des données/consignes et une stratégie d'abstention explicite, sans entraîner sur les 16 cas d'EXP-016. La mission des vraies sessions IA reste [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+**À ne pas faire** : présenter ce routage simulé comme des agents IA autonomes ou transformer `invalid_input` en `blocked`, `unchanged` ou baisse de dépense démontrée.
 
 ---
 
