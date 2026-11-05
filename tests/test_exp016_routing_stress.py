@@ -133,5 +133,13 @@ class TestExp016RoutingStress(unittest.TestCase):
                          FROZEN_MANIFEST_BLOB)
 
 
+    def test_versioned_summary_matches_fresh_report_exactly(self):
+        expected = json.loads(
+            (MANIFEST_PATH.parent.parent / "results" / "exp016-routing-summary.json")
+            .read_text(encoding="utf-8")
+        )
+        self.assertEqual(expected, summary(audit(load_frozen_manifest())))
+
+
 if __name__ == "__main__":
     unittest.main()
