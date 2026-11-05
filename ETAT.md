@@ -1,6 +1,18 @@
 # État du laboratoire IA
 
 
+## REPRISE — 5 novembre 2026, EXP-014 en validation
+
+**Étape active :** [issue #51](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/51), branche `feat/exp014-length-invariance-audit`, [protocole EXP-014](experiments/EXP-014-NEUTRAL-PADDING.md). Dernier `main` vérifié avant la branche : `d94d30288b81b116fa6a8748a81b84fd9e0c8a92` (PR #50). Les **2 workflows post-fusion** de cette révision étaient verts, aucune PR ouverte au démarrage.
+
+**Objectif** : audit déterministe de la stabilité de `task_profile` (EXP-011) et `choose` (EXP-010A) face à des phrases de remplissage sans nouveau fait arithmétique. Six questions écrites pour l'audit, trois variantes par question (moins de 40, 40–49, au moins 50 mots), et décompte des routes / appels **prévus**. Le routeur actuel utilise la longueur comme proxy d'incertitude et de parallélisation ; ne pas présenter les changements attendus comme une découverte scientifique ni un effet mesuré sur la qualité d'un modèle.
+
+**À vérifier avant fusion** : nouveaux tests synthétiques, workflow `laboratory-checks`, rapport EXP-014 archivé, tous les jobs au dernier SHA de PR et contrôles post-fusion. Aucun appel de LLM, aucune modification du plan GSM8K EXP-011, aucun résultat d'agent indépendant. Le seul pilote réel demeure EXP-012 (4/4 sur 4 problèmes de calibration dans le même contexte). EXP-013 a seulement ajouté un analyseur pour des sessions encore à collecter. Bugs historiques EXP-008B : 2/8 inchangé.
+
+---
+
+
+
 ## REPRISE — 5 novembre 2026, EXP-013 fusionnée
 
 **Référence** : [PR #49](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/49) fusionnée au commit `86e34878b2a7bef51b3ff1bfcf843612d08746be`, [issue #48](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/48) et protocole [EXP-013](experiments/EXP-013-PAIRED-ANALYSIS.md). **8 workflows verts sur le dernier SHA de la PR**, dont `laboratory-checks` (391 tests unitaires) et précontrôle synthétique EXP-013 (0 appel modèle, 0 observation). Les contrôles post-fusion de `main` doivent être vérifiés séparément.
