@@ -1,0 +1,195 @@
+{
+  "answer_correctness_or_cost_measured": false,
+  "author_multistep_not_review": {
+    "baseline_length": 8,
+    "candidate_content": 4
+  },
+  "base_category_routes": {
+    "baseline_length": {
+      "multistep_marked": {
+        "single": 4
+      },
+      "multistep_unmarked": {
+        "single": 4
+      },
+      "simple_three_literals": {
+        "single": 4
+      },
+      "simple_two_literals": {
+        "single": 4
+      }
+    },
+    "candidate_content": {
+      "multistep_marked": {
+        "review": 4
+      },
+      "multistep_unmarked": {
+        "parallel": 4
+      },
+      "simple_three_literals": {
+        "parallel": 4
+      },
+      "simple_two_literals": {
+        "single": 4
+      }
+    }
+  },
+  "base_families": 16,
+  "blind_or_representative_sample": false,
+  "budget_base_routes": {
+    "baseline_length": {
+      "0": {
+        "blocked": 16
+      },
+      "1": {
+        "single": 16
+      },
+      "2": {
+        "single": 16
+      }
+    },
+    "candidate_content": {
+      "0": {
+        "blocked": 16
+      },
+      "1": {
+        "single": 16
+      },
+      "2": {
+        "parallel": 8,
+        "review": 4,
+        "single": 4
+      }
+    }
+  },
+  "categories_author_declared_not_validation": true,
+  "experiment": "EXP-016",
+  "models_called": 0,
+  "pair_counts": {
+    "baseline_length": {
+      "misleading_stage": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      },
+      "neutral_padding": {
+        "changed": 16,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 0
+      },
+      "number_words": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      },
+      "stage_removed": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 4,
+        "unchanged": 4
+      }
+    },
+    "candidate_content": {
+      "misleading_stage": {
+        "changed": 12,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 4
+      },
+      "neutral_padding": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      },
+      "number_words": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 16,
+        "total": 16,
+        "unchanged": 0
+      },
+      "stage_removed": {
+        "changed": 4,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 4,
+        "unchanged": 0
+      }
+    }
+  },
+  "phase": "author_constructed_input_only_routing_stress_not_blind",
+  "planned_calls_for_valid_routes_only": {
+    "baseline_length": {
+      "base": 16,
+      "misleading_stage": 16,
+      "neutral_padding": 32,
+      "number_words": 16,
+      "stage_removed": 4
+    },
+    "candidate_content": {
+      "base": 28,
+      "misleading_stage": 32,
+      "neutral_padding": 28,
+      "number_words": 0,
+      "stage_removed": 7
+    }
+  },
+  "policies": [
+    "baseline_length",
+    "candidate_content"
+  ],
+  "route_counts": {
+    "baseline_length": {
+      "base": {
+        "single": 16
+      },
+      "misleading_stage": {
+        "single": 16
+      },
+      "neutral_padding": {
+        "review": 16
+      },
+      "number_words": {
+        "single": 16
+      },
+      "stage_removed": {
+        "single": 4
+      }
+    },
+    "candidate_content": {
+      "base": {
+        "parallel": 8,
+        "review": 4,
+        "single": 4
+      },
+      "misleading_stage": {
+        "review": 16
+      },
+      "neutral_padding": {
+        "parallel": 8,
+        "review": 4,
+        "single": 4
+      },
+      "number_words": {
+        "invalid_input": 16
+      },
+      "stage_removed": {
+        "parallel": 3,
+        "single": 1
+      }
+    }
+  },
+  "semantic_equivalence_independently_verified": false,
+  "source_manifest_git_blob_sha": "71fc6eb6ca88f3a412faf9a019e824caacc4f9cd",
+  "total_variants_per_policy": 68
+}
