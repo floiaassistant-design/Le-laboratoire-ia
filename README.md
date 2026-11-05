@@ -1,6 +1,16 @@
 # Laboratoire IA — recherche expérimentale
 
 
+**Étape EXP-013 (5 novembre 2026, en validation) :**
+[analyse appariée des stratégies et des données manquantes](experiments/EXP-013-PAIRED-ANALYSIS.md).
+Elle prépare le calcul honnête des résultats des 12 tâches d'évaluation
+EXP-011, sépare blocages de politique et erreurs de modèle, rend
+explicites les abstentions et les limites de coût, et conserve les
+évaluations non observées. **Précontrôle synthétique uniquement : zéro
+nouvel appel de modèle, aucune preuve de supériorité multi-agent.**
+
+
+
 **Nouveau pilote exploratoire :** [EXP-012 — calibration GPT-6 en
 conversation unique](experiments/EXP-012-SINGLE-CONTEXT-CALIBRATION.md).
 Quatre réponses réelles auto-déclarées ont été enregistrées avant
