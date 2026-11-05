@@ -1,0 +1,50 @@
+{
+  "experiment": "EXP-015",
+  "phase": "retrospective_design_audit_no_model",
+  "source_manifest_sha256": "d952ec84d2d5147fe048e80873779cadf382e25b321e304d820ca4974ee00cb3",
+  "base_families": 6,
+  "total_input_variants": 18,
+  "baseline_route_counts": {
+    "short": {
+      "single": 6
+    },
+    "medium": {
+      "parallel": 6
+    },
+    "long": {
+      "review": 6
+    }
+  },
+  "candidate_route_counts": {
+    "short": {
+      "single": 3,
+      "review": 3
+    },
+    "medium": {
+      "single": 3,
+      "review": 3
+    },
+    "long": {
+      "single": 3,
+      "review": 3
+    }
+  },
+  "baseline_planned_calls": {
+    "short": 6,
+    "medium": 12,
+    "long": 12
+  },
+  "candidate_planned_calls": {
+    "short": 9,
+    "medium": 9,
+    "long": 9
+  },
+  "baseline_short_to_long_flips": 6,
+  "candidate_short_to_long_flips": 0,
+  "candidate_negative_control_flips": 3,
+  "models_called": 0,
+  "real_model_accuracy_or_cost_measured": false,
+  "independent_out_of_sample_evaluation": false,
+  "general_paraphrase_robustness_proven": false,
+  "content_features_selected_after_seeing_cases": true
+}
