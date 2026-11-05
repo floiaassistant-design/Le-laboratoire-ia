@@ -1,5 +1,15 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-019 : premier appel réel réussi (rapport utilisateur)
+
+**Résultat observé sur PC Windows et transmis par l'utilisateur :** le programme JavaScript/Electron `lab-siwc.mjs`, après la correction [PR #76](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/76), a pu lire **8 modèles** du catalogue et terminer **un appel `smoke` réel à `gpt-6.1-sol`**. La sortie rapportée est `{"model":"gpt-6.1-sol","output":"Laboratory connection works.","real_request_completed":true,"historical_chat_access":false}`. Preuve documentaire minimale et limites : [résultat EXP-019](results/EXP-019-LOCAL-SMOKE-2026-11-05.md). **Les jetons OAuth, profils et journaux privés n'ont pas été copiés dans GitHub.** Observation déclarée par l'utilisateur, non auditée indépendamment ; aucun autre modèle n'a encore produit de réponse.
+
+**Interprétation :** l'étape critique « authentification locale autorisée + catalogue + première réponse Responses » a réussi pour ce compte et ce poste, sans clé API classique. Cela **ne prouve ni qualité améliorée, ni autonomie de l'orchestrateur, ni indépendance des agents** ; l'accès peut changer et reste soumis aux limites du forfait et aux conditions d'utilisation du DevKit. Le prototype fonctionne en **JavaScript/Electron** ; l'intégration au moteur Python reste à faire.
+
+**Étape suivante :** préenregistrer un mini-pilote comparant un modèle seul à un flux solveur + relecteur distinct avec une tâche non issue du holdout EXP-011, critères et plafond d'appels déterminés **avant** exécution volontaire sur le PC. Les tests GitHub ne réalisent jamais de requêtes de modèles ; conserver les données privées localement. Le chantier scientifique [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste ouvert.
+
+---
+
 ## REPRISE — 5 novembre 2026, EXP-019 fusionnée (connexion réelle à autoriser localement)
 
 **Dépôt officiel** : [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). [PR #74 — EXP-019](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/74) **fusionnée** au commit `14e53164951b66a6bd600d1928f23752c8bd9604` ; [issue #73](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/73) clôturée. Sur le dernier SHA `9b24c1e5c0269b65fe76e04b513d2436efcb2401` de la PR, les trois workflows concernés sont verts (`exp019-local-siwc-proof`, `exp012-calibration-verification`, `laboratory-checks`). **498 tests Python historiques + 7 nouveaux tests Node mockés**. Vérifier séparément les runs post-fusion de `main`, non présumés verts à l'écriture.
