@@ -1,0 +1,256 @@
+{
+  "experiment": "EXP-018",
+  "phase": "frozen_author_constructed_new_questions_before_routing",
+  "status": "inputs_only_zero_model_calls",
+  "language": "en",
+  "provenance": "original_author_constructed_not_random_sample",
+  "model_calls": 0,
+  "answer_key_included": false,
+  "polite_suffix": "Please keep your reply short.",
+  "background_suffix": "This question comes from an everyday conversation.",
+  "embedded_format_suffix": "Put your final response in bold text.",
+  "cases": [
+    {
+      "id": "s-01",
+      "category": "natural_single_digits",
+      "author_math_intent": true,
+      "question": "A baker made 18 rolls and sold 7 at lunch. How many rolls are left?",
+      "paraphrase": "There were 18 rolls at the bakery; 7 were purchased. How many remain?",
+      "digit_spellings": {
+        "7": "seven",
+        "18": "eighteen"
+      }
+    },
+    {
+      "id": "s-02",
+      "category": "natural_single_digits",
+      "author_math_intent": true,
+      "question": "A taxi drove 12 kilometers before noon and 8 afterward. What distance did it cover in total?",
+      "paraphrase": "What is the total distance for a cab that covered 12 kilometers and another 8 kilometers?",
+      "digit_spellings": {
+        "8": "eight",
+        "12": "twelve"
+      }
+    },
+    {
+      "id": "s-03",
+      "category": "natural_single_digits",
+      "author_math_intent": true,
+      "question": "A cinema sold 9 tickets at 4 euros each. How much money came from those tickets?",
+      "paraphrase": "If 9 customers each pay 4 euros for a ticket, what is the revenue?",
+      "digit_spellings": {
+        "4": "four",
+        "9": "nine"
+      }
+    },
+    {
+      "id": "s-04",
+      "category": "natural_single_digits",
+      "author_math_intent": true,
+      "question": "A gardener has 20 plants and gives away 6. How many plants does the gardener keep?",
+      "paraphrase": "The gardener began with 20 plants; 6 were donated. How many are left?",
+      "digit_spellings": {
+        "6": "six",
+        "20": "twenty"
+      }
+    },
+    {
+      "id": "m-01",
+      "category": "natural_multistep_digits",
+      "author_math_intent": true,
+      "question": "A shop ordered 8 boxes with 3 cups in each box, and 5 cups were broken. How many good cups remain?",
+      "paraphrase": "A delivery has 8 boxes of 3 cups each. After 5 break, how many usable cups are left?",
+      "digit_spellings": {
+        "3": "three",
+        "5": "five",
+        "8": "eight"
+      }
+    },
+    {
+      "id": "m-02",
+      "category": "natural_multistep_digits",
+      "author_math_intent": true,
+      "question": "Maya had 15 coins, spent 4 on the bus, and found 2 on the way home. How many coins does she have?",
+      "paraphrase": "Starting with 15 coins, Maya uses 4 for her fare and finds another 2. How many now?",
+      "digit_spellings": {
+        "2": "two",
+        "4": "four",
+        "15": "fifteen"
+      }
+    },
+    {
+      "id": "m-03",
+      "category": "natural_multistep_digits",
+      "author_math_intent": true,
+      "question": "The club collected 12 bottles on Monday, 7 on Tuesday, and recycled 6. How many bottles still need recycling?",
+      "paraphrase": "The club gathered 12 bottles plus 7 bottles, with 6 already recycled. How many are still waiting?",
+      "digit_spellings": {
+        "6": "six",
+        "7": "seven",
+        "12": "twelve"
+      }
+    },
+    {
+      "id": "m-04",
+      "category": "natural_multistep_digits",
+      "author_math_intent": true,
+      "question": "An orchard had 5 rows of 4 trees, but 3 trees fell in a storm. How many are standing?",
+      "paraphrase": "There are 5 lines of 4 trees in an orchard; 3 fall down. How many remain upright?",
+      "digit_spellings": {
+        "3": "three",
+        "4": "four",
+        "5": "five"
+      }
+    },
+    {
+      "id": "w-01",
+      "category": "number_words_only",
+      "author_math_intent": true,
+      "question": "A painter buys eleven brushes and loses three. How many brushes remain?",
+      "paraphrase": "How many brushes does a painter still own after losing three from a set of eleven?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "w-02",
+      "category": "number_words_only",
+      "author_math_intent": true,
+      "question": "A basket contains eight peaches, and four more are added. What is the total number of peaches?",
+      "paraphrase": "How many peaches are in a basket if it initially holds eight and someone adds four?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "w-03",
+      "category": "number_words_only",
+      "author_math_intent": true,
+      "question": "Six groups each have five students. How many students attend?",
+      "paraphrase": "If there are six groups and five pupils belong to each, how many pupils are there?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "w-04",
+      "category": "number_words_only",
+      "author_math_intent": true,
+      "question": "A shopper has twenty euros and spends nine. How much is left?",
+      "paraphrase": "From twenty euros, a shopper pays nine euros. What amount remains?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "i-01",
+      "category": "implicit_operations_digits",
+      "author_math_intent": true,
+      "question": "Nora has 9 stickers. Her brother has twice as many. How many stickers does he have?",
+      "paraphrase": "Nora owns 9 stickers, and her brother owns double that quantity. How many does he own?",
+      "digit_spellings": {
+        "9": "nine"
+      }
+    },
+    {
+      "id": "i-02",
+      "category": "implicit_operations_digits",
+      "author_math_intent": true,
+      "question": "A class has 18 pupils and half are absent. How many are present?",
+      "paraphrase": "Out of 18 pupils, one half are missing today. How many attend class?",
+      "digit_spellings": {
+        "18": "eighteen"
+      }
+    },
+    {
+      "id": "i-03",
+      "category": "implicit_operations_digits",
+      "author_math_intent": true,
+      "question": "There are 4 crates with 6 bottles per crate. How many bottles altogether?",
+      "paraphrase": "How many bottles are stored if each of 4 crates holds 6 bottles?",
+      "digit_spellings": {
+        "4": "four",
+        "6": "six"
+      }
+    },
+    {
+      "id": "i-04",
+      "category": "implicit_operations_digits",
+      "author_math_intent": true,
+      "question": "A recipe uses 3 cups of flour for one cake. How many cups for 5 cakes?",
+      "paraphrase": "Each cake needs 3 cups of flour. What amount should be used for 5 cakes?",
+      "digit_spellings": {
+        "3": "three",
+        "5": "five"
+      }
+    },
+    {
+      "id": "n-01",
+      "category": "non_arithmetic",
+      "author_math_intent": false,
+      "question": "What does an HTTP 404 message usually mean?",
+      "paraphrase": "Could you explain the meaning of a website showing an HTTP 404 error?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "n-02",
+      "category": "non_arithmetic",
+      "author_math_intent": false,
+      "question": "Can you explain the difference between software release 2 and release 3?",
+      "paraphrase": "What changed between version 2 and version 3 of a software product, generally?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "n-03",
+      "category": "non_arithmetic",
+      "author_math_intent": false,
+      "question": "How can I change a 5-minute timer on my phone?",
+      "paraphrase": "Where do I edit the settings for a phone timer set to 5 minutes?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "n-04",
+      "category": "non_arithmetic",
+      "author_math_intent": false,
+      "question": "Why do road signs use route number 17?",
+      "paraphrase": "What is the purpose of the number 17 on a highway sign?",
+      "digit_spellings": {}
+    },
+    {
+      "id": "f-01",
+      "category": "math_with_format_digits",
+      "author_math_intent": true,
+      "question": "Please write the result in one sentence: if I have 13 pens and give away 4, how many are left?",
+      "paraphrase": "In a single sentence, tell me how many pens remain after giving away 4 from a collection of 13.",
+      "digit_spellings": {
+        "4": "four",
+        "13": "thirteen"
+      }
+    },
+    {
+      "id": "f-02",
+      "category": "math_with_format_digits",
+      "author_math_intent": true,
+      "question": "In your reply use a bullet point. A museum had 9 visitors and 7 more arrived; how many visitors now?",
+      "paraphrase": "Use a bullet point to show the visitor count after 7 people join the 9 already at the museum.",
+      "digit_spellings": {
+        "7": "seven",
+        "9": "nine"
+      }
+    },
+    {
+      "id": "f-03",
+      "category": "math_with_format_digits",
+      "author_math_intent": true,
+      "question": "Answer without showing steps: a basket contains 6 bags with 2 oranges each. How many oranges?",
+      "paraphrase": "How many oranges are there in 6 bags of 2? Give just the answer, not the working.",
+      "digit_spellings": {
+        "2": "two",
+        "6": "six"
+      }
+    },
+    {
+      "id": "f-04",
+      "category": "math_with_format_digits",
+      "author_math_intent": true,
+      "question": "For the report, put the total in bold: a driver covers 11 miles in the morning and 8 in the evening. What is the day's mileage?",
+      "paraphrase": "Put the answer in bold. What total distance did a driver cover over trips of 11 and 8 miles?",
+      "digit_spellings": {
+        "8": "eight",
+        "11": "eleven"
+      }
+    }
+  ]
+}

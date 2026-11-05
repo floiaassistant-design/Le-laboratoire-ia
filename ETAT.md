@@ -1,5 +1,28 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-018 — résultats enregistrés, CI finale en attente
+
+**Mission active :** [issue #62](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/62), [PR #64](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/64), branche `feat/exp018-natural-language-coverage`. **Ne pas affirmer qu'EXP-018 est fusionnée** avant la CI complète sur le SHA final. Base initiale `main` : `d881446dc489a94e20ac052feff64206049d3f53` (PR #63). Aucune PR ouverte au démarrage.
+
+**Protocole avant toute mesure :** [EXP-018](experiments/EXP-018-NATURAL-COVERAGE.md), [24 demandes inédites](experiments/exp018-cases.json) et leurs paraphrases, blob Git figé `5b82e3850d7888c8174e7b1e50979a9dd2a011d4`. Six groupes de quatre, **20 demandes qualifiées mathématiques et 4 non arithmétiques par l'auteur**, anglais uniquement ; 5 formes générales chacune et 16 conversions chiffres→mots en supplément = **136 entrées par politique**, 3 routeurs EXP-011/015/017 inchangés. Budgets 0/1/2 sur les 24 bases.
+
+**Première observation mécanique vérifiée par le workflow** (475 tests unitaires verts sur une révision antérieure, audit EXP-018 effectué, dont [résumé complet versionné](results/exp018-natural-summary.json) désormais contrôlé par un test d'égalité) :
+- Sur **24 questions de base**, `baseline_length` : 24 rôles attribués, aucune abstention ; **4/4 engagements** sur les 4 questions déclarées non arithmétiques.
+- `candidate_content` : 20 rôles attribués, **4 invalid_input** (les nombres écrits en mots), et **4/4 engagements** sur les 4 questions déclarées non arithmétiques. Parmi 20 mathématiques déclarées, 4 sans rôle ; les **16 conversions supplémentaires en mots sont toutes invalid_input**.
+- `candidate_conservative` : **24/24 uncertain** sur les bases, y compris **20/20 mathématiques déclarées** ; **136/136 uncertain** sur toutes les variantes, donc aucune tâche ne reçoit de rôle. Une stabilité de statut `uncertain` n'est **pas** une couverture utile.
+- Totaux des **136 variantes par politique** : longueur 136 rôles attribués ; lexical 100 rôles et 36 invalidités ; prudent 0 rôle et 136 abstentions. Les 20 variantes non mathématiques sont routées par les deux témoins, et aucune par le prudent. **Ce sont des désaccords avec des étiquettes d'intention de l'auteur**, pas des mesures de faux positifs cliniques, de qualité de réponse ou d'exactitude LLM.
+- Toutes les transformations restent dans leurs dénominateurs : 24 paires chacune pour paraphrase, politesse, contexte et format, puis 16 conversions en mots. Les sorties invalides sont distinctes de `unchanged`, `blocked` ou de zéro coût réel.
+
+**Portée de l'indicateur non arithmétique :** une affectation de solveur à une demande non arithmétique n'est **pas forcément une erreur** pour un assistant généraliste censé traiter tous les sujets. Le compte de 4/4 signale seulement que le routeur n'applique **aucun filtrage mathématique spécialisé** ; l'interpréter comme un taux de faux positifs du produit serait abusif.
+
+**Limites :** questions construites et paraphrases écrites par un auteur qui connaissait les routeurs : **ni holdout aveugle, ni échantillon représentatif, ni oracle d'intention indépendant**. Le routeur prudent exige une grammaire stylisée et abandonne ces demandes usuelles ; la conclusion est **un manque de couverture**, pas qu'une IA raisonne moins bien. **Aucun LLM interrogé et aucune précision, dépense, économie ou latence mesurée.** Les 12 tâches EXP-011, EXP-012/013/014/015/016/017 et EXP-008B restent inchangées.
+
+**Reprise immédiate :** vérifier **tous les huit workflows de la PR #64 sur son dernier SHA**, dont la nouvelle assertion du résumé, corriger tout échec puis fusionner seulement si tout est vert. Enregistrer ensuite la fusion dans ETAT/README via une PR documentaire vérifiée. Tout futur algorithme inspiré par EXP-018 devra traiter cette cohorte comme **jeu de développement** et utiliser de nouveaux cas figés avant essais. Pour les véritables sorties de modèles séparés, l'[issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste ouverte.
+
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-017 fusionnée (prochaine EXP-018)
 
 **Source de vérité** : dépôt [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia), [PR #61](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/61) **fusionnée** dans `main` au commit `42ac5cc37fc292b6b06ab6bbc943c72bbad89669`, [issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59) clôturée. Les **8 workflows GitHub Actions sur le dernier SHA de PR sont verts**, y compris **458 tests unitaires** et la vérification du résumé permanent. Les runs **post-fusion** de `main` doivent être vérifiés séparément : ne pas les supposer verts.

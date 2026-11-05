@@ -99,6 +99,16 @@ jobs:
           path: results/exp017-conservative-audit.json
           if-no-files-found: error
           retention-days: 30
+      - name: EXP-018 new natural-language coverage audit (no model)
+        run: python -m lab.exp018_natural_coverage --output results/exp018-natural-coverage-audit.json
+      - name: Archive EXP-018 all input-only routing and abstention observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp018-natural-language-routing-model-free
+          path: results/exp018-natural-coverage-audit.json
+          if-no-files-found: error
+          retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)
         run: python -m lab.exp009d_wheels --project black --offline
       - name: EXP-009B candidate metadata structural preflight (no upstream execution)
