@@ -1,14 +1,16 @@
 # État du laboratoire IA
 
-## REPRISE — 5 novembre 2026, EXP-015 candidate en cours de validation
+## REPRISE — 5 novembre 2026, EXP-015 fusionnée
 
-**Mission active** : [issue #54](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/54), branche `feat/exp015-content-feature-router`, [protocole préenregistré](experiments/EXP-015-CONTENT-ROUTING.md), module `lab.exp015_content_router`, tests et [résumé permanent](results/exp015-routing-summary.json). La PR et sa CI **doivent être vérifiées avant fusion**. Ne pas présenter le contenu de la branche comme déjà intégré à `main`.
+**Source de vérité :** [PR #55](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/55) fusionnée dans `main` au commit `854422efa71f53817af87696298b2489ca54676c`. L'[issue #54](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/54) est clôturée. Les **8 workflows de la PR sont verts sur son dernier SHA**, dont `laboratory-checks` : **424 tests unitaires** et le nouveau contrôle EXP-015 validé. Les jobs de `main` **post-fusion** sont distincts : ne pas les supposer vérifiés sans nouveau contrôle.
 
-**Comparaison attendue, strictement mécanique** sur les six questions connues d'EXP-014 : seuils historiques 6/6 changements short→long avec 6/12/12 appels prévus ; candidat fondé sur littéraux numériques et mots `then/later` 0/6 changement avec 9/9/9 appels prévus. **Contrôle négatif inscrit au protocole** : la phrase sans chiffre `Then answer with the result.` devrait modifier 3/6 routes candidates. Ces valeurs sont des attentes déterministes du protocole et un résumé versionné, **pas encore une validation par CI** à cette rédaction.
+**Résultat mécanique** : sur les six cas EXP-014 déjà connus (18 formulations), l'ancien routeur varie entre short et long pour **6/6** familles, contre **0/6** pour le candidat utilisant le nombre de chiffres et les mots `then/later`. Appels de rôle **prévus** : ancien 6/12/12, candidat 9/9/9. Le contrôle négatif, `Then answer with the result.`, change le choix du candidat pour **3/6** cas sans ajouter de chiffre. Protocole : [EXP-015](experiments/EXP-015-CONTENT-ROUTING.md) ; synthèse reproductible : [résultats EXP-015](results/exp015-routing-summary.json). Les 14 nouveaux tests sont inclus dans les 424.
 
-**Limites essentielles** : indices choisis **après** connaissance des six cas, donc aucune validation hors échantillon ; aucune comparaison réelle de modèles, aucun gain de précision, latence ou prix mesuré ; amélioration de stabilité limitée au remplissage fixé. EXP-011, sa cohorte, EXP-012, EXP-013, EXP-014 et les études de bugs restent intacts.
+**Limite capitale** : ce candidat est élaboré **après** avoir vu les six questions ; aucune preuve de généralisation, de meilleure précision d'une IA, de gain monétaire réel ou d'exécution de modèles indépendants. Le routeur EXP-011 n'a pas changé. Les résultats EXP-012, EXP-013, EXP-014 et EXP-008B restent intacts.
 
-**Prochaine reprise** : vérifier PR EXP-015 et tous ses jobs sur son SHA final ; corriger tout échec avant fusion. Puis concevoir une cohorte différente et de nouvelles perturbations choisies **avant d'observer les routes candidates**, avec contrôle des fausses interprétations de marqueurs. Les sessions IA réelles distinctes restent [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+**Prochaine mission explicite et transmissible :** [issue #56 — EXP-016](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56). Geler **avant l'observation des routes** un nouveau lot de questions et plusieurs transformations : phrase de remplissage différente, nombres en mots/chiffres, `then/later` trompeurs et étapes sans ces marqueurs. Évaluer aussi les effets de budget. Éviter les affirmations de holdout aveugle : l'auteur connaît déjà le code du candidat. Les vraies sessions d'IA séparées restent une mission distincte ([issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40)), sans API payante ni modèle local obligatoire.
+
+**Règle de reprise :** vérifier le dernier commit de `main`, les PR ouvertes et leurs 8 contrôles avant tout nouveau développement ; ne fusionner qu'avec la CI verte sur le SHA final. La suite historique ci-dessous ne supplante pas cette section.
 
 ---
 
