@@ -1,5 +1,8 @@
 # Laboratoire IA — recherche expérimentale
 
+**EXP-018 (en validation)** : [issue #62](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/62), [protocole](experiments/EXP-018-NATURAL-COVERAGE.md), [24 nouvelles demandes figées](experiments/exp018-cases.json) et 136 formulations par routeur. Comparaison **sans appel IA** des trois politiques gelées sur la couverture, les abstentions et les engagements sur demandes non mathématiques, avec tags d'intention d'auteur non indépendants. Le résultat et les jobs de CI sont encore à vérifier. 
+
+
 **EXP-017 fusionnée le 5 novembre 2026** ([PR #61](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/61), **8 workflows PR verts, 458 tests**) : [protocole](experiments/EXP-017-CONSERVATIVE-ROUTING.md), [16 questions figées](experiments/exp017-cases.json) et [résultats versionnés](results/exp017-conservative-summary.json). Routeur prudent **sans appel de modèle** : 8 `single`, 4 `needs_review`, 3 `uncertain`, 1 `unsupported` sur les 16 nouveaux cas stylisés ; **16/16** questions naturelles EXP-016 réutilisées restent `uncertain`. Les annotations balisées sont stables mais **la couverture demeure très faible**, sans gain d'exactitude ou de coût réel démontré. Prochaine mission : [EXP-018, issue #62](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/62), couverture sur nouvelles demandes naturelles et perturbations non balisées.
 
 
