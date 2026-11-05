@@ -1,5 +1,18 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-015 candidate en cours de validation
+
+**Mission active** : [issue #54](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/54), branche `feat/exp015-content-feature-router`, [protocole préenregistré](experiments/EXP-015-CONTENT-ROUTING.md), module `lab.exp015_content_router`, tests et [résumé permanent](results/exp015-routing-summary.json). La PR et sa CI **doivent être vérifiées avant fusion**. Ne pas présenter le contenu de la branche comme déjà intégré à `main`.
+
+**Comparaison attendue, strictement mécanique** sur les six questions connues d'EXP-014 : seuils historiques 6/6 changements short→long avec 6/12/12 appels prévus ; candidat fondé sur littéraux numériques et mots `then/later` 0/6 changement avec 9/9/9 appels prévus. **Contrôle négatif inscrit au protocole** : la phrase sans chiffre `Then answer with the result.` devrait modifier 3/6 routes candidates. Ces valeurs sont des attentes déterministes du protocole et un résumé versionné, **pas encore une validation par CI** à cette rédaction.
+
+**Limites essentielles** : indices choisis **après** connaissance des six cas, donc aucune validation hors échantillon ; aucune comparaison réelle de modèles, aucun gain de précision, latence ou prix mesuré ; amélioration de stabilité limitée au remplissage fixé. EXP-011, sa cohorte, EXP-012, EXP-013, EXP-014 et les études de bugs restent intacts.
+
+**Prochaine reprise** : vérifier PR EXP-015 et tous ses jobs sur son SHA final ; corriger tout échec avant fusion. Puis concevoir une cohorte différente et de nouvelles perturbations choisies **avant d'observer les routes candidates**, avec contrôle des fausses interprétations de marqueurs. Les sessions IA réelles distinctes restent [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+---
+
+
 
 ## REPRISE — 5 novembre 2026, EXP-014 fusionnée
 
