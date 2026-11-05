@@ -1,0 +1,229 @@
+{
+  "base_budget_route_counts": {
+    "baseline_length": {
+      "0": {
+        "blocked": 16
+      },
+      "1": {
+        "single": 16
+      },
+      "2": {
+        "single": 16
+      }
+    },
+    "candidate_conservative": {
+      "0": {
+        "blocked_by_budget": 12,
+        "uncertain": 3,
+        "unsupported": 1
+      },
+      "1": {
+        "blocked_by_budget": 4,
+        "single": 8,
+        "uncertain": 3,
+        "unsupported": 1
+      },
+      "2": {
+        "needs_review": 4,
+        "single": 8,
+        "uncertain": 3,
+        "unsupported": 1
+      }
+    },
+    "candidate_content": {
+      "0": {
+        "blocked": 6,
+        "invalid_input": 10
+      },
+      "1": {
+        "invalid_input": 10,
+        "single": 6
+      },
+      "2": {
+        "invalid_input": 10,
+        "review": 1,
+        "single": 5
+      }
+    }
+  },
+  "base_group_routes": {
+    "baseline_length": {
+      "ambiguous_or_nonmath": {
+        "single": 4
+      },
+      "explicit_digits": {
+        "single": 4
+      },
+      "explicit_two_stage": {
+        "single": 4
+      },
+      "explicit_words": {
+        "single": 4
+      }
+    },
+    "candidate_conservative": {
+      "ambiguous_or_nonmath": {
+        "uncertain": 3,
+        "unsupported": 1
+      },
+      "explicit_digits": {
+        "single": 4
+      },
+      "explicit_two_stage": {
+        "needs_review": 4
+      },
+      "explicit_words": {
+        "single": 4
+      }
+    },
+    "candidate_content": {
+      "ambiguous_or_nonmath": {
+        "invalid_input": 4
+      },
+      "explicit_digits": {
+        "single": 4
+      },
+      "explicit_two_stage": {
+        "invalid_input": 2,
+        "review": 1,
+        "single": 1
+      },
+      "explicit_words": {
+        "invalid_input": 4
+      }
+    }
+  },
+  "case_count": 16,
+  "entries_per_policy": 48,
+  "exp016_public_development_regression": {
+    "uncertain": 16
+  },
+  "experiment": "EXP-017",
+  "generality_proven": false,
+  "independent_holdout": false,
+  "input_manifest_git_blob": "c834f0b9360c93eb930b5045621fba98a9d4ce43",
+  "models_called": 0,
+  "pair_counts": {
+    "baseline_length": {
+      "tagged_format": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      },
+      "tagged_neutral": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      }
+    },
+    "candidate_conservative": {
+      "tagged_format": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      },
+      "tagged_neutral": {
+        "changed": 0,
+        "invalid_base": 0,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 16
+      }
+    },
+    "candidate_content": {
+      "tagged_format": {
+        "changed": 5,
+        "invalid_base": 10,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 1
+      },
+      "tagged_neutral": {
+        "changed": 0,
+        "invalid_base": 10,
+        "invalid_variant": 0,
+        "total": 16,
+        "unchanged": 6
+      }
+    }
+  },
+  "phase": "model_free_narrow_grammar_abstention_audit",
+  "planned_role_calls_not_real_cost": {
+    "baseline_length": {
+      "base": 16,
+      "tagged_format": 16,
+      "tagged_neutral": 16
+    },
+    "candidate_conservative": {
+      "base": 16,
+      "tagged_format": 16,
+      "tagged_neutral": 16
+    },
+    "candidate_content": {
+      "base": 7,
+      "tagged_format": 12,
+      "tagged_neutral": 7
+    }
+  },
+  "policies": [
+    "baseline_length",
+    "candidate_content",
+    "candidate_conservative"
+  ],
+  "quality_or_accuracy_measured": false,
+  "route_counts": {
+    "baseline_length": {
+      "base": {
+        "single": 16
+      },
+      "tagged_format": {
+        "single": 16
+      },
+      "tagged_neutral": {
+        "single": 16
+      }
+    },
+    "candidate_conservative": {
+      "base": {
+        "needs_review": 4,
+        "single": 8,
+        "uncertain": 3,
+        "unsupported": 1
+      },
+      "tagged_format": {
+        "needs_review": 4,
+        "single": 8,
+        "uncertain": 3,
+        "unsupported": 1
+      },
+      "tagged_neutral": {
+        "needs_review": 4,
+        "single": 8,
+        "uncertain": 3,
+        "unsupported": 1
+      }
+    },
+    "candidate_content": {
+      "base": {
+        "invalid_input": 10,
+        "review": 1,
+        "single": 5
+      },
+      "tagged_format": {
+        "invalid_input": 10,
+        "review": 6
+      },
+      "tagged_neutral": {
+        "invalid_input": 10,
+        "review": 1,
+        "single": 5
+      }
+    }
+  }
+}

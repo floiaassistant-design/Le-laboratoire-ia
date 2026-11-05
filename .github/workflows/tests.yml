@@ -89,6 +89,16 @@ jobs:
           path: results/exp016-routing-stress-audit.json
           if-no-files-found: error
           retention-days: 30
+      - name: EXP-017 conservative grammar and abstention audit (no LLM)
+        run: python -m lab.exp017_conservative --output results/exp017-conservative-audit.json
+      - name: Archive EXP-017 input-only decisions (no LLM)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp017-conservative-model-free
+          path: results/exp017-conservative-audit.json
+          if-no-files-found: error
+          retention-days: 30
       - name: EXP-009D offline wheel probe validation (no downloads)
         run: python -m lab.exp009d_wheels --project black --offline
       - name: EXP-009B candidate metadata structural preflight (no upstream execution)

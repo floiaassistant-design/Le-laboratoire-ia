@@ -1,5 +1,21 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-017 — résultats observés, dernière CI à vérifier
+
+**Étape active** : [issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59), [PR #61](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/61), branche `feat/exp017-conservative-routing-abstain`. Branche créée depuis `main` `21ed1c24a3826ce302da792697d4fe5a45111b59`. [Protocole](experiments/EXP-017-CONSERVATIVE-ROUTING.md) déposé avant la [cohorte de 16 cas](experiments/exp017-cases.json), blob Git figé `c834f0b9360c93eb930b5045621fba98a9d4ce43`, et avant le code / les sorties. **L'expérience n'est pas encore fusionnée** ; confirmer les workflows sur le dernier SHA, sans hériter du statut des commits précédents.
+
+**Architecture expérimentale** : troisième routeur `lab.exp017_conservative`, grammaire étroite `Compute/Calculate N op N` puis éventuellement une deuxième opération, nombres simples en chiffres ou mots, notes de présentation explicitement balisées, et états `single`, `needs_review`, `uncertain`, `unsupported`, `blocked_by_budget`. Trois politiques comparées sur **16 × 3 = 48 entrées chacune**, plus budgets 0/1/2 et 16 cas EXP-016 **réutilisés comme régression**. Aucun modèle interrogé.
+
+**Premiers résultats confirmés par CI** : 457 tests unitaires verts et étape EXP-017 réussie sur une **version antérieure** de la PR. Sur 16 nouveaux énoncés de base, candidat prudent : **8 single, 4 needs_review, 3 uncertain, 1 unsupported**. Les deux notes balisées ont entraîné **0/16 changement** chacune. Le routeur ancien par longueur a sélectionné 16 single, et le candidat EXP-015 a renvoyé **10 invalid_input** sur les 16 bases. La note de format a changé **5/16** routes de l'ancien candidat, avec 10 cas de base invalides comptés à part. **Sur les 16 cas EXP-016 réutilisés en régression, le candidat prudent a renvoyé 16 uncertain** : couverture de cette prose naturelle quasi nulle, ne pas dissimuler ce résultat. Un mot `difference` dans une demande non mathématique suffit aussi à provoquer une prudence `uncertain` : reconnaissance des intentions imparfaite. Comptes complets, coûts de rôles **seulement planifiés**, refus et budgets dans [`results/exp017-conservative-summary.json`](results/exp017-conservative-summary.json), dont la concordance avec le code est désormais testée.
+
+**Limites** : cohorte explicitement rédigée en connaissant la grammaire, **aucun holdout aveugle, aucun échantillon représentatif**, aucun score de réponse, aucune télémétrie de coût, de temps, de tokens ou de performance LLM. La stabilité de deux phrases balisées n'est pas une invariance de reformulations générales. `needs_review` est une requête de second rôle simulée, non un agent indépendant. EXP-011, ses 12 questions de validation non évaluées, et toutes les études historiques restent intactes.
+
+**Prochaine reprise obligatoire** : vérifier tous les workflows de la PR #61 **sur le dernier commit**, corriger les échecs, puis fusionner uniquement si tout est vert. Après fusion, explorer une **étude de couverture sur des phrases naturelles et des tâches non arithmétiques**, définies avant les observations, plutôt que d'élargir les règles pour réussir rétrospectivement les 16 cas EXP-016. Pour des **résultats réels de plusieurs agents**, poursuivre séparément [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40). Aucune API payante ou exécution de code tiers sur PC utilisateur.
+
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-016 fusionnée
 
 **Dépôt officiel** : [floiaassistant-design/Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia). **Dernier développement fusionné** : [PR #58, EXP-016](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/58), commit `09ba580508731f1edaa523b9850c1f8ccadb0016`. [Issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56) clôturée. Sur le dernier SHA de la PR, **8 workflows verts, dont 439 tests unitaires** et le test de comparaison du résumé versionné. Les workflows **post-fusion de `main` doivent être revérifiés séparément** ; ne jamais leur attribuer le statut de la PR.
