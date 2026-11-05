@@ -1,13 +1,14 @@
 # Laboratoire IA — recherche expérimentale
 
 
-**EXP-014 (5 novembre 2026, audit en validation)** :
+**EXP-014 fusionnée le 5 novembre 2026** ([PR #52](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/52), **8 workflows PR verts et 410 tests**) :
 [stabilité du routeur face au remplissage neutre](experiments/EXP-014-NEUTRAL-PADDING.md).
-Six problèmes arithmétiques, trois longueurs par problème, profils de
-routage existants inchangés. L'expérience cherche une faiblesse de
-conception liée au nombre de mots, sans évaluer de modèle réel ni
-revendiquer une supériorité d'agent. Le protocole GSM8K EXP-011
-reste inchangé.
+Six problèmes arithmétiques × trois longueurs : **6/6 changements de route**
+sous un ajout de phrases sans nouvelles données numériques et **6 → 12
+appels de rôle prévus**. La [synthèse versionnée](results/exp014-routing-summary.json)
+est contrôlée par les tests. **Ce résultat est mécanique, pas une mesure
+d'intelligence, de coût réel ni d'avantage multi-agent.** Le protocole
+GSM8K EXP-011 reste inchangé.
 
 
 
