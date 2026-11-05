@@ -1,9 +1,9 @@
 # État du laboratoire IA
 
 
-## REPRISE — 5 novembre 2026, EXP-012 calibration réelle exploratoire
+## REPRISE — 5 novembre 2026, EXP-012 fusionnée (4/4 en calibration)
 
-**Étape nouvelle (PR en validation, ne pas annoncer fusionnée)** :
+**Étape fusionnée** : [PR #46](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/46), commit `9312107fc8b23cf5b014c809b2c48249c5ce8742`. **8 workflows PR verts sur le dernier SHA.** Les workflows post-fusion sur `main` sont à recontrôler séparément. Protocole :
 [EXP-012](experiments/EXP-012-SINGLE-CONTEXT-CALIBRATION.md), liée à
 [l'issue #45](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/45).
 L'EXP-011B est fusionnée (PR #43), et la PR documentaire #44 a été
@@ -16,9 +16,7 @@ GSM8K pré-sélectionnés (indices 13, 37, 59, 81). Réponses figées
 **avant la consultation des solutions** au commit
 `6611afa785417c87cc6985929da71f47c645fe61`.
 Vérification ligne à ligne du blob Git officiel : **4/4 bonnes réponses**.
-La nouvelle CI EXP-012 téléchargera le fichier complet épinglé et
-recalculera le score hors réseau avec contrôle d'empreinte Git ; son
-statut doit être vérifié avant fusion.
+La CI EXP-012 a téléchargé le fichier complet épinglé, **vérifié son empreinte Git**, recalculé le score **4/4** et comparé la synthèse enregistrée. Aucun LLM interrogé par le workflow.
 
 **Ne pas exagérer** : même conversation, provenance auto-déclarée,
 GSM8K public, aucune indépendance des sessions, aucun agent parallèle,
@@ -28,10 +26,7 @@ pas de résultat réel comparatif des quatre politiques.
 Les 12 bugs historiques #29/#35 restent hors mesure et le score
 EXP-008B reste 2/8, inchangé.
 
-**Prochaine étape** : vérifier tous les jobs sur le SHA final de la PR
-EXP-012, fusion uniquement si verts ; vérifier les runs post-fusion,
-puis poursuivre avec des sessions réellement séparées et le
-runbook EXP-011B si un moyen de les ouvrir est disponible. Sinon,
+**Prochaine étape** : vérifier les huit workflows post-fusion de `main` au commit `9312107fc8b23cf5b014c809b2c48249c5ce8742`, puis poursuivre avec des sessions réellement séparées et le runbook EXP-011B si un moyen de les ouvrir est disponible. Sinon,
 documenter cette limite, sans transformer les réponses de
 ce dialogue en agents indépendants.
 
