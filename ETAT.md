@@ -1,13 +1,15 @@
 # État du laboratoire IA
 
 
-## REPRISE — 5 novembre 2026, EXP-014 en validation
+## REPRISE — 5 novembre 2026, EXP-014 fusionnée
 
-**Étape active :** [issue #51](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/51), branche `feat/exp014-length-invariance-audit`, [protocole EXP-014](experiments/EXP-014-NEUTRAL-PADDING.md). Dernier `main` vérifié avant la branche : `d94d30288b81b116fa6a8748a81b84fd9e0c8a92` (PR #50). Les **2 workflows post-fusion** de cette révision étaient verts, aucune PR ouverte au démarrage.
+**Dernière étape :** [PR #52](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/52) fusionnée dans `main` au commit `17d3ceded50717981330d7550984c80405140f1c`. Les **8 workflows sur le dernier SHA de la PR sont verts**, dont **410 tests unitaires**. Les jobs post-fusion de ce commit sont à revérifier séparément ; ne pas les supposer verts.
 
-**Objectif** : audit déterministe de la stabilité de `task_profile` (EXP-011) et `choose` (EXP-010A) face à des phrases de remplissage sans nouveau fait arithmétique. Six questions écrites pour l'audit, trois variantes par question (moins de 40, 40–49, au moins 50 mots), et décompte des routes / appels **prévus**. Le routeur actuel utilise la longueur comme proxy d'incertitude et de parallélisation ; ne pas présenter les changements attendus comme une découverte scientifique ni un effet mesuré sur la qualité d'un modèle.
+**Résultat mécanique reproductible :** le [protocole EXP-014](experiments/EXP-014-NEUTRAL-PADDING.md), la [synthèse permanente](results/exp014-routing-summary.json) et le nouveau module `lab.exp014_neutral_padding` comparent 6 questions arithmétiques × 3 variantes de longueur. **6/6 familles changent de route** (single puis parallel puis review) lorsque seule la phrase de remplissage enregistrée est ajoutée ; le nombre d'appels de rôle **prévus** passe de 6 à 12, sans nouvelle donnée numérique. Ce résultat découle des seuils 40/50 mots et ne mesure ni intelligence, ni coût réel, ni bénéfice d'une autre architecture. Un test vérifie que la synthèse versionnée correspond au rapport recalculé.
 
-**À vérifier avant fusion** : nouveaux tests synthétiques, workflow `laboratory-checks`, rapport EXP-014 archivé, tous les jobs au dernier SHA de PR et contrôles post-fusion. Aucun appel de LLM, aucune modification du plan GSM8K EXP-011, aucun résultat d'agent indépendant. Le seul pilote réel demeure EXP-012 (4/4 sur 4 problèmes de calibration dans le même contexte). EXP-013 a seulement ajouté un analyseur pour des sessions encore à collecter. Bugs historiques EXP-008B : 2/8 inchangé.
+**Conclusions scientifiques à ne pas dépasser :** aucun LLM interrogé par EXP-014, aucun score empirique de modèle sur ces variantes et aucune preuve d'une meilleure alternative de routage. Le préenregistrement EXP-011, ses 12 tâches de validation et les résultats historiques restent inchangés. L'unique petite calibration réelle est toujours EXP-012 (4/4 dans le même contexte ChatGPT), pas une comparaison multi-agent. EXP-008B conserve 2/8.
+
+**Prochaine reprise :** vérifier les **8 workflows post-fusion de `main`** sur le SHA de la PR #52, puis préparer un **routeur candidat résistant aux reformulations** dans une expérience distincte, avec critères définis avant tests et sans prétendre à un gain de qualité sans modèles indépendants. [Issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste le chantier des véritables sessions séparées. Lire cette section avant les journaux antérieurs.
 
 ---
 
