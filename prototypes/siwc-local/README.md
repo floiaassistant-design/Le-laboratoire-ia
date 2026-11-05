@@ -35,8 +35,13 @@ npm ci
 npm run build -w @siwc/local
 Copy-Item ../../prototypes/siwc-local/lab-siwc.mjs ./lab-siwc.mjs
 Copy-Item ../../prototypes/siwc-local/adapter.mjs ./lab-adapter.mjs
+# Vérifier le démarrage sans accès au compte avant tout login :
+.\node_modules\.bin\electron.cmd .\lab-siwc.mjs status
+# Seulement après un résultat de statut valide et consentement explicite :
 .\node_modules\.bin\electron.cmd .\lab-siwc.mjs login
 ~~~
+
+**Retour d'essai Windows (5 novembre 2026) :** le prototype initial pouvait rester bloqué à `app.whenReady()` : un `await main()` placé au niveau supérieur du module ESM empêchait l'initialisation d'Electron de se terminer. Le correctif lance `void main().catch(...).finally(...)`, sans `await` au niveau supérieur. Après mise à jour du dépôt, **recopier impérativement `lab-siwc.mjs`** dans la racine du kit avant de relancer `status`. Le succès de l'authentification réelle reste à démontrer. Les essais `test-electron.mjs` et `etapes-siwc.mjs` ont isolé ce problème sans ouvrir de session OAuth.
 
 Si le kit officiel change ou ne s'installe pas à cette révision, ne pas modifier artificiellement l'authentification ni utiliser des cookies ChatGPT. Le résultat du login doit déclarer la permission de partage active avant toute inférence.
 

@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { checkModels, validatePrompt, eligibleModels, requestRole } from "./adapter.mjs";
 
 const fake = ({ sharing = true, models = [{ slug: "test-local-model", displayName: "Mock" }],
@@ -63,4 +64,11 @@ test("not connected is a hard stop", async () => {
   };
   await assert.rejects(() => requestRole(client,{model:"model-a",prompt:"question"}), /not authorized/);
   assert.equal(invoked,false);
+});
+
+test("Electron ESM launcher must not deadlock its own ready event", async () => {
+  const source = await readFile(new URL("./lab-siwc.mjs", import.meta.url), "utf8");
+  assert.match(source, /await app\.whenReady\(\)/);
+  assert.match(source, /void main\(\)\s*\.catch\(/);
+  assert.doesNotMatch(source, /^\s*await main\(\)/m);
 });
