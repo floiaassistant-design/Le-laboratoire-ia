@@ -1,5 +1,18 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-016 en expérimentation
+
+**Prérequis confirmé** : [PR #57](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/57) documentaire fusionnée après 2 workflows verts, commit `b1d8934b3b86d2dbe3531d2f992bfb09459b8bde`. La PR #55 (EXP-015) est fusionnée et l'issue #54 clôturée.
+
+**Étape active** : [issue #56](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/56), branche `feat/exp016-out-of-sample-routing-stress`, [protocole gelé](experiments/EXP-016-ROUTING-STRESS.md) et manifeste [16 cas, 68 entrées](experiments/exp016-cases.json) enregistrés **avant l'exécution du routeur**. SHA du blob manifeste : `71fc6eb6ca88f3a412faf9a019e824caacc4f9cd`. Deux routeurs inchangés, quatre transformations et budgets 0/1/2 ; un refus de question sans chiffre compte comme `invalid_input`, pas comme une route stable. Suite de tests, script et CI ajoutés sur branche ; **résultats et validation complets encore à contrôler**.
+
+**Limites scientifiques** : auteur informé des heuristiques, cohorte construite et non représentative ; aucun LLM, aucune mesure de précision/coût réel ni validation aveugle. Les 12 problèmes de validation EXP-011 restent sans sorties de modèles. Ne pas changer les résultats historiques.
+
+**Prochaine reprise** : lire la PR active, vérifier tous les jobs sur le dernier SHA, figer une synthèse reproduite par CI, corriger les éventuelles erreurs et **ne fusionner qu'après CI verte**. La mission des véritables sessions IA séparées reste [issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40).
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-015 fusionnée
 
 **Source de vérité :** [PR #55](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/55) fusionnée dans `main` au commit `854422efa71f53817af87696298b2489ca54676c`. L'[issue #54](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/54) est clôturée. Les **8 workflows de la PR sont verts sur son dernier SHA**, dont `laboratory-checks` : **424 tests unitaires** et le nouveau contrôle EXP-015 validé. Les jobs de `main` **post-fusion** sont distincts : ne pas les supposer vérifiés sans nouveau contrôle.
