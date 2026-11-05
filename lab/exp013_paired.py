@@ -162,9 +162,15 @@ def _paired(evaluation: dict, baseline: str) -> dict:
     known_pairs = 0
     adaptive_only, baseline_only, both, neither = 0, 0, 0, 0
     lower_units, upper_units = 0, 0
+    baseline_blocked_by_rule = 0
+    adaptive_correct_while_baseline_blocked = 0
     for task_id in ids:
         a = evaluation[(task_id, "adaptive")]["status"]
         b = evaluation[(task_id, baseline)]["status"]
+        if b == "blocked_by_design":
+            baseline_blocked_by_rule += 1
+            if a == "correct":
+                adaptive_correct_while_baseline_blocked += 1
         a_low, a_high = _interval(a)
         b_low, b_high = _interval(b)
         lower_units += a_low - b_high
@@ -188,6 +194,9 @@ def _paired(evaluation: dict, baseline: str) -> dict:
         "baseline_only_correct": baseline_only,
         "both_correct": both,
         "neither_correct": neither,
+        "baseline_blocked_by_rule": baseline_blocked_by_rule,
+        "adaptive_correct_while_baseline_blocked": adaptive_correct_while_baseline_blocked,
+        "structural_policy_constraint_can_explain_difference": baseline_blocked_by_rule > 0,
         "delta_success_on_known_pairs": (
             (adaptive_only - baseline_only) / known_pairs if known_pairs else None),
         "delta_success_over_all_tasks_bounds": {
@@ -244,6 +253,8 @@ def analyze(graded: dict) -> dict:
             "rather than model errors. Abstentions, malformed outputs and "
             "policy blockages are known non-success for delivery. "
             "Bounds are logical missing-data limits, not confidence intervals. "
+            "An adaptive win when a fixed policy is forbidden by design is "
+            "a structural constraint effect, not evidence of better reasoning. "
             "Role calls/tokens/latency are self-reported, not billable costs. "
             "There is no independence or generalization claim."
         ),
