@@ -62,8 +62,13 @@ python -m lab.exp014_neutral_padding --output results/exp014-neutral-padding-aud
 
 GitHub Actions génère et archive le JSON, mais **ne lance aucun modèle**.
 L'empreinte du manifeste et les textes sont enregistrés pour permettre
-une reproduction. L'archive GitHub Actions a une durée de vie limitée ;
-le code, le manifeste et le protocole restent dans le dépôt.
+une reproduction. La **synthèse chiffrée versionnée**
+[`results/exp014-routing-summary.json`](../results/exp014-routing-summary.json)
+est contrôlée automatiquement par un test unitaire contre le rapport
+recalculé : une modification des résultats attendus ou du routeur
+échoue tant que la divergence n'est pas résolue. L'archive brute
+GitHub Actions expire, mais le code, le manifeste, la synthèse
+et le protocole restent dans le dépôt.
 
 ## Conclusions autorisées et limites
 
