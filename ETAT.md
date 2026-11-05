@@ -1,5 +1,16 @@
 # État du laboratoire IA
 
+## REPRISE — 5 novembre 2026, EXP-018 en validation
+
+**Mission active** : [issue #62](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/62), branche `feat/exp018-natural-language-coverage`. Base `main` vérifiée : `d881446dc489a94e20ac052feff64206049d3f53` (EXP-017 et reprise documentaire intégrées), aucune PR ouverte au démarrage.
+
+**Préenregistrement fait avant les calculs** : [protocole](experiments/EXP-018-NATURAL-COVERAGE.md), [24 demandes naturelles et paraphrases](experiments/exp018-cases.json) au blob Git figé `5b82e3850d7888c8174e7b1e50979a9dd2a011d4`, 6 catégories de 4, 20 étiquettes mathématiques et 4 non arithmétiques déclarées par l'auteur. 5 variantes pour chaque cas, plus 16 conversions chiffres→mots, soit **136 entrées par politique** × 3 politiques EXP-011/015/017 **inchangées**. Budgets 0/1/2, dénominateurs et refus/abstentions explicitement comptés. Le module `lab.exp018_natural_coverage` et ses tests ont été ajoutés ainsi qu'un contrôle GitHub Actions.
+
+**Attention** : cette cohorte est fabriquée en connaissant les routeurs ; ni holdout aveugle, ni oracle indépendant, ni mesure réelle de qualité ou de coût. La CI doit encore fournir les résultats et les vérifier. Prochaine reprise : lire la PR ouverte, vérifier les 8 workflows sur son dernier SHA, sauvegarder les observations dans une synthèse permanente comparée au calcul frais, documenter les résultats négatifs, ne fusionner qu'après CI verte. L'[issue #40](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/40) reste la mission de vrais modèles séparés. Ne pas modifier les cohortes historiques.
+
+---
+
+
 ## REPRISE — 5 novembre 2026, EXP-017 fusionnée (prochaine EXP-018)
 
 **Source de vérité** : dépôt [Le-laboratoire-ia](https://github.com/floiaassistant-design/Le-laboratoire-ia), [PR #61](https://github.com/floiaassistant-design/Le-laboratoire-ia/pull/61) **fusionnée** dans `main` au commit `42ac5cc37fc292b6b06ab6bbc943c72bbad89669`, [issue #59](https://github.com/floiaassistant-design/Le-laboratoire-ia/issues/59) clôturée. Les **8 workflows GitHub Actions sur le dernier SHA de PR sont verts**, y compris **458 tests unitaires** et la vérification du résumé permanent. Les runs **post-fusion** de `main` doivent être vérifiés séparément : ne pas les supposer verts.
