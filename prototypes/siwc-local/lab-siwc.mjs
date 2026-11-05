@@ -107,11 +107,10 @@ try {
   await main();
 } catch (error) {
   // Do not print raw HTTP responses, access tokens or stack dumps.
-  process.stderr.write(
-    "EXP-019 not completed: " +
-    (error instanceof Error ? error.message.replace(/Bearer\s+\S+/gi, "[redacted]") : "unknown error") +
-    "\n"
-  );
+  // Error messages can contain request details. Never print raw SDK errors or tokens.
+  const code = error && typeof error.code === "string"
+    && /^[a-z_]{1,50}$/.test(error.code) ? error.code : "request_failed";
+  process.stderr.write("EXP-019 not completed (" + code + "). No real success recorded.\n");
   process.exitCode = 1;
 } finally {
   app.quit();
